@@ -264,7 +264,7 @@ html[data-theme-mode="dark"] .back-btn-top:hover { color: #f8fafc; background: r
                         <input type="hidden" name="pin" id="realPin" value="">
                         
                         <!-- Dummy target for PIN confirmation logic -->
-                        <input type="hidden" id="realConfirmPin" value="">
+                        <input type="hidden" name="pin_confirm" id="realConfirmPin" value="">
 
                         <!-- STEP 1: Data Diri -->
                         <div id="step1" class="step-container active">
@@ -451,6 +451,7 @@ function addConfirmPin(digit) {
     if (confirmPin.length === 4) {
         if (confirmPin === currentPin) {
             // Success
+            document.getElementById('realConfirmPin').value = confirmPin;
             setTimeout(() => {
                 document.getElementById('registerForm').submit();
             }, 200);
