@@ -28,9 +28,14 @@ function trigger_notifikasi_po($db, $id_po, $status_baru) {
 
 // Baca data JSON dari Telegram
 $content = file_get_contents("php://input");
+
+// --- DEBUG LOGGING ---
+file_put_contents(__DIR__ . '/webhook_debug_log.txt', date('Y-m-d H:i:s') . " - Received data: " . $content . "\n", FILE_APPEND);
+
 $update = json_decode($content, true);
 
 if (!$update) {
+    file_put_contents(__DIR__ . '/webhook_debug_log.txt', date('Y-m-d H:i:s') . " - Data is empty or invalid JSON. Exiting.\n", FILE_APPEND);
     http_response_code(400);
     exit;
 }
