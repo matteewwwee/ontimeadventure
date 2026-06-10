@@ -78,6 +78,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         }
         exit;
     }
+    if ($_POST['action'] === 'check_webhook_status') {
+        header('Content-Type: application/json');
+        $token = trim($_POST['telegram_bot_token'] ?? '');
+        if (empty($token)) {
+            echo json_encode(['success' => false, 'message' => 'Token Bot tidak boleh kosong.']);
+            exit;
+        }
+        $url = "https://api.telegram.org/bot{$token}/getWebhookInfo";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $res = curl_exec($ch);
+        curl_close($ch);
+        
+        $resData = json_decode($res, true);
+        if ($resData && $resData['ok']) {
+            $info = $resData['result'];
+            $status_html = "URL Target: <b>" . htmlspecialchars($info['url'] ?: 'Belum di-set') . "</b><br>";
+            $status_html .= "Pesan Nyangkut: <b>" . ($info['pending_update_count'] ?? 0) . "</b><br>";
+            if (!empty($info['last_error_message'])) {
+                $status_html .= "<br><span class='text-danger'>Error Terakhir:<br>" . htmlspecialchars($info['last_error_message']) . "</span>";
+            } else {
+                $status_html .= "<br><span class='text-success'>Status: <b>Lancar (Tidak ada Error)</b></span>";
+            }
+            echo json_encode(['success' => true, 'html' => $status_html]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Gagal terhubung ke Telegram.']);
+        }
+        exit;
+    }
 }
 
 // Proses Upload Banner
@@ -356,9 +386,14 @@ require_once __DIR__ . '/../includes/header.php';
                             </div>
 
                             <div class="d-flex justify-content-between mt-4">
-                                <button type="button" class="btn btn-outline-info btn-wave" id="btnTestTelegram">
-                                    <i class="ri-send-plane-line me-1"></i> Test Kirim Notifikasi
-                                </button>
+                                <div>
+                                    <button type="button" class="btn btn-outline-info btn-wave me-2" id="btnTestTelegram">
+                                        <i class="ri-send-plane-line me-1"></i> Test Kirim Notifikasi
+                                    </button>
+                                    <button type="button" class="btn btn-outline-warning btn-wave" id="btnCheckWebhook">
+                                        <i class="ri-radar-line me-1"></i> Cek Status Telegram
+                                    </button>
+                                </div>
                                 <button type="submit" class="btn btn-primary btn-wave"><i class="ri-save-line me-1"></i> Simpan Telegram</button>
                             </div>
                         </form>
@@ -474,6 +509,7 @@ require_once __DIR__ . '/../includes/header.php';
 document.addEventListener("DOMContentLoaded", function() {
     const btnFetch = document.getElementById('btnFetchChatId');
     const btnTest = document.getElementById('btnTestTelegram');
+    const btnCheck = document.getElementById('btnCheckWebhook');
     const inputToken = document.getElementById('telegram_bot_token');
     const inputChatId = document.getElementById('telegram_chat_id');
     const helperText = document.getElementById('chatIdHelperText');
@@ -546,6 +582,43 @@ document.addEventListener("DOMContentLoaded", function() {
             btnTest.disabled = false;
             btnTest.innerHTML = '<i class="ri-send-plane-line me-1"></i> Test Kirim Notifikasi';
             Swal.fire('Error', 'Terjadi kesalahan saat mengirim pesan test.', 'error');
+        });
+    });
+
+    btnCheck.addEventListener('click', function() {
+        const token = inputToken.value.trim();
+        if (!token) {
+            Swal.fire('Oops', 'Token Bot harus diisi terlebih dahulu!', 'warning');
+            return;
+        }
+
+        btnCheck.disabled = true;
+        btnCheck.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Mengecek...';
+
+        const formData = new FormData();
+        formData.append('action', 'check_webhook_status');
+        formData.append('telegram_bot_token', token);
+
+        fetch('pengaturan.php', { method: 'POST', body: formData })
+        .then(res => res.json())
+        .then(data => {
+            btnCheck.disabled = false;
+            btnCheck.innerHTML = '<i class="ri-radar-line me-1"></i> Cek Status Telegram';
+            
+            if (data.success) {
+                Swal.fire({
+                    title: 'Status Telegram Bot',
+                    html: `<div class="text-start fs-14 mt-3">${data.html}</div>`,
+                    icon: 'info'
+                });
+            } else {
+                Swal.fire('Gagal', data.message, 'error');
+            }
+        })
+        .catch(err => {
+            btnCheck.disabled = false;
+            btnCheck.innerHTML = '<i class="ri-radar-line me-1"></i> Cek Status Telegram';
+            Swal.fire('Error', 'Terjadi kesalahan saat mengecek status.', 'error');
         });
     });
 });
