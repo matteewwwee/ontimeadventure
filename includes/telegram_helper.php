@@ -145,11 +145,7 @@ function send_po_telegram_notification($id_po) {
         
         $msg .= "\n<b>💰 Estimasi Total: Rp " . number_format($po['estimasi_total_harga'], 0, ',', '.') . "</b>\n\n";
         
-        // Gunakan Webhook untuk memproses aksi secara background
-        $app_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) 
-            ? "http://{$_SERVER['HTTP_HOST']}/ontimeadventure/admin/kelola_po.php"
-            : "https://{$_SERVER['HTTP_HOST']}/admin/kelola_po.php";
-
+        // Telegram Webhook
         $keyboard = [
             'inline_keyboard' => [
                 [
@@ -157,7 +153,7 @@ function send_po_telegram_notification($id_po) {
                     ['text' => '❌ Batalkan', 'callback_data' => "action=batalkan&id_po={$id_po}"]
                 ],
                 [
-                    ['text' => '✍️ Edit Pesanan (Barang Kosong)', 'callback_data' => "action=edit_po&id_po={$id_po}"]
+                    ['text' => '✏️ Edit Pesanan (Barang Kosong)', 'callback_data' => "action=edit_po&id_po={$id_po}"]
                 ],
                 [
                     ['text' => '🔍 Cek Detail (Lihat Gambar)', 'callback_data' => "action=detail&id_po={$id_po}"]
