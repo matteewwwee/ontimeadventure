@@ -299,9 +299,9 @@ $htmlAttrs = $isAdminArea
                 
                 <!-- Notifications Dropdown -->
                 <div class="header-element notifications-dropdown me-2 me-sm-3">
-                    <a href="javascript:void(0);" class="header-link btn-notif-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="border: none; background: transparent; outline: none; box-shadow: none;">
+                    <a href="javascript:void(0);" class="header-link btn-notif-toggle position-relative" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="border: none; background: transparent; outline: none; box-shadow: none;">
                         <i class="ri-notification-3-line fs-20"></i>
-                        <span class="badge bg-danger rounded-pill header-icon-badge pulse pulse-secondary notif-badge" style="display: none;">0</span>
+                        <span class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle notif-badge" style="display: none; font-size: 0.6rem; transform: translate(-30%, 20%) !important;">0</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow dropdown-menu-md shadow-sm border-0 pt-0" style="width: 300px;">
                         <div class="dropdown-header bg-light d-flex align-items-center justify-content-between p-3 border-bottom">
