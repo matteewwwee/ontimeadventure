@@ -1,0 +1,602 @@
+<!-- include mainhead.html"-->
+
+</head>
+
+<body>
+	<div class="progress-top-bar"></div>
+
+    <!-- include switcher.html"-->
+   <!-- include loader.html"-->
+
+    <div class="page">
+        <!-- include header.html"-->
+         <!-- include sidebar.html"-->
+
+        <!-- Start::app-content -->
+       <div class="main-content app-content">
+            <div class="container-fluid page-container main-body-container">
+
+                <!-- Start::page-header -->
+                <div class="page-header-breadcrumb mb-3">
+                    <div class="d-flex align-center justify-content-between flex-wrap">
+                        <h1 class="page-title fw-medium fs-18 mb-0">Jobs List</h1>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboards</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Jobs</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Jobs List</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- End::page-header -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card overflow-hidden">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">
+                                    All Jobs List
+                                </div>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="job-post.html" class="btn btn-primary btn-wave">
+                                        <i class="ri-add-line me-1 align-middle"></i>Post Job
+                                    </a> 
+                                    <div>
+                                        <input class="form-control" type="text" placeholder="Search Here" aria-label=".form-control-sm example">
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-wave" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Posted Date</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Status</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Department</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Job Type</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Newest</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Oldest</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="row" class="ps-4"><input class="form-check-input check-all" type="checkbox" id="checkboxNoLabeljob1" value="" aria-label="..."></th>
+                                                <th scope="col">Job Title</th>
+                                                <th scope="col">Company</th>
+                                                <th scope="col">Department</th>
+                                                <th scope="col">Applications</th>
+                                                <th scope="col">Vacancies</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Job Type</th>
+                                                <th scope="col">Posted Date</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob22" value="" aria-label="..."></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-primary-transparent svg-primary">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M40,176V72A16,16,0,0,1,56,56H200a16,16,0,0,1,16,16V176Z" opacity="0.2"/><path d="M40,176V72A16,16,0,0,1,56,56H200a16,16,0,0,1,16,16V176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M24,176H232a0,0,0,0,1,0,0v16a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V176A0,0,0,0,1,24,176Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="144" y1="88" x2="112" y2="88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">Software Engineer</a></p>
+                                                            <p class="fs-12 text-muted mb-0">New York, NY</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/1.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">Tech Innovations Inc.</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Engineering
+                                                </td>
+                                                <td>25</td>
+                                                <td>5</td>
+                                                <td><span class="badge rounded-pill bg-success-transparent">Active</span></td>
+                                                <td>Full-Time</td>
+                                                <td>
+                                                    Feb 15, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob33" value="" aria-label="..." checked=""></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-secondary-transparent svg-secondary">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="152" y="40" width="56" height="168" opacity="0.2"/><polyline points="48 208 48 136 96 136" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="224" y1="208" x2="32" y2="208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline points="96 208 96 88 152 88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline points="152 208 152 40 208 40 208 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">Data Analyst</a></p>
+                                                            <p class="fs-12 text-muted mb-0">London, UK</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/2.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">Creative Solutions Ltd.</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Analytics
+                                                </td>  
+                                                <td>18</td>
+                                                <td>3</td>
+                                                <td>
+                                                    <span class="badge rounded-pill bg-success-transparent">Active</span>
+                                                </td>
+                                                <td>Full Time</td>
+                                                <td>
+                                                    Feb 10, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob44" value="" aria-label="..." checked=""></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-warning-transparent svg-warning">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,144a191.14,191.14,0,0,1-96-25.68h0V200a8,8,0,0,0,8,8H216a8,8,0,0,0,8-8V118.31A191.08,191.08,0,0,1,128,144Z" opacity="0.2"/><line x1="112" y1="112" x2="144" y2="112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="32" y="64" width="192" height="144" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M168,64V48a16,16,0,0,0-16-16H104A16,16,0,0,0,88,48V64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M224,118.31A191.09,191.09,0,0,1,128,144a191.14,191.14,0,0,1-96-25.68" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">Product Manager</a></p>
+                                                            <p class="fs-12 text-muted mb-0">San Francisco, CA</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/3.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">GreenTech Solutions</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Product
+                                                </td>
+                                                <td>12</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <span class="badge rounded-pill bg-danger-transparent">Closed</span>
+                                                </td>
+                                                <td>Full Time</td>
+                                                <td>
+                                                    Jan 30, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob55" value="" aria-label="..."></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-info-transparent svg-info">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M165.36,123.05C192.36,99.43,224,64.81,224,32,191.19,32,156.57,63.64,133,90.64A84.39,84.39,0,0,1,165.36,123.05Z" opacity="0.2"/><path d="M16,216H92a52,52,0,1,0-52-52C40,200,16,216,16,216Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M112.41,116.16C131.6,90.29,179.46,32,224,32c0,44.54-58.29,92.4-84.16,111.59" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M133,90.64a84.39,84.39,0,0,1,32.41,32.41" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">UI/UX Designer</a></p>
+                                                            <p class="fs-12 text-muted mb-0">Berlin, Germany</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/4.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">UI/UX Designer</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Design
+                                                </td>
+                                                <td>40</td>
+                                                <td>4</td>
+                                                <td>
+                                                    <span class="badge rounded-pill bg-success-transparent">Active</span>
+                                                </td>
+                                                <td>Full Time</td>
+                                                <td>
+                                                    Feb 18, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob2" value="" aria-label="..."></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-success-transparent svg-success">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M160,160h40a40,40,0,0,0,0-80H160Z" opacity="0.2"/><path d="M160,80V200.67a8,8,0,0,0,3.56,6.65l11,7.33a8,8,0,0,0,12.2-4.72L200,160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M40,200a8,8,0,0,0,13.15,6.12C105.55,162.16,160,160,160,160h40a40,40,0,0,0,0-80H160S105.55,77.84,53.15,33.89A8,8,0,0,0,40,40Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">Marketing Specialist</a></p>
+                                                            <p class="fs-12 text-muted mb-0">Tokyo, Japan</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/5.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">SmartSolutions Co.</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Marketing
+                                                </td>
+                                                <td>22</td>
+                                                <td>3</td>
+                                                <td><span class="badge rounded-pill bg-success-transparent">Active</span></td>
+                                                <td>Full Time</td>
+                                                <td>
+                                                    Feb 12, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob3" value="" aria-label="..." checked=""></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-danger-transparent svg-danger">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="84" cy="108" r="52" opacity="0.2"/><path d="M10.23,200a88,88,0,0,1,147.54,0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M172,160a87.93,87.93,0,0,1,73.77,40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><circle cx="84" cy="108" r="52" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M152.69,59.7A52,52,0,1,1,172,160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">HR Manager</a></p>
+                                                            <p class="fs-12 text-muted mb-0">Mumbai, India</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/6.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">SoftMinds Technologies</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    HR
+                                                </td>  
+                                                <td>6</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <span class="badge rounded-pill bg-danger-transparent">Closed</span>
+                                                </td>
+                                                <td>Full Time</td>
+                                                <td>
+                                                    Jan 25, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob4" value="" aria-label="..." checked=""></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-teal-transparent svg-teal">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polygon points="192 168 240 128 192 88 64 88 16 128 64 168 192 168" opacity="0.2"/><polyline points="64 88 16 128 64 168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline points="192 88 240 128 192 168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="160" y1="40" x2="96" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">Full Stack Developer</a></p>
+                                                            <p class="fs-12 text-muted mb-0">Singapore</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/7.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">DataFusion Labs</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Development
+                                                </td>
+                                                <td>35</td>
+                                                <td>6</td>
+                                                <td>
+                                                    <span class="badge rounded-pill bg-success-transparent">Active</span>
+                                                </td>
+                                                <td>Full Time</td>
+                                                <td>
+                                                    Feb 20, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob5" value="" aria-label="..."></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-pink-transparent svg-pink">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="104" y="32" width="48" height="48" rx="8" opacity="0.2"/><rect x="40" y="168" width="48" height="48" rx="8" opacity="0.2"/><rect x="168" y="168" width="48" height="48" rx="8" opacity="0.2"/><rect x="104" y="32" width="48" height="48" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="40" y="168" width="48" height="48" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="168" y="168" width="48" height="48" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="128" y1="80" x2="128" y2="120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="192" y1="120" x2="192" y2="168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="64" y1="168" x2="64" y2="120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="24" y1="120" x2="232" y2="120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">Network Administrator</a></p>
+                                                            <p class="fs-12 text-muted mb-0">Toronto, Canada</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/8.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">NextGen Systems</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    IT
+                                                </td>
+                                                <td>8</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <span class="badge rounded-pill bg-success-transparent">Active</span>
+                                                </td>
+                                                <td>Part Time</td>
+                                                <td>
+                                                    Jan 12 2024
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob5" value="" aria-label="..."></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-purple-transparent svg-purple">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M32,184a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V144a16,16,0,0,0-16-16H32Z" opacity="0.2"/><path d="M192,128a16,16,0,0,0-16,16v40a16,16,0,0,0,16,16h32V128Z" opacity="0.2"/><path d="M224,200v8a32,32,0,0,1-32,32H136" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M224,128H192a16,16,0,0,0-16,16v40a16,16,0,0,0,16,16h32V128a96,96,0,1,0-192,0v56a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V144a16,16,0,0,0-16-16H32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">Customer Support Lead</a></p>
+                                                            <p class="fs-12 text-muted mb-0">Sydney, Australia</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/9.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">Customer Support Lead</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Support
+                                                </td>
+                                                <td>50</td>
+                                                <td>5</td>
+                                                <td>
+                                                    <span class="badge rounded-pill bg-danger-transparent">Closed</span>
+                                                </td>
+                                                <td>Full-Time</td>
+                                                <td>
+                                                    Jan 28, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><input class="form-check-input" type="checkbox" id="checkboxNoLabeljob5" value="" aria-label="..."></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-md avatar-rounded bg-warning-transparent svg-warning">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M40,184a16,16,0,0,0,16,16H216a8,8,0,0,0,8-8V80a8,8,0,0,0-8-8H56A16,16,0,0,1,40,56Z" opacity="0.2"/><path d="M40,56V184a16,16,0,0,0,16,16H216a8,8,0,0,0,8-8V80a8,8,0,0,0-8-8H56A16,16,0,0,1,40,56h0A16,16,0,0,1,56,40H192" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><circle cx="180" cy="132" r="12"/></svg>
+                                                            </span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <p class="fw-medium mb-0 d-flex align-items-center"><a href="job-details.html">Sales Manager</a></p>
+                                                            <p class="fs-12 text-muted mb-0">Paris, France</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="avatar avatar-md me-1 avatar-rounded">
+                                                            <img src="../assets/images/company-logos/10.png" alt="">
+                                                        </span>
+                                                        <a href="javascript:void(0);" class="fw-medium mb-0">Sales Manager</a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Sales
+                                                </td>
+                                                <td>30</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <span class="badge rounded-pill bg-success-transparent">Active</span>
+                                                </td>
+                                                <td>Full Time</td>
+                                                <td>
+                                                    Feb 11, 2025
+                                                </td>
+                                                <td>
+                                                    <a href="job-details.html" class="btn btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-edit-line"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer border-top-0">
+                                <div class="d-flex align-items-center flex-wrap overflow-auto">
+                                    <div class="mb-2 mb-sm-0">
+                                        Showing <b>1</b> to <b>10</b> of <b>100</b> entries <i class="bi bi-arrow-right ms-2 fw-medium"></i>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <ul class="pagination mb-0 overflow-auto">
+                                            <li class="page-item disabled">
+                                                <a class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item active" aria-current="page"><a class="page-link" href="javascript:void(0);">1</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="javascript:void(0);">2</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="javascript:void(0);">Next</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+        </div>
+        <!-- End::app-content -->
+
+        
+       <!-- include footer.html"-->
+        <!-- include responsive-search-modal.html"-->
+
+    </div>
+
+   <!-- include commonjs.html"-->
+
+        <!-- jobs-list.JS -->
+       <script src="../assets/js/joblist.js"></script>
+
+    <!-- include custom_switcherjs.html"-->
+
+    <!-- Custom JS -->
+    <script src="../assets/js/custom.js"></script>
+
+
+</body>
+
+</html>

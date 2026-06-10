@@ -1,0 +1,15 @@
+POST: Array
+(
+    [id_po] => 16
+    [id_detail] => 2
+    [id_item] => 3
+    [rating] => 5
+    [komentar] => Bagus
+)
+
+PO: Array
+(
+    [status_po] => Selesai (Barang Kembali)
+)
+
+id_user: 3

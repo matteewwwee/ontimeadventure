@@ -1,0 +1,278 @@
+2026-06-03 12:20:12
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00001
+<b>Pelanggan:</b> Admin OTA
+<b>No. HP:</b> <a href="https://wa.me/6281200001111">081200001111</a>
+
+<b>📅 Periode Sewa:</b>
+04/06/2026 s.d. 06/06/2026 (2 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Arei Uk 41 - Uk 41
+  <i>1 pcs x Rp 35.000</i>
+
+<b>💰 Estimasi Total: Rp 70.000</b>
+
+<i>Pilih aksi cepat di bawah ini untuk memproses pesanan:</i>
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui (Barang Siap)","url":"http:\/\/localhost\/ontimeadventure\/admin\/kelola_po.php?action=setujui&id_po=1"},{"text":"\u274c Batalkan PO","url":"http:\/\/localhost\/ontimeadventure\/admin\/kelola_po.php?action=batalkan&id_po=1"}],[{"text":"\ud83d\udd0d Cek Detail Kelola PO","url":"http:\/\/localhost\/ontimeadventure\/admin\/kelola_po.php"}]]}
+)
+
+Response: {"ok":false,"error_code":400,"description":"Bad Request: inline keyboard button URL 'http://localhost/ontimeadventure/admin/kelola_po.php?action=setujui&id_po=1' is invalid: Wrong HTTP URL"}
+
+2026-06-03 12:20:39
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00001
+<b>Pelanggan:</b> Admin OTA
+<b>No. HP:</b> <a href="https://wa.me/6281200001111">081200001111</a>
+
+<b>📅 Periode Sewa:</b>
+04/06/2026 s.d. 06/06/2026 (2 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Arei Uk 41 - Uk 41
+  <i>1 pcs x Rp 35.000</i>
+
+<b>💰 Estimasi Total: Rp 70.000</b>
+
+<i>Pilih aksi cepat di bawah ini untuk memproses pesanan:</i>
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui (Barang Siap)","url":"http:\/\/127.0.0.1.nip.io\/ontimeadventure\/admin\/kelola_po.php?action=setujui&id_po=1"},{"text":"\u274c Batalkan PO","url":"http:\/\/127.0.0.1.nip.io\/ontimeadventure\/admin\/kelola_po.php?action=batalkan&id_po=1"}],[{"text":"\ud83d\udd0d Cek Detail Kelola PO","url":"http:\/\/127.0.0.1.nip.io\/ontimeadventure\/admin\/kelola_po.php"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":8,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780489239,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00001\nPelanggan: Admin OTA\nNo. HP: 081200001111\n\n\ud83d\udcc5 Periode Sewa:\n04/06/2026 s.d. 06/06/2026 (2 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 Arei Uk 41 - Uk 41\n  1 pcs x Rp 35.000\n\n\ud83d\udcb0 Estimasi Total: Rp 70.000\n\nPilih aksi cepat di bawah ini untuk memproses pesanan:","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":69,"length":7,"type":"bold"},{"offset":77,"length":12,"type":"text_link","url":"https://wa.me/6281200001111"},{"offset":91,"length":16,"type":"bold"},{"offset":145,"length":18,"type":"bold"},{"offset":187,"length":17,"type":"italic"},{"offset":206,"length":28,"type":"bold"},{"offset":236,"length":54,"type":"italic"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui (Barang Siap)","url":"http://127.0.0.1.nip.io/ontimeadventure/admin/kelola_po.php?action=setujui&id_po=1"},{"text":"\u274c Batalkan PO","url":"http://127.0.0.1.nip.io/ontimeadventure/admin/kelola_po.php?action=batalkan&id_po=1"}],[{"text":"\ud83d\udd0d Cek Detail Kelola PO","url":"http://127.0.0.1.nip.io/ontimeadventure/admin/kelola_po.php"}]]}}}
+
+2026-06-03 14:27:57
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00010
+<b>Pelanggan:</b> RAHMAT RAMADHAN
+<b>No. HP:</b> <a href="https://wa.me/6285213976352">085213976352</a>
+
+<b>📅 Periode Sewa:</b>
+04/06/2026 s.d. 05/06/2026 (1 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Bogaboo 45 Liter - 45 Liter
+  <i>1 pcs x Rp 35.000</i>
+
+<b>💰 Estimasi Total: Rp 35.000</b>
+
+
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=10"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=10"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=10"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":9,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780489677,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00010\nPelanggan: RAHMAT RAMADHAN\nNo. HP: 085213976352\n\n\ud83d\udcc5 Periode Sewa:\n04/06/2026 s.d. 05/06/2026 (1 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 Bogaboo 45 Liter - 45 Liter\n  1 pcs x Rp 35.000\n\n\ud83d\udcb0 Estimasi Total: Rp 35.000","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":75,"length":7,"type":"bold"},{"offset":83,"length":12,"type":"text_link","url":"https://wa.me/6285213976352"},{"offset":97,"length":16,"type":"bold"},{"offset":151,"length":18,"type":"bold"},{"offset":202,"length":17,"type":"italic"},{"offset":221,"length":28,"type":"bold"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=10"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=10"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=10"}]]}}}
+
+2026-06-03 14:29:19
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00011
+<b>Pelanggan:</b> RAHMAT RAMADHAN
+<b>No. HP:</b> <a href="https://wa.me/6285213976352">085213976352</a>
+
+<b>📅 Periode Sewa:</b>
+03/06/2026 s.d. 05/06/2026 (2 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Arei Uk 40 - Uk 40
+  <i>1 pcs x Rp 35.000</i>
+
+<b>💰 Estimasi Total: Rp 70.000</b>
+
+
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=11"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=11"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=11"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":11,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780489759,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00011\nPelanggan: RAHMAT RAMADHAN\nNo. HP: 085213976352\n\n\ud83d\udcc5 Periode Sewa:\n03/06/2026 s.d. 05/06/2026 (2 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 Arei Uk 40 - Uk 40\n  1 pcs x Rp 35.000\n\n\ud83d\udcb0 Estimasi Total: Rp 70.000","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":75,"length":7,"type":"bold"},{"offset":83,"length":12,"type":"text_link","url":"https://wa.me/6285213976352"},{"offset":97,"length":16,"type":"bold"},{"offset":151,"length":18,"type":"bold"},{"offset":193,"length":17,"type":"italic"},{"offset":212,"length":28,"type":"bold"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=11"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=11"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=11"}]]}}}
+
+2026-06-03 14:37:23
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00012
+<b>Pelanggan:</b> RAHMAT RAMADHAN
+<b>No. HP:</b> <a href="https://wa.me/6285213976352">085213976352</a>
+
+<b>📅 Periode Sewa:</b>
+05/06/2026 s.d. 06/06/2026 (1 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Arei Uk 41 - Uk 41
+  <i>1 pcs x Rp 35.000</i>
+• Consina 75 Liter - 75 Liter
+  <i>1 pcs x Rp 45.000</i>
+
+<b>💰 Estimasi Total: Rp 80.000</b>
+
+
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=12"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=12"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=12"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":13,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780490243,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00012\nPelanggan: RAHMAT RAMADHAN\nNo. HP: 085213976352\n\n\ud83d\udcc5 Periode Sewa:\n05/06/2026 s.d. 06/06/2026 (1 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 Arei Uk 41 - Uk 41\n  1 pcs x Rp 35.000\n\u2022 Consina 75 Liter - 75 Liter\n  1 pcs x Rp 45.000\n\n\ud83d\udcb0 Estimasi Total: Rp 80.000","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":75,"length":7,"type":"bold"},{"offset":83,"length":12,"type":"text_link","url":"https://wa.me/6285213976352"},{"offset":97,"length":16,"type":"bold"},{"offset":151,"length":18,"type":"bold"},{"offset":193,"length":17,"type":"italic"},{"offset":243,"length":17,"type":"italic"},{"offset":262,"length":28,"type":"bold"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=12"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=12"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=12"}]]}}}
+
+2026-06-03 14:38:13
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00013
+<b>Pelanggan:</b> RAHMAT RAMADHAN
+<b>No. HP:</b> <a href="https://wa.me/6285213976352">085213976352</a>
+
+<b>📅 Periode Sewa:</b>
+03/06/2026 s.d. 04/06/2026 (1 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Eiger Jaket - Eiger
+  <i>1 pcs x Rp 25.000</i>
+
+<b>💰 Estimasi Total: Rp 25.000</b>
+
+
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=13"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=13"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=13"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":14,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780490293,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00013\nPelanggan: RAHMAT RAMADHAN\nNo. HP: 085213976352\n\n\ud83d\udcc5 Periode Sewa:\n03/06/2026 s.d. 04/06/2026 (1 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 Eiger Jaket - Eiger\n  1 pcs x Rp 25.000\n\n\ud83d\udcb0 Estimasi Total: Rp 25.000","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":75,"length":7,"type":"bold"},{"offset":83,"length":12,"type":"text_link","url":"https://wa.me/6285213976352"},{"offset":97,"length":16,"type":"bold"},{"offset":151,"length":18,"type":"bold"},{"offset":194,"length":17,"type":"italic"},{"offset":213,"length":28,"type":"bold"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=13"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=13"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=13"}]]}}}
+
+2026-06-03 14:47:53
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00014
+<b>Pelanggan:</b> Testing
+<b>No. HP:</b> <a href="https://wa.me/123456789">123456789</a>
+
+<b>📅 Periode Sewa:</b>
+04/06/2026 s.d. 06/06/2026 (2 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• GreenForest 10 L - 10 L
+  <i>1 pcs x Rp 15.000</i>
+
+<b>💰 Estimasi Total: Rp 30.000</b>
+
+
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=14"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=14"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=14"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":15,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780490872,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00014\nPelanggan: Testing\nNo. HP: 123456789\n\n\ud83d\udcc5 Periode Sewa:\n04/06/2026 s.d. 06/06/2026 (2 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 GreenForest 10 L - 10 L\n  1 pcs x Rp 15.000\n\n\ud83d\udcb0 Estimasi Total: Rp 30.000","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":67,"length":7,"type":"bold"},{"offset":75,"length":9,"type":"text_link","url":"https://wa.me/123456789"},{"offset":86,"length":16,"type":"bold"},{"offset":140,"length":18,"type":"bold"},{"offset":187,"length":17,"type":"italic"},{"offset":206,"length":28,"type":"bold"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=14"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=14"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=14"}]]}}}
+
+2026-06-03 16:11:20
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00015
+<b>Pelanggan:</b> JNJ
+<b>No. HP:</b> <a href="https://wa.me/6287762792525">087762792525</a>
+
+<b>📅 Periode Sewa:</b>
+20/04/2030 s.d. 26/04/2030 (6 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Arei Uk 40 - Uk 40
+  <i>1 pcs x Rp 35.000</i>
+
+<b>💰 Estimasi Total: Rp 210.000</b>
+
+
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=15"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=15"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=15"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":16,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780495880,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00015\nPelanggan: JNJ\nNo. HP: 087762792525\n\n\ud83d\udcc5 Periode Sewa:\n20/04/2030 s.d. 26/04/2030 (6 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 Arei Uk 40 - Uk 40\n  1 pcs x Rp 35.000\n\n\ud83d\udcb0 Estimasi Total: Rp 210.000","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":63,"length":7,"type":"bold"},{"offset":71,"length":12,"type":"text_link","url":"https://wa.me/6287762792525"},{"offset":85,"length":16,"type":"bold"},{"offset":139,"length":18,"type":"bold"},{"offset":181,"length":17,"type":"italic"},{"offset":200,"length":29,"type":"bold"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=15"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=15"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=15"}]]}}}
+
+2026-06-03 16:13:35
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00016
+<b>Pelanggan:</b> RAHMAT RAMADHAN
+<b>No. HP:</b> <a href="https://wa.me/6285213976352">085213976352</a>
+
+<b>📅 Periode Sewa:</b>
+03/06/2026 s.d. 06/06/2026 (3 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Bogaboo 45 Liter - 45 Liter
+  <i>1 pcs x Rp 35.000</i>
+
+<b>💰 Estimasi Total: Rp 105.000</b>
+
+
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=16"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=16"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=16"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":17,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780496015,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00016\nPelanggan: RAHMAT RAMADHAN\nNo. HP: 085213976352\n\n\ud83d\udcc5 Periode Sewa:\n03/06/2026 s.d. 06/06/2026 (3 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 Bogaboo 45 Liter - 45 Liter\n  1 pcs x Rp 35.000\n\n\ud83d\udcb0 Estimasi Total: Rp 105.000","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":75,"length":7,"type":"bold"},{"offset":83,"length":12,"type":"text_link","url":"https://wa.me/6285213976352"},{"offset":97,"length":16,"type":"bold"},{"offset":151,"length":18,"type":"bold"},{"offset":202,"length":17,"type":"italic"},{"offset":221,"length":29,"type":"bold"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=16"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=16"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=16"}]]}}}
+
+2026-06-03 18:38:46
+Payload: Array
+(
+    [chat_id] => 1228733357
+    [text] => <b>🚨 PRE-ORDER BARU MASUK! 🚨</b>
+
+<b>Nomor PO:</b> PO-00017
+<b>Pelanggan:</b> RAHMAT RAMADHAN
+<b>No. HP:</b> <a href="https://wa.me/6285213976352">085213976352</a>
+
+<b>📅 Periode Sewa:</b>
+04/06/2026 s.d. 06/06/2026 (2 Hari)
+
+<b>🛒 Detail Pesanan:</b>
+• Arei Uk 40 - Uk 40
+  <i>1 pcs x Rp 35.000</i>
+• K2 Uk 40 - Uk 40
+  <i>1 pcs x Rp 35.000</i>
+• Kilimanjaro 45 Liter - 45 Liter
+  <i>1 pcs x Rp 35.000</i>
+• Kolping Base Layer - Kolping
+  <i>1 pcs x Rp 25.000</i>
+
+<b>💰 Estimasi Total: Rp 260.000</b>
+
+
+    [parse_mode] => HTML
+    [disable_web_page_preview] => 1
+    [reply_markup] => {"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=17"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=17"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=17"}]]}
+)
+
+Response: {"ok":true,"result":{"message_id":19,"from":{"id":8656583486,"is_bot":true,"first_name":"Booking bot","username":"Booking101102Bot"},"chat":{"id":1228733357,"first_name":"Rahmat","type":"private"},"date":1780504726,"text":"\ud83d\udea8 PRE-ORDER BARU MASUK! \ud83d\udea8\n\nNomor PO: PO-00017\nPelanggan: RAHMAT RAMADHAN\nNo. HP: 085213976352\n\n\ud83d\udcc5 Periode Sewa:\n04/06/2026 s.d. 06/06/2026 (2 Hari)\n\n\ud83d\uded2 Detail Pesanan:\n\u2022 Arei Uk 40 - Uk 40\n  1 pcs x Rp 35.000\n\u2022 K2 Uk 40 - Uk 40\n  1 pcs x Rp 35.000\n\u2022 Kilimanjaro 45 Liter - 45 Liter\n  1 pcs x Rp 35.000\n\u2022 Kolping Base Layer - Kolping\n  1 pcs x Rp 25.000\n\n\ud83d\udcb0 Estimasi Total: Rp 260.000","entities":[{"offset":0,"length":27,"type":"bold"},{"offset":29,"length":9,"type":"bold"},{"offset":48,"length":10,"type":"bold"},{"offset":75,"length":7,"type":"bold"},{"offset":83,"length":12,"type":"text_link","url":"https://wa.me/6285213976352"},{"offset":97,"length":16,"type":"bold"},{"offset":151,"length":18,"type":"bold"},{"offset":193,"length":17,"type":"italic"},{"offset":232,"length":17,"type":"italic"},{"offset":286,"length":17,"type":"italic"},{"offset":337,"length":17,"type":"italic"},{"offset":356,"length":29,"type":"bold"}],"link_preview_options":{"is_disabled":true},"reply_markup":{"inline_keyboard":[[{"text":"\u2705 Setujui","callback_data":"action=setujui&id_po=17"},{"text":"\u274c Batalkan","callback_data":"action=batalkan&id_po=17"}],[{"text":"\ud83d\udd0d Cek Detail (Lihat Gambar)","callback_data":"action=detail&id_po=17"}]]}}}
+

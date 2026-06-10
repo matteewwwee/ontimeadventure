@@ -1,0 +1,165 @@
+<!-- include mainhead.html"-->
+
+<link rel="stylesheet" href="../assets/libs/gridjs/theme/mermaid.min.css">
+
+<link rel="stylesheet" href="../assets/libs/sweetalert2/sweetalert2.min.css">
+
+</head>
+
+<body>
+	<div class="progress-top-bar"></div>
+
+    <!-- include switcher.html"-->
+   <!-- include loader.html"-->
+
+    <div class="page">
+        <!-- include header.html"-->
+         <!-- include sidebar.html"-->
+
+        <!-- Start::app-content -->
+       <div class="main-content app-content">
+            <div class="container-fluid page-container main-body-container">
+
+                <!-- Start::page-header -->
+                <div class="page-header-breadcrumb mb-3">
+                    <div class="d-flex align-center justify-content-between flex-wrap">
+                        <h1 class="page-title fw-medium fs-18 mb-0">Customers List</h1>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboards</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Ecommerce</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Customers List</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- End::page-header -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between border-bottom-0">
+                                <!-- Search Bar -->
+                                <div class="w-sm-25">
+                                  <input class="form-control" type="search" id="search-input" placeholder="Search Customer" aria-label="search-customer">
+                                </div>
+                              
+                                <!-- Filters Section -->
+                                <div class="d-flex gap-4 flex-wrap w-sm-50 justify-content-start justify-content-sm-end">
+                                    
+                                  <!-- Stock Filter -->
+                                    <div class="">
+                                        <select class="form-control" data-trigger name="choices-single-default" id="status-filter">
+                                            <option value="">Customer Status</option>
+                                            <option value="all">All Status</option>
+                                            <option value="active">Active</option>
+                                            <option value="blocked">Blocked</option>
+                                        </select>
+                                    </div>
+                                    <div class="">
+                                        <div class="dropdown d-grid">
+                                            <button class="btn btn-primary-light dropdown-toggle" type="button"
+                                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ri-upload-2-line me-1"></i>Export
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="javascript:void(0);"><i class="bi bi-file-earmark-excel me-2"></i>Excel</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);"><i class="bi bi-file-earmark-excel me-2"></i>Csv</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);"><i class="bi bi-filetype-pdf me-2"></i>PDF</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);"><i class="bi bi-file-zip me-2"></i>Zip</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                              
+                                  <!-- Sort By Filter -->
+                                    <div class=" d-grid">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addtask"><i class="ri ri-add-line me-1"></i>Add Customer</button>
+                                    </div>
+                                </div>
+                              </div>
+                              
+                              <!-- Table inside the card-body -->
+                            <div class="card-body p-0">
+                                <div id="customers-list" class="grid-card-table"></div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+        </div>
+        <!-- End::app-content -->
+
+        <!-- Start:: Add new customer modal -->
+        <div class="modal fade" id="addtask" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="mail-ComposeLabel">Add Customer</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-4">
+                        <div class="row gy-2">
+                            <div class="col-xl-12">
+                                <label for="customer-name" class="form-label">Customer Name</label>
+                                <input type="text" class="form-control" id="customer-name" placeholder="Customer Name">
+                            </div>
+                            <div class="col-xl-12">
+                                <label for="customer-email" class="form-label">Customer Email</label>
+                                <input type="email" class="form-control" id="customer-email" placeholder="Customer Email">
+                            </div>
+                            <div class="col-xl-12">
+                                <label class="form-label">Joined Date</label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+                                        <input type="text" class="form-control" id="joiningDate" placeholder="Choose date and time">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <label class="form-label">Status</label>
+                                <select class="form-control" data-trigger name="choices-single-default1" id="choices-single-default1">
+                                    <option value="">Select</option>
+                                    <option value="one">Active</option>
+                                    <option value="two">Block</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Add Customer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: Add new customer modal -->
+
+        
+       <!-- include footer.html"-->
+        <!-- include responsive-search-modal.html"-->
+
+    </div>
+
+   <!-- include commonjs.html"-->
+
+    <!-- include custom_switcherjs.html"-->
+
+    <!-- Sweetalerts JS -->
+    <script src="../assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- Grid JS -->
+    <script src="../assets/libs/gridjs/gridjs.umd.js"></script>
+
+    <!-- Internal Customers List JS -->
+    <script src="../assets/js/customers-list.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../assets/js/custom.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,315 @@
+<!-- include mainhead.html"-->
+
+<!-- Dropzone css -->
+<link rel="stylesheet" href="../assets/libs/dropzone/dropzone.css">
+<!-- Dropzone css -->
+
+</head>
+
+<body>
+	<div class="progress-top-bar"></div>
+
+    <!-- include switcher.html"-->
+   <!-- include loader.html"-->
+
+    <div class="page">
+        <!-- include header.html"-->
+        <!-- include sidebar.html"-->
+
+        <!-- Start::app-content -->
+        <div class="main-content app-content">
+            <div class="container-fluid page-container main-body-container">
+
+                <!-- Start::page-header -->
+                <div class="page-header-breadcrumb mb-3">
+                    <div class="d-flex align-center justify-content-between flex-wrap">
+                        <h1 class="page-title fw-medium fs-18 mb-0">Create Invoice</h1>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">
+                                    Pages
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Invoice</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Create Invoice</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- End::page-header -->
+                
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div class="row gy-3">
+                                    <div class="col-xl-12">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <p class="fw-semibold mb-2">
+                                                    Company Logo :
+                                                </p>
+                                                <form data-single="true" method="post" action="https://httpbin.org/post" class="dropzone company-logo-upload mb-4"></form>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                                <p class="fw-semibold mb-2">
+                                                    Billing From :
+                                                </p>
+                                                <div class="row gy-2">
+                                                    <div class="col-xl-12">
+                                                        <input type="text" class="form-control" id="Company-Name" placeholder="Company Name" value="SPRUKO TECHNOLOGIES">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <textarea class="form-control" id="company-address" placeholder="Enter Address" rows="3"></textarea>
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <input type="text" class="form-control" id="company-mail" placeholder="Company Email" value="">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <input type="text" class="form-control" id="company-phone" placeholder="Phone Number" value="">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <textarea class="form-control" id="invoice-subject" placeholder="Subject" rows="4"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 ms-auto mt-sm-0 mt-3">
+                                                <p class="fw-semibold mb-2">
+                                                    Billing To :
+                                                </p>
+                                                <div class="row gy-2">
+                                                    <div class="col-xl-12">
+                                                        <input type="text" class="form-control" id="customer-Name" placeholder="Customer Name" value="Jack Miller">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <textarea class="form-control" id="customer-address" placeholder="Enter Address" rows="3"></textarea>
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <input type="text" class="form-control" id="customer-mail" placeholder="Customer Email" value="">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <input type="text" class="form-control" id="customer-phone" placeholder="Phone Number" value="">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <input type="text" class="form-control" id="zip-code" placeholder="Zip Code" value="">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <p class="fw-semibold mb-2 mt-2">
+                                                            Currency :
+                                                        </p>
+                                                        <select class="form-control" data-trigger name="invoice-currency" id="invoice-currency">
+                                                            <option value="">Select Currency</option>
+                                                            <option value="Armani">USD - (United States Dollar)</option>
+                                                            <option value="Lacoste">BHD - (Bahraini Dinar)</option>
+                                                            <option value="Puma">KWD - (Kuwaiti Dinar)</option>
+                                                            <option value="Spykar">CHF - (Swiss Franc)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3"> 
+                                        <label for="invoice-number" class="form-label">Invoice ID</label>
+                                        <input type="text" class="form-control" id="invoice-number" placeholder="Inv No" value="#SPK120219890">
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <label for="invoice-date-issued" class="form-label">Date Issued</label>
+                                        <input type="text" class="form-control" id="invoice-date-issued" placeholder="Choose date">
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <label for="invoice-date-due" class="form-label">Due Date</label>
+                                        <input type="text" class="form-control" id="invoice-date-due" placeholder="Choose date">
+                                    </div>
+                                    <div class="col-xl-3"> 
+                                        <label for="invoice-due-amount" class="form-label">Due Amount</label>
+                                        <input type="text" class="form-control" id="invoice-due-amount" placeholder="Enter Amount" value="$12,983.78">
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="table-responsive"> 
+                                            <table class="table nowrap text-nowrap table-borderless border mt-3"> 
+                                                <thead>
+                                                    <tr>
+                                                        <th>Product Name</th>
+                                                        <th>Description</th>
+                                                        <th>Quantity</th>
+                                                        <th>Price Per Unit</th> 
+                                                        <th>Total</th>
+                                                        <th>Action</th>
+                                                    </tr> 
+                                                </thead> 
+                                                <tbody>
+                                                    <tr> 
+                                                        <td>
+                                                            <input type="text" class="form-control" placeholder="Enter Product Name">
+                                                        </td>
+                                                        <td>
+                                                            <textarea rows="1" class="form-control" placeholder="Enter Description"></textarea>
+                                                        </td>
+                                                        <td class="invoice-quantity-container">
+                                                            <div class="input-group border rounded flex-nowrap">
+                                                                <button class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-minus"><i class="ri-subtract-line"></i></button>
+                                                                <input type="text" class="form-control form-control-sm border-0 text-center w-100" aria-label="quantity" id="product-quantity4" value="1">
+                                                                <button class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-plus"><i class="ri-add-line"></i></button>
+                                                            </div>
+                                                        </td>
+                                                        <td><input class="form-control" placeholder="" type="text" value="$60.00"></td>
+                                                        <td><input class="form-control" placeholder="" type="text" value="$120.00"></td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-icon btn-danger-light"><i class="ri-delete-bin-5-line"></i></button>
+                                                        </td>
+                                                    </tr> 
+                                                    <tr> 
+                                                        <td>
+                                                            <input type="text" class="form-control" placeholder="Enter Product Name">
+                                                        </td>
+                                                        <td>
+                                                            <textarea rows="1" class="form-control" placeholder="Enter Description"></textarea>
+                                                        </td>
+                                                        <td class="invoice-quantity-container">
+                                                            <div class="input-group border rounded flex-nowrap">
+                                                                <button class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-minus"><i class="ri-subtract-line"></i></button>
+                                                                <input type="text" class="form-control form-control-sm border-0 text-center w-100" aria-label="quantity" id="product-quantity5" value="1">
+                                                                <button class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-plus"><i class="ri-add-line"></i></button>
+                                                            </div>
+                                                        </td>
+                                                        <td><input class="form-control" placeholder="Enter Amount" type="text"></td>
+                                                        <td><input class="form-control" placeholder="Enter Amount" type="text"></td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-icon btn-danger-light"><i class="ri-delete-bin-5-line"></i></button>
+                                                        </td>
+                                                    </tr> 
+                                                    <tr>
+                                                        <td colspan="6" class="border-bottom-0"><a class="btn btn-primary-light" href="javascript:void(0);"><i class="bi bi-plus-lg"></i> Add Product</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4"></td>
+                                                        <td colspan="2">
+                                                            <table class="table table-sm text-nowrap mb-0 table-borderless">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">
+                                                                            <div class="fw-medium">Sub Total :</div>
+                                                                        </th>
+                                                                        <td>
+                                                                            <input type="text" class="form-control invoice-amount-input" placeholder="Enter Amount" value="$1209.89">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">
+                                                                            <div class="fw-medium">Avail Discount :</div>
+                                                                        </th>
+                                                                        <td>
+                                                                            <input type="text" class="form-control invoice-amount-input" placeholder="Enter Amount" value="$29.98">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">
+                                                                            <div class="fw-medium">Coupon Discount <span class="text-success">(10%)</span> :</div>
+                                                                        </th>
+                                                                        <td>
+                                                                            <input type="text" class="form-control invoice-amount-input" placeholder="Enter Amount" value="$129.00">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">
+                                                                            <div class="fw-medium">Vat <span class="text-danger">(20%)</span> :</div>
+                                                                        </th>
+                                                                        <td>
+                                                                            <input type="text" class="form-control invoice-amount-input" placeholder="Enter Amount" value="$258.00">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">
+                                                                            <div class="fw-medium">Due Till Date :</div>
+                                                                        </th>
+                                                                        <td>
+                                                                            <input type="text" class="form-control invoice-amount-input" placeholder="Enter Amount" value="$0.00">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">
+                                                                            <div class="fs-14 fw-medium">Total :</div>
+                                                                        </th>
+                                                                        <td>
+                                                                            <input type="text" class="form-control invoice-amount-input" placeholder="Enter Amount" value="$1,071.89">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody> 
+                                            </table> 
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row gy-3">
+                                            <div class="col-xl-12">
+                                                <select class="form-control" data-trigger name="choices-single-default" id="choices-single-default">
+                                                    <option value="Choice 1">Credit/Debit Card</option>
+                                                    <option value="Choice 2">PayPal</option>
+                                                    <option value="Choice 3">Stripe</option>
+                                                    <option value="Choice 3">Apple Pay</option>
+                                                    <option value="Choice 3">UPI</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xl-12">
+                                                <input type="text" class="form-control" placeholder="Card Holder Name">
+                                            </div>
+                                            <div class="col-xl-12">
+                                                <input type="text" class="form-control" id="invoice-payment-cardname" placeholder="Card Number" value="1234 5678 9087 XXXX">
+                                                <label for="invoice-payment-cardname" class="form-label mb-0"><a class="text-danger fs-11" href="javascript:void(0);">Enter valid card number*</a></label>
+                                            </div>
+                                            <div class="col-xl-12">
+                                                <input type="text" class="form-control" placeholder="Enter OTP">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div>
+                                            <label for="invoice-note" class="form-label">Note:</label>
+                                            <textarea class="form-control" id="invoice-note" rows="3">Once the invoice has been verified by the accounts payable team and recorded, the only task left is to send it for approval before releasing the payment</textarea>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-end">
+                                <button class="btn btn-warning m-1">Save As PDF<i class="ri-file-pdf-line ms-1 align-middle d-inline-block"></i></button>
+                                <button class="btn btn-success m-1">Download Invoice<i class="ri-download-2-line ms-1 d-inline-block"></i></button>
+                                <button class="btn btn-primary m-1">Send Invoice <i class="ri-send-plane-2-line ms-1 align-middle d-inline-block"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+        </div>
+        <!-- End::app-content -->
+
+        
+       <!-- include footer.html"-->
+        <!-- include responsive-search-modal.html"-->
+
+    </div>
+
+   <!-- include commonjs.html"-->
+
+    <!-- include custom_switcherjs.html"-->
+
+    <!-- Date & Time Picker JS -->
+    <script src="../assets/libs/flatpickr/flatpickr.min.js"></script>
+
+    <!-- Dropzone JS -->
+    <script src="../assets/libs/dropzone/dropzone-min.js"></script>
+
+    <!-- Internal Create Invoice JS -->
+    <script src="../assets/js/create-invoice.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../assets/js/custom.js"></script>
+
+</body>
+
+</html>

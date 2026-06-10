@@ -1,0 +1,233 @@
+<!-- include mainhead.html"-->
+
+<link rel="stylesheet" href="../assets/libs/gridjs/theme/mermaid.min.css">
+
+<link rel="stylesheet" href="../assets/libs/sweetalert2/sweetalert2.min.css">
+
+</head>
+
+<body>
+	<div class="progress-top-bar"></div>
+
+    <!-- include switcher.html"-->
+   <!-- include loader.html"-->
+
+    <div class="page">
+        <!-- include header.html"-->
+         <!-- include sidebar.html"-->
+
+        <!-- Start::app-content -->
+       <div class="main-content app-content">
+            <div class="container-fluid page-container main-body-container">
+
+                <!-- Start::page-header -->
+                <div class="page-header-breadcrumb mb-3">
+                    <div class="d-flex align-center justify-content-between flex-wrap">
+                        <h1 class="page-title fw-medium fs-18 mb-0">Orders</h1>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboards</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Ecommerce</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- End::page-header -->
+
+                <!-- Start::row-1 -->
+                <div class="row row-cols-xxl-5">
+                    <div class="col">
+                        <div class="card custom-card dashboard-main-card overflow-hidden primary">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <span class="fs-13 fw-medium">Total Orders</span>
+                                        <h4 class="fw-semibold my-2 lh-1">2,450</h4>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span class="fs-12 d-block text-muted"><span class="text-success d-inline-flex align-items-center me-1 fw-semibold"><i class="ti ti-trending-up me-1 fw-semibold align-middle"></i>16.67%</span>this month</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="avatar avatar-md bg-primary-transparent svg-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M230.14,58.87A8,8,0,0,0,224,56H62.68L56.6,22.57A8,8,0,0,0,48.73,16H24a8,8,0,0,0,0,16h18L67.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,160,204a28,28,0,1,0,28-28H91.17a8,8,0,0,1-7.87-6.57L80.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,230.14,58.87ZM104,204a12,12,0,1,1-12-12A12,12,0,0,1,104,204Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,200,204Z"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card custom-card dashboard-main-card overflow-hidden secondary">    
+                            <div class="card-body">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <span class="fs-13 fw-medium">Pending Orders</span>
+                                        <h4 class="fw-semibold my-2 lh-1">300</h4>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span class="fs-12 d-block text-muted"><span class="text-success d-inline-flex align-items-center me-1 fw-semibold"><i class="ti ti-trending-up me-1 fw-semibold align-middle"></i>20%</span>this month</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="avatar avatar-md bg-secondary-transparent svg-secondary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm56,112H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48a8,8,0,0,1,0,16Z"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card custom-card dashboard-main-card overflow-hidden warning">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <span class="fs-13 fw-medium">Delivered</span>
+                                        <h4 class="fw-semibold my-2 lh-1">1,800</h4>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span class="fs-12 d-block text-muted"><span class="text-success d-inline-flex align-items-center me-1 fw-semibold"><i class="ti ti-trending-up me-1 fw-semibold align-middle"></i>5.88%</span>this month</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="avatar avatar-md bg-warning-transparent svg-warning">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32l80.35,44L178.57,92.29l-80.35-44Zm0,88L47.65,76,81.56,57.43l80.35,44Zm88,55.85h0l-80,43.79V133.83l32-17.51V152a8,8,0,0,0,16,0V107.56l32-17.51v85.76Z"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card custom-card dashboard-main-card overflow-hidden success">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <span class="fs-13 fw-medium">Cancelled</span>
+                                        <h4 class="fw-semibold my-2 lh-1">100</h4>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span class="fs-12 d-block text-muted"><span class="text-danger d-inline-flex align-items-center me-1 fw-semibold"><i class="ti ti-trending-down me-1 fw-semibold align-middle"></i>16.67%</span>this month</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="avatar avatar-md bg-success-transparent svg-success">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm37.66,130.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card custom-card dashboard-main-card overflow-hidden info">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <span class="fs-13 fw-medium">Returned</span>
+                                        <h4 class="fw-semibold my-2 lh-1">50</h4>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span class="fs-12 d-block text-muted"><span class="text-danger d-inline-flex align-items-center me-1 fw-semibold"><i class="ti ti-trending-down me-1 fw-semibold align-middle"></i>28.57%</span>this month</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="avatar avatar-md bg-info-transparent svg-info">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,109.66-32,32a8,8,0,0,1-11.32-11.32L148.69,136H88a8,8,0,0,1,0-16h60.69l-18.35-18.34a8,8,0,0,1,11.32-11.32l32,32A8,8,0,0,1,173.66,133.66Z"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+                <!-- Start::row-2 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between border-bottom-0 gap-2">
+                                <!-- Search Bar -->
+                                <div class="w-sm-25">
+                                  <input class="form-control" type="search" id="search-input" placeholder="Search Product" aria-label="search-product">
+                                </div>
+                              
+                                <!-- Filters Section -->
+                                <div class="d-flex gap-4 flex-wrap w-sm-50 justify-content-end">
+                                  <!-- Category Filter -->
+                                    <div>
+                                        <div class="dropdown d-grid">
+                                            <button class="btn btn-primary-light dropdown-toggle" type="button"
+                                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ri-upload-2-line me-1"></i>Export
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="javascript:void(0);"><i class="bi bi-file-earmark-excel me-2"></i>Excel</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);"><i class="bi bi-file-earmark-excel me-2"></i>Csv</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);"><i class="bi bi-filetype-pdf me-2"></i>PDF</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);"><i class="bi bi-file-zip me-2"></i>Zip</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                              
+                                  <!-- Status Filter -->
+                                  <div>
+                                    <select class="form-control" data-trigger name="choices-single-default" id="payment-status-filter">
+                                      <option value="">Payment Status</option>
+                                      <option value="all">All Status</option>
+                                      <option value="pending">Pending</option>
+                                      <option value="completed">Completed</option>
+                                      <option value="failed">Failed</option>
+                                      <option value="refunded">Refunded</option>
+                                      <option value="cancelled">Cancelled</option>
+                                    </select>
+                                  </div>
+                              
+                                  <!-- Stock Filter -->
+                                  <div>
+                                    <select class="form-control" data-trigger name="choices-single-default" id="delivery-status-filter">
+                                      <option value="">Delivery Status</option>
+                                      <option value="all">All Status</option>
+                                      <option value="pending">Pending</option>
+                                      <option value="shipped">Shipped</option>
+                                      <option value="delivered">Delivered</option>
+                                      <option value="cancelled">Cancelled</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <!-- Table inside the card-body -->
+                            <div class="card-body p-0">
+                                <div id="orders-table" class="grid-card-table"></div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End::row-2 -->
+
+            </div>
+        </div>
+        <!-- End::app-content -->
+
+        
+       <!-- include footer.html"-->
+        <!-- include responsive-search-modal.html"-->
+
+    </div>
+
+   <!-- include commonjs.html"-->
+
+    <!-- include custom_switcherjs.html"-->
+
+    <!-- Grid JS -->
+    <script src="../assets/libs/gridjs/gridjs.umd.js"></script>
+
+    <!-- Sweetalerts JS -->
+    <script src="../assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- Internal Orders JS -->
+    <script src="../assets/js/orders.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../assets/js/custom.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+<?php session_start(); $_SESSION['id_user'] = 3; $_POST['id_po'] = 16; $_POST['id_detail'] = 2; $_POST['id_item'] = 3; $_POST['rating'] = 5; $_POST['komentar'] = 'Bagus'; $_SERVER['REQUEST_METHOD'] = 'POST'; include 'submit_review.php';

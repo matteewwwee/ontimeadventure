@@ -1,0 +1,600 @@
+<!-- include mainhead.html"-->
+
+</head>
+
+<body>
+	<div class="progress-top-bar"></div>
+
+    <!-- include switcher.html"-->
+   <!-- include loader.html"-->
+
+    <div class="page">
+        <!-- include header.html"-->
+         <!-- include sidebar.html"-->
+
+        <!-- Start::app-content -->
+       <div class="main-content app-content">
+            <div class="container-fluid page-container main-body-container">
+
+                <!-- Start::page-header -->
+                <div class="page-header-breadcrumb mb-3">
+                    <div class="d-flex align-center justify-content-between flex-wrap">
+                        <h1 class="page-title fw-medium fs-18 mb-0">Invoice List</h1>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">
+                                    Pages
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Invoice</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Invoice List</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- End::page-header -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="card custom-card dashboard-main-card primary">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <h6 class="mb-2 fs-12">Total Amount</h6> 
+                                        <div class="pb-0 mt-0"> 
+                                            <div> 
+                                                <div class="d-flex align-items-center gap-2 mb-2">
+                                                    <h4 class="fw-medium mb-0">$<span class="count-up" data-count="471">471</span>k </h4> 
+                                                    <span class="badge bg-primary">12,345</span>
+                                                </div>
+                                                <p class="text-muted fs-11 mb-0 lh-1">
+                                                    <span class="text-success me-1 fw-medium">
+                                                        <i class="ri-arrow-up-s-line me-1 align-middle"></i>3.25%
+                                                    </span>
+                                                    <span>this month</span>
+                                                </p>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                    <div class="avatar avatar-lg bg-primary-transparent svg-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M216,40H40A16,16,0,0,0,24,56V208a8,8,0,0,0,11.58,7.15L64,200.94l28.42,14.21a8,8,0,0,0,7.16,0L128,200.94l28.42,14.21a8,8,0,0,0,7.16,0L192,200.94l28.42,14.21A8,8,0,0,0,232,208V56A16,16,0,0,0,216,40ZM176,144H80a8,8,0,0,1,0-16h96a8,8,0,0,1,0,16Zm0-32H80a8,8,0,0,1,0-16h96a8,8,0,0,1,0,16Z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="card custom-card dashboard-main-card secondary">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <h6 class="mb-2 fs-12">Total Paid</h6> 
+                                        <div> 
+                                            <div class="d-flex align-items-center gap-2 mb-2">
+                                                <h4 class="fw-medium mb-0">$<span class="count-up" data-count="320">320</span>k</h4> 
+                                                <span class="badge bg-secondary">4,176</span>
+                                            </div>    
+                                            <p class="text-muted fs-11 mb-0 lh-1">
+                                                <span class="text-danger me-1 fw-medium">
+                                                    <i class="ri-arrow-down-s-line me-1 align-middle"></i>1.16%
+                                                </span>
+                                                <span>this month</span>
+                                            </p>
+                                        </div> 
+                                    </div>
+                                    <div class="avatar avatar-lg bg-secondary-transparent svg-secondary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M28,128a8,8,0,0,1,0-16H56a8,8,0,0,0,0-16H40a24,24,0,0,1,0-48,8,8,0,0,1,16,0h8a8,8,0,0,1,0,16H40a8,8,0,0,0,0,16H56a24,24,0,0,1,0,48,8,8,0,0,1-16,0ZM224,48H96a8,8,0,0,0,0,16H216V96H104a8,8,0,0,0,0,16h56v32H80a8,8,0,0,0,0,16h80v32H40V152a8,8,0,0,0-16,0v40a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Z"/></svg>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="card custom-card dashboard-main-card success">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <h6 class="mb-2 fs-12">Pending Invoices</h6> 
+                                        <div> 
+                                            <div class="d-flex align-items-center gap-2 mb-2">
+                                                <h4 class="fw-medium mb-0"><span class="count-up" data-count="81">81</span></h4> 
+                                                <span class="badge bg-success">7,064</span>
+                                            </div>    
+                                            <p class="text-muted fs-11 mb-0 lh-1">
+                                                <span class="text-success me-1 fw-medium">
+                                                    <i class="ri-arrow-up-s-line me-1 align-middle"></i>0.25%
+                                                </span>
+                                                <span>this month</span>
+                                            </p>
+                                        </div> 
+                                    </div>
+                                    <div class="avatar avatar-lg bg-success-transparent svg-success">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M100,116.43a8,8,0,0,0,4-6.93v-72A8,8,0,0,0,93.34,30,104.06,104.06,0,0,0,25.73,147a8,8,0,0,0,4.52,5.81,7.86,7.86,0,0,0,3.35.74,8,8,0,0,0,4-1.07ZM88,49.62v55.26L40.12,132.51C40,131,40,129.48,40,128A88.12,88.12,0,0,1,88,49.62ZM232,128A104,104,0,0,1,38.32,180.7a8,8,0,0,1,2.87-11L120,123.83V32a8,8,0,0,1,8-8,104.05,104.05,0,0,1,89.74,51.48c.11.16.21.32.31.49s.2.37.29.55A103.34,103.34,0,0,1,232,128Z"/></svg>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="card custom-card dashboard-main-card warning">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div class="flex-fill">
+                                        <h6 class="mb-2 fs-12">Overdue Invoices</h6> 
+                                        <div> 
+                                            <div class="d-flex align-items-center gap-2 mb-2">
+                                                <h4 class="fw-medium mb-0"><span class="count-up" data-count="33">33</span>K</h4> 
+                                                <span class="badge bg-orange border">1,105</span>
+                                            </div>    
+                                            <p class="text-muted fs-11 mb-0 lh-1">
+                                                <span class="text-danger me-1 fw-semibFold">
+                                                    <i class="ri-arrow-down-s-line me-1 align-middle"></i>0.46%
+                                                </span>
+                                                <span>this month</span>
+                                            </p>
+                                        </div> 
+                                    </div>
+                                    <div class="avatar avatar-lg bg-warning-transparent svg-warning">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm-8,56a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm8,104a12,12,0,1,1,12-12A12,12,0,0,1,128,184Z"/></svg>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">
+                                    Manage Invoices
+                                </div>
+                                <div class="d-flex">
+                                    <a href="invoice-create.html" class="btn btn-sm btn-primary btn-wave waves-light"><i class="ri-add-line fw-medium align-middle me-1"></i> Create Invoice</a>
+                                    <div class="dropdown ms-2">
+                                        <button class="btn btn-icon btn-secondary-light btn-sm btn-wave waves-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="ti ti-dots-vertical"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="javascript:void(0);">All Invoices</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Paid Invoices</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Pending Invoices</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Overdue Invoices</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Client</th>
+                                                <th scope="col">Invoice ID</th>
+                                                <th scope="col">Issued Date</th>
+                                                <th scope="col">Amount</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Due Date</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/11.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">John Doe</p>
+                                                            <p class="mb-0 fs-11 text-muted">jhondoe32@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK-1001
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 01, 2025
+                                                </td>
+                                                <td>
+                                                    $1,250.00
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-success-transparent">Paid</span>
+                                                </td>
+                                                <td>
+                                                    Mar 10, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/1.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">Sarah Smith</p>
+                                                            <p class="mb-0 fs-11 text-muted">sarahsmith99@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1002
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 05, 2025
+                                                </td>
+                                                <td>
+                                                    $3,499.50
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-warning-transparent">Pending</span>
+                                                </td>
+                                                <td>
+                                                    Mar 15, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/12.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">Robert Brown</p>
+                                                            <p class="mb-0 fs-11 text-muted">robertbrown865@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1003
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 08, 2025
+                                                </td>
+                                                <td>
+                                                    $2,875.00
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-danger-transparent">Overdue</span>
+                                                </td>
+                                                <td>
+                                                    Mar 18, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/2.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">Emma Wilson</p>
+                                                            <p class="mb-0 fs-11 text-muted">emmawilson04@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1004
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 10, 2025
+                                                </td>
+                                                <td>
+                                                    $4,150.75
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-success-transparent">Paid</span>
+                                                </td>
+                                                <td>
+                                                    Mar 20, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/13.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">David Johnson</p>
+                                                            <p class="mb-0 fs-11 text-muted">davidjohnson444@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1005
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 12, 2025
+                                                </td>
+                                                <td>
+                                                    $1,999.99
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-primary-transparent">Pending</span>
+                                                </td>
+                                                <td>
+                                                    Mar 22, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/3.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">Olivia Martin</p>
+                                                            <p class="mb-0 fs-11 text-muted">oliviamartin97@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1006
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 15, 2025
+                                                </td>
+                                                <td>
+                                                    $3,750.00
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-success-transparent">Paid</span>
+                                                </td>
+                                                <td>
+                                                    Mar 25, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/14.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">James White</p>
+                                                            <p class="mb-0 fs-11 text-muted">jameswhite123@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1007
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 18, 2025
+                                                </td>
+                                                <td>
+                                                    $2,250.00
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-success-transparent">Overdue</span>
+                                                </td>
+                                                <td>
+                                                    Mar 28, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/4.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">Sophia Lewis</p>
+                                                            <p class="mb-0 fs-11 text-muted">sophialewis97@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1008
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 20, 2025
+                                                </td>
+                                                <td>
+                                                    $5,100.25
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-warning-transparent">Pending</span>
+                                                </td>
+                                                <td>
+                                                    Mar 30, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/15.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">Michael Green</p>
+                                                            <p class="mb-0 fs-11 text-muted">michaelgreen15@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1009
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 22, 2025
+                                                </td>
+                                                <td>
+                                                    $3,600.00
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-success-transparent">Paid</span>
+                                                </td>
+                                                <td>
+                                                    Apr 01, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/5.jpg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium">Emily Harris</p>
+                                                            <p class="mb-0 fs-11 text-muted">emileyharris@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-medium text-primary">
+                                                        SPK - 1010
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    Mar 25, 2025
+                                                </td>
+                                                <td>
+                                                    $2,980.40	
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-success-transparent">Pending</span>
+                                                </td>
+                                                <td>
+                                                    Apr 05, 2025
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i class="ri-delete-bin-5-line"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer border-top-0">
+                                <div class="ms-auto"> 
+                                    <nav aria-label="Page navigation" class="pagination-style-2">
+                                        <ul class="pagination mb-0 flex-wrap justify-content-end">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="javascript:void(0);">
+                                                    Prev
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                                            <li class="page-item active"><a class="page-link" href="javascript:void(0);">2</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="javascript:void(0);">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">17</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link text-primary" href="javascript:void(0);">
+                                                    next
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+        </div>
+        <!-- End::app-content -->
+
+        
+       <!-- include footer.html"-->
+        <!-- include responsive-search-modal.html"-->
+
+    </div>
+
+   <!-- include commonjs.html"-->
+
+    <!-- include custom_switcherjs.html"-->
+
+    <!-- Apex Charts JS -->
+    <script src="../assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Internal Invoice List JS -->
+    <script src="../assets/js/invoice-list.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../assets/js/custom.js"></script>
+
+</body> 
+
+</html>
