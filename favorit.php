@@ -13,7 +13,7 @@ if (!isset($_SESSION['id_user'])) {
 }
 
 $db = getDB();
-$base_url = '/ontimeadventure/';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
 $id_user = $_SESSION['id_user'];
 
 // Query Item Favorit

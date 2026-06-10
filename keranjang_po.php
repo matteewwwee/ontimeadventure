@@ -6,7 +6,7 @@ require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/includes/auth_check.php';
 
 $db = getDB();
-$base_url = '/ontimeadventure/';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
 
 if (!isset($_SESSION['keranjang'])) {
     $_SESSION['keranjang'] = [];

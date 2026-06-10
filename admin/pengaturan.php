@@ -11,7 +11,7 @@ if ($_SESSION['role'] !== 'admin') {
     exit;
 }
 
-$base_url = '/ontimeadventure/';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
 // Baca setting dari database
 $app_settings = [
     'primary_color' => '#198754',

@@ -20,7 +20,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Base URL for redirects
-$base_url = '/ontimeadventure/';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
 
 // ── Check if user is logged in ──
 if (!isset($_SESSION['id_user'])) {

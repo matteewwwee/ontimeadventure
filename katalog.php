@@ -6,7 +6,7 @@ session_start();
 require_once __DIR__ . '/config/database.php';
 
 $db = getDB();
-$base_url = '/ontimeadventure/';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
 
 // ── Filter Kategori (optional GET parameter) ───────────────
 $filter_kategori = isset($_GET['kategori']) ? (int) $_GET['kategori'] : null;

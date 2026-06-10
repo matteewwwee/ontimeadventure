@@ -7,7 +7,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$base_url = '/ontimeadventure/';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
 $pageTitle = isset($pageTitle) ? $pageTitle . ' - On Time Adventure' : 'On Time Adventure';
 
 // ── Load Settings (Dynamic Color) ──
