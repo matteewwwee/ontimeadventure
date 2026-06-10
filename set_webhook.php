@@ -7,7 +7,7 @@ require_once __DIR__ . '/includes/telegram_helper.php';
 $protocol = 'https';
 $host = $_SERVER['HTTP_HOST'];
 $base_path = (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false) ? '/ontimeadventure' : '';
-$webhook_url = $protocol . '://' . $host . $base_path . '/api_telegram.php';
+$webhook_url = $protocol . '://' . $host . $base_path . '/webhook.php';
 
 $result = set_telegram_webhook($webhook_url);
 

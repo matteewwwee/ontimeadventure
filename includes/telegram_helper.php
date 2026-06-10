@@ -157,7 +157,10 @@ function send_po_telegram_notification($id_po) {
                     ['text' => '❌ Batalkan', 'callback_data' => "action=batalkan&id_po={$id_po}"]
                 ],
                 [
-                    ['text' => '🔍 Buka di Web Admin', 'url' => "{$app_url}?search=" . urlencode($poNumber)]
+                    ['text' => '✏️ Edit Pesanan (Barang Kosong)', 'callback_data' => "action=edit_po&id_po={$id_po}"]
+                ],
+                [
+                    ['text' => '🔍 Cek Detail (Lihat Gambar)', 'callback_data' => "action=detail&id_po={$id_po}"]
                 ]
             ]
         ];
