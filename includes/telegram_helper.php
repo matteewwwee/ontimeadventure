@@ -145,18 +145,19 @@ function send_po_telegram_notification($id_po) {
         
         $msg .= "\n<b>💰 Estimasi Total: Rp " . number_format($po['estimasi_total_harga'], 0, ',', '.') . "</b>\n\n";
         
-        // Telegram Webhook
+        // Gunakan URL Langsung agar bisa diakses di Hosting tanpa Webhook
+        $app_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) 
+            ? "http://{$_SERVER['HTTP_HOST']}/ontimeadventure/admin/kelola_po.php"
+            : "https://{$_SERVER['HTTP_HOST']}/admin/kelola_po.php";
+
         $keyboard = [
             'inline_keyboard' => [
                 [
-                    ['text' => '✅ Setujui', 'callback_data' => "action=setujui&id_po={$id_po}"],
-                    ['text' => '❌ Batalkan', 'callback_data' => "action=batalkan&id_po={$id_po}"]
+                    ['text' => '✅ Setujui', 'url' => "{$app_url}?action=setujui&id_po={$id_po}"],
+                    ['text' => '❌ Batalkan', 'url' => "{$app_url}?action=batalkan&id_po={$id_po}"]
                 ],
                 [
-                    ['text' => '✏️ Edit Pesanan (Barang Kosong)', 'callback_data' => "action=edit_po&id_po={$id_po}"]
-                ],
-                [
-                    ['text' => '🔍 Cek Detail (Lihat Gambar)', 'callback_data' => "action=detail&id_po={$id_po}"]
+                    ['text' => '🔍 Buka di Web Admin', 'url' => "{$app_url}?search=" . urlencode($poNumber)]
                 ]
             ]
         ];
