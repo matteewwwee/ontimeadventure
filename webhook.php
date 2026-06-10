@@ -6,6 +6,14 @@
 require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/includes/telegram_helper.php';
 
+// SISTEM KEAMANAN PINTU BELAKANG (SECRET TOKEN)
+// Memastikan hanya Cloudflare Worker yang tahu sandi ini yang boleh mengeksekusi file ini.
+$sandi_rahasia = $_SERVER['HTTP_X_SANDI_RAHASIA'] ?? '';
+if ($sandi_rahasia !== 'aco101102') {
+    http_response_code(403);
+    die("Akses Ditolak: Anda bukan kurir resmi!");
+}
+
 function trigger_notifikasi_po($db, $id_po, $status_baru) {
     $stmt_u = $db->prepare("SELECT id_user FROM pengajuan_po WHERE id_po = ?");
     $stmt_u->execute([$id_po]);
