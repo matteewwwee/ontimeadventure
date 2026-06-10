@@ -8,8 +8,12 @@ require_once __DIR__ . '/includes/telegram_helper.php';
 
 // SISTEM KEAMANAN PINTU BELAKANG (SECRET TOKEN)
 // Memastikan hanya Cloudflare Worker yang tahu sandi ini yang boleh mengeksekusi file ini.
+$db = getDB();
+$stmt = $db->query("SELECT nilai FROM pengaturan WHERE kunci='webhook_secret_token'");
+$token_db = $stmt->fetchColumn() ?: '';
+
 $sandi_rahasia = $_SERVER['HTTP_X_SANDI_RAHASIA'] ?? '';
-if ($sandi_rahasia !== 'aco101102') {
+if (!empty($token_db) && $sandi_rahasia !== $token_db) {
     http_response_code(403);
     die("Akses Ditolak: Anda bukan kurir resmi!");
 }

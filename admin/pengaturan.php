@@ -160,6 +160,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $stmt->execute(['telegram_bot_token', trim($_POST['telegram_bot_token'] ?? '')]);
         $stmt->execute(['telegram_chat_id', trim($_POST['telegram_chat_id'] ?? '')]);
         $stmt->execute(['telegram_bot_username', trim($_POST['telegram_bot_username'] ?? '')]);
+        $stmt->execute(['cf_worker_url', trim($_POST['cf_worker_url'] ?? '')]);
+        $stmt->execute(['webhook_secret_token', trim($_POST['webhook_secret_token'] ?? '')]);
         $_SESSION['flash_success'] = 'Koneksi Telegram berhasil disimpan!';
         header('Location: pengaturan.php?tab=telegram');
         exit;
@@ -291,6 +293,65 @@ require_once __DIR__ . '/../includes/header.php';
                                 </div>
                                 <div class="text-muted fs-13 mt-1" id="chatIdHelperText">
                                     Pisahkan dengan koma (,) jika Anda ingin notifikasi dikirim ke lebih dari 1 admin sekaligus.
+                                </div>
+                            </div>
+
+                            <hr class="border-dashed my-4">
+                            
+                            <div class="alert alert-warning bg-warning-transparent border-warning mt-3">
+                                <h6 class="fw-bold mb-2 text-warning"><i class="ri-shield-keyhole-line align-middle"></i> Pengaturan Cloudflare Webhook Proxy (Opsional)</h6>
+                                <p class="mb-2 fs-13 text-dark">Gunakan pengaturan ini hanya jika server hosting Anda memblokir koneksi dari Telegram (biasanya ditandai dengan error <i>Connection reset by peer</i>).</p>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold text-dark">URL Cloudflare Worker Anda</label>
+                                    <input type="text" class="form-control" name="cf_worker_url" value="<?= htmlspecialchars($app_settings['cf_worker_url'] ?? '') ?>" placeholder="https://telegram-proxy.username.workers.dev/">
+                                    <div class="text-muted fs-13 mt-1">Jika diisi, bot akan dikaitkan ke URL ini alih-alih URL hosting Anda.</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold text-dark">Kata Sandi Rahasia (Secret Token)</label>
+                                    <input type="text" class="form-control" name="webhook_secret_token" value="<?= htmlspecialchars($app_settings['webhook_secret_token'] ?? '') ?>" placeholder="Contoh: BukaPintu123">
+                                    <div class="text-muted fs-13 mt-1">Kata sandi untuk melindungi webhook.php Anda. Sesuaikan dengan yang ada di kode Worker di bawah.</div>
+                                </div>
+                                
+                                <?php
+                                $worker_url = $base_url . 'webhook.php';
+                                $full_webhook_url = "https://" . $_SERVER['HTTP_HOST'] . $worker_url;
+                                $secret = htmlspecialchars($app_settings['webhook_secret_token'] ?? 'RAHASIA123');
+                                ?>
+                                
+                                <label class="form-label fw-semibold mt-2 text-dark">Kode Javascript untuk Cloudflare Worker:</label>
+                                <div class="bg-dark text-white p-3 rounded-2" style="position: relative;">
+                                    <button type="button" class="btn btn-sm btn-light position-absolute top-0 end-0 m-2" onclick="navigator.clipboard.writeText(document.getElementById('cfCode').innerText); Swal.fire('Tersalin!', 'Kode berhasil disalin', 'success');"><i class="ri-clipboard-line"></i> Copy</button>
+                                    <pre id="cfCode" class="mb-0 text-white fs-12" style="max-height: 200px; overflow-y: auto;">export default {
+  async fetch(request, env, ctx) {
+    const TARGET_URL = "<?= $full_webhook_url ?>";
+    
+    if (request.method !== "POST") {
+      return new Response("Jembatan aktif. Harap gunakan POST.", { status: 200 });
+    }
+
+    const body = await request.text();
+
+    const modifiedRequest = new Request(TARGET_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "X-Sandi-Rahasia": "<?= $secret ?>"
+      },
+      body: body
+    });
+
+    try {
+      const response = await fetch(modifiedRequest);
+      const responseText = await response.text();
+      return new Response(responseText, { status: response.status, headers: { "Content-Type": "text/plain" } });
+    } catch (e) {
+      return new Response("Gagal menembus gerbang: " + e.message, { status: 500 });
+    }
+  },
+};</pre>
                                 </div>
                             </div>
 

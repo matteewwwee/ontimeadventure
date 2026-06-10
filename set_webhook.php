@@ -7,7 +7,16 @@ require_once __DIR__ . '/includes/telegram_helper.php';
 $protocol = 'https';
 $host = $_SERVER['HTTP_HOST'];
 $base_path = (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false || strpos($host, 'ngrok') !== false) ? '/ontimeadventure' : '';
-$webhook_url = $protocol . '://' . $host . $base_path . '/webhook.php';
+
+$db = getDB();
+$stmt = $db->query("SELECT nilai FROM pengaturan WHERE kunci='cf_worker_url'");
+$cf_url = $stmt->fetchColumn();
+
+if (!empty($cf_url)) {
+    $webhook_url = $cf_url;
+} else {
+    $webhook_url = $protocol . '://' . $host . $base_path . '/webhook.php';
+}
 
 $result = set_telegram_webhook($webhook_url);
 
