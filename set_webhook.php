@@ -1,7 +1,12 @@
 <?php
 // Script untuk Mendaftarkan Webhook Telegram
+session_start();
 require_once __DIR__ . '/config/database.php';
+require_once __DIR__ . '/includes/auth_check.php';
 require_once __DIR__ . '/includes/telegram_helper.php';
+
+// Pastikan hanya admin yang bisa mengakses halaman eksekusi ini
+requireAdmin();
 
 // Pastikan diakses menggunakan HTTPS (Telegram mewajibkan HTTPS)
 $protocol = 'https';
