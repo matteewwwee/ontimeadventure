@@ -6,10 +6,6 @@
 require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/includes/telegram_helper.php';
 
-// TRIPWIRE: Catat setiap koneksi yang masuk ke file ini
-$log_entry = "[" . date('Y-m-d H:i:s') . "] IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown') . " | Data: " . file_get_contents('php://input') . "\n";
-file_put_contents(__DIR__ . '/log_tangkapan_telegram.txt', $log_entry, FILE_APPEND);
-
 function trigger_notifikasi_po($db, $id_po, $status_baru) {
     $stmt_u = $db->prepare("SELECT id_user FROM pengajuan_po WHERE id_po = ?");
     $stmt_u->execute([$id_po]);
