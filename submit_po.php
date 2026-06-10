@@ -9,7 +9,7 @@ require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/includes/auth_check.php';
 require_once __DIR__ . '/includes/telegram_helper.php';
 
-$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || strpos($_SERVER['HTTP_HOST'], 'ngrok') !== false) ? '/ontimeadventure/' : '/';
 
 // ── Only accept POST ──
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

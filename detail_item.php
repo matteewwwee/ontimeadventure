@@ -6,7 +6,7 @@ session_start();
 require_once __DIR__ . '/config/database.php';
 
 $db = getDB();
-$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || strpos($_SERVER['HTTP_HOST'], 'ngrok') !== false) ? '/ontimeadventure/' : '/';
 
 // ── Validasi Parameter ID ───────────────────────────────────
 if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {

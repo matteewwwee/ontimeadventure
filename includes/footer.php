@@ -5,7 +5,7 @@
  * ============================================================
  */
 if (!isset($base_url)) {
-    $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) ? '/ontimeadventure/' : '/';
+    $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || strpos($_SERVER['HTTP_HOST'], 'ngrok') !== false) ? '/ontimeadventure/' : '/';
 }
 $isAdminArea = strpos($_SERVER['PHP_SELF'], '/admin/') !== false;
 $currentYear = date('Y');
