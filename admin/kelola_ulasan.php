@@ -155,12 +155,6 @@ $filter_kata = $stmt_kata->fetchAll();
                                     </form>
                                                             </tr>
                                 <?php endforeach; ?>
-                                
-                                <?php if(empty($reviews)): ?>
-                                    <tr>
-                                        <td colspan="9" class="text-center py-4 text-muted">Belum ada ulasan.</td>
-                                    </tr>
-                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
