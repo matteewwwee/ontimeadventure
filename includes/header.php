@@ -128,6 +128,9 @@ $htmlAttrs = $isAdminArea
                 overflow-y: auto !important;
                 box-shadow: 0.25rem 0 1rem rgba(0,0,0,0.1) !important;
             }
+            html[data-theme-mode="dark"] .app-sidebar {
+                background-color: var(--custom-white) !important;
+            }
             html[data-toggled="open"] .app-sidebar {
                 left: 0 !important;
             }
@@ -295,7 +298,7 @@ $htmlAttrs = $isAdminArea
                 <?php else: ?>
                 
                 <!-- Notifications Dropdown -->
-                <div class="header-element notifications-dropdown">
+                <div class="header-element notifications-dropdown me-2 me-sm-3">
                     <a href="javascript:void(0);" class="header-link btn-notif-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="border: none; background: transparent; outline: none; box-shadow: none;">
                         <i class="ri-notification-3-line fs-20"></i>
                         <span class="badge bg-danger rounded-pill header-icon-badge pulse pulse-secondary notif-badge" style="display: none;">0</span>
