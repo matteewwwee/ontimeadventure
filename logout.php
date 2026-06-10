@@ -8,5 +8,7 @@ session_start();
 session_unset();
 session_destroy();
 
-header('Location: /ontimeadventure/login.php');
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || strpos($_SERVER['HTTP_HOST'], 'ngrok') !== false) ? '/ontimeadventure/' : '/';
+
+header('Location: ' . $base_url . 'login.php');
 exit;
