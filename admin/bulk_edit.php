@@ -113,7 +113,7 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
                                             <td rowspan="<?= $item_rowspans[$v['id_item']] ?>"><span class="badge bg-light text-dark border"><?= htmlspecialchars($v['nama_kategori']) ?></span></td>
                                             <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="align-top">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="<?= $gambarPath ?>" class="rounded border" style="width: 45px; height: 45px; object-fit: cover;" alt="">
+                                                    <img src="<?= $gambarPath ?>" class="rounded border" style="width: 45px; height: 45px; object-fit: cover; cursor: pointer;" alt="" onclick="previewImage(this.src)">
                                                     <span class="fw-bold"><?= htmlspecialchars($v['nama_brand'] . ' ' . $v['nama_seri']) ?></span>
                                                 </div>
                                             </td>
@@ -191,5 +191,27 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
         box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
     }
 </style>
+
+<!-- Modal Image Preview -->
+<div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-transparent border-0 shadow-none">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1); opacity: 1;"></button>
+            </div>
+            <div class="modal-body text-center p-0 mt-2">
+                <img id="previewImageSrc" src="" class="img-fluid rounded shadow-lg" alt="Preview">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function previewImage(src) {
+    document.getElementById('previewImageSrc').src = src;
+    var myModal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
+    myModal.show();
+}
+</script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
