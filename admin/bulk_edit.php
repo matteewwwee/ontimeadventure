@@ -116,8 +116,7 @@ require_once __DIR__ . '/../includes/header.php';
                                             <input type="text" 
                                                    name="keterangan[<?= $v['id_varian'] ?>]" 
                                                    class="form-control form-control-sm focus-ring focus-ring-primary" 
-                                                   value="<?= htmlspecialchars($v['keterangan_varian']) ?>" 
-                                                   required>
+                                                   value="<?= htmlspecialchars($v['keterangan_varian'] ?? '') ?>">
                                         </td>
                                         <td class="p-2">
                                             <div class="input-group input-group-sm">
@@ -140,8 +139,7 @@ require_once __DIR__ . '/../includes/header.php';
                                             <input type="text" 
                                                    name="catatan[<?= $v['id_varian'] ?>]" 
                                                    class="form-control form-control-sm focus-ring focus-ring-warning" 
-                                                   value="<?= htmlspecialchars($v['catatan_kondisi'] ?? '') ?>" 
-                                                   placeholder="Misal: Aman, Lecet">
+                                                   value="<?= htmlspecialchars($v['catatan_kondisi'] ?? '') ?>">
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
