@@ -345,6 +345,9 @@ require_once __DIR__ . '/../includes/header.php';
             <a href="export_item.php" target="_blank" class="btn btn-danger w-100 w-md-auto">
                 <i class="ri-file-pdf-line me-1"></i> Cetak PDF
             </a>
+            <a href="bulk_edit.php" class="btn btn-success w-100 w-md-auto">
+                <i class="ri-table-2 me-1"></i> Edit Harga Masal
+            </a>
             <button class="btn btn-primary w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#addItemModal">
                 <i class="ri-add-circle-line me-1"></i> Tambah Item Baru
             </button>
