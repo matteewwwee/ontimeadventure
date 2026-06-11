@@ -11,15 +11,19 @@ $flash_msg = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'bulk_update') {
     $hargas = $_POST['harga'] ?? [];
     $stoks = $_POST['stok'] ?? [];
+    $keterangans = $_POST['keterangan'] ?? [];
+    $catatans = $_POST['catatan'] ?? [];
 
     try {
         $db->beginTransaction();
-        $stmt = $db->prepare("UPDATE varian_item SET harga_sewa_per_hari = ?, stok_tersedia = ? WHERE id_varian = ?");
+        $stmt = $db->prepare("UPDATE varian_item SET harga_sewa_per_hari = ?, stok_tersedia = ?, keterangan_varian = ?, catatan_kondisi = ? WHERE id_varian = ?");
         
         $count = 0;
         foreach ($hargas as $id_varian => $harga) {
             $stok = $stoks[$id_varian] ?? 0;
-            $stmt->execute([(int)$harga, (int)$stok, (int)$id_varian]);
+            $keterangan = trim($keterangans[$id_varian] ?? '');
+            $catatan = trim($catatans[$id_varian] ?? '');
+            $stmt->execute([(int)$harga, (int)$stok, $keterangan, $catatan, (int)$id_varian]);
             $count++;
         }
         $db->commit();
@@ -33,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 // Fetch all variants with their parent items
 $stmt = $db->query("
     SELECT 
-        v.id_varian, v.keterangan_varian, v.harga_sewa_per_hari, v.stok_tersedia,
+        v.id_varian, v.keterangan_varian, v.harga_sewa_per_hari, v.stok_tersedia, v.catatan_kondisi,
         i.nama_brand, i.nama_seri,
         k.nama_kategori
     FROM varian_item v
@@ -73,10 +77,11 @@ require_once __DIR__ . '/../includes/header.php';
                             <tr>
                                 <th class="text-center" width="5%">No</th>
                                 <th width="15%">Kategori</th>
-                                <th width="30%">Nama Barang</th>
-                                <th width="15%">Varian / Ukuran</th>
-                                <th width="15%" class="text-center bg-success-transparent text-success">Harga Sewa / Hari (Rp)</th>
-                                <th width="15%" class="text-center bg-info-transparent text-info">Stok Tersedia</th>
+                                <th width="20%">Nama Barang</th>
+                                <th width="15%" class="text-center bg-primary-transparent text-primary">Varian / Ukuran</th>
+                                <th width="15%" class="text-center bg-success-transparent text-success">Harga Sewa / Hari</th>
+                                <th width="10%" class="text-center bg-info-transparent text-info">Stok Tersedia</th>
+                                <th width="15%" class="text-center bg-warning-transparent text-warning">Catatan Kondisi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,7 +91,13 @@ require_once __DIR__ . '/../includes/header.php';
                                         <td class="text-center text-muted"><?= $index + 1 ?></td>
                                         <td><span class="badge bg-light text-dark border"><?= htmlspecialchars($v['nama_kategori']) ?></span></td>
                                         <td class="fw-bold"><?= htmlspecialchars($v['nama_brand'] . ' ' . $v['nama_seri']) ?></td>
-                                        <td><?= htmlspecialchars($v['keterangan_varian']) ?></td>
+                                        <td class="p-2">
+                                            <input type="text" 
+                                                   name="keterangan[<?= $v['id_varian'] ?>]" 
+                                                   class="form-control form-control-sm focus-ring focus-ring-primary" 
+                                                   value="<?= htmlspecialchars($v['keterangan_varian']) ?>" 
+                                                   required>
+                                        </td>
                                         <td class="p-2">
                                             <div class="input-group input-group-sm">
                                                 <span class="input-group-text bg-light border-end-0 text-muted">Rp</span>
@@ -103,6 +114,13 @@ require_once __DIR__ . '/../includes/header.php';
                                                    class="form-control form-control-sm text-center fw-bold focus-ring focus-ring-info" 
                                                    value="<?= $v['stok_tersedia'] ?>" 
                                                    min="0" required>
+                                        </td>
+                                        <td class="p-2">
+                                            <input type="text" 
+                                                   name="catatan[<?= $v['id_varian'] ?>]" 
+                                                   class="form-control form-control-sm focus-ring focus-ring-warning" 
+                                                   value="<?= htmlspecialchars($v['catatan_kondisi'] ?? '') ?>" 
+                                                   placeholder="Misal: Aman, Lecet">
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
