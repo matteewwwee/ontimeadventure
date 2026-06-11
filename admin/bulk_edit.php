@@ -8,23 +8,27 @@ $db = getDB();
 $flash_msg = '';
 
 // Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'bulk_update') {
     $hargas = $_POST['harga'] ?? [];
     $stoks = $_POST['stok'] ?? [];
     $keterangans = $_POST['keterangan'] ?? [];
     $catatans = $_POST['catatan'] ?? [];
+    $deskripsis = $_POST['deskripsi'] ?? [];
 
     try {
         $db->beginTransaction();
-        $stmt = $db->prepare("UPDATE varian_item SET harga_sewa_per_hari = ?, stok_tersedia = ?, keterangan_varian = ?, catatan_kondisi = ? WHERE id_varian = ?");
+        $stmt_varian = $db->prepare("UPDATE varian_item SET harga_sewa_per_hari = ?, stok_tersedia = ?, keterangan_varian = ?, catatan_kondisi = ? WHERE id_varian = ?");
+        $stmt_item = $db->prepare("UPDATE item SET deskripsi_umum = ? WHERE id_item = ?");
         
         $count = 0;
         foreach ($hargas as $id_varian => $harga) {
             $stok = $stoks[$id_varian] ?? 0;
             $keterangan = trim($keterangans[$id_varian] ?? '');
             $catatan = trim($catatans[$id_varian] ?? '');
-            $stmt->execute([(int)$harga, (int)$stok, $keterangan, $catatan, (int)$id_varian]);
+            $stmt_varian->execute([(int)$harga, (int)$stok, $keterangan, $catatan, (int)$id_varian]);
             $count++;
+        }
+        foreach ($deskripsis as $id_item => $desk) {
+            $stmt_item->execute([trim($desk), (int)$id_item]);
         }
         $db->commit();
         $flash_msg = '<div class="alert alert-success alert-dismissible fade show"><i class="ri-check-line me-1 align-middle fs-16"></i> Berhasil memperbarui ' . $count . ' data varian sekaligus!<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
@@ -37,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 // Fetch all variants with their parent items
 $stmt = $db->query("
     SELECT 
-        v.id_varian, v.keterangan_varian, v.harga_sewa_per_hari, v.stok_tersedia, v.catatan_kondisi,
-        i.nama_brand, i.nama_seri,
+        v.id_varian, v.id_item, v.keterangan_varian, v.harga_sewa_per_hari, v.stok_tersedia, v.catatan_kondisi,
+        i.nama_brand, i.nama_seri, i.deskripsi_umum,
         k.nama_kategori
     FROM varian_item v
     JOIN item i ON v.id_item = i.id_item
@@ -46,6 +50,11 @@ $stmt = $db->query("
     ORDER BY k.nama_kategori ASC, i.nama_brand ASC, i.nama_seri ASC
 ");
 $variants = $stmt->fetchAll();
+
+$item_rowspans = [];
+foreach ($variants as $v) {
+    $item_rowspans[$v['id_item']] = ($item_rowspans[$v['id_item']] ?? 0) + 1;
+}
 
 $pageTitle = "Bulk Edit Harga & Stok";
 require_once __DIR__ . '/../includes/header.php';
@@ -76,21 +85,32 @@ require_once __DIR__ . '/../includes/header.php';
                         <thead class="table-light position-sticky top-0 shadow-sm" style="z-index: 10;">
                             <tr>
                                 <th class="text-center" width="5%">No</th>
-                                <th width="15%">Kategori</th>
-                                <th width="20%">Nama Barang</th>
+                                <th width="10%">Kategori</th>
+                                <th width="15%">Nama Barang</th>
+                                <th width="20%">Deskripsi Umum</th>
                                 <th width="15%" class="text-center bg-primary-transparent text-primary">Varian / Ukuran</th>
-                                <th width="15%" class="text-center bg-success-transparent text-success">Harga Sewa / Hari</th>
+                                <th width="10%" class="text-center bg-success-transparent text-success">Harga Sewa / Hari</th>
                                 <th width="10%" class="text-center bg-info-transparent text-info">Stok Tersedia</th>
                                 <th width="15%" class="text-center bg-warning-transparent text-warning">Catatan Kondisi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (count($variants) > 0): ?>
-                                <?php foreach ($variants as $index => $v): ?>
+                            <?php if (count($variants) > 0): 
+                                $last_item_id = null;
+                            ?>
+                                <?php foreach ($variants as $index => $v): 
+                                    $is_first = ($v['id_item'] !== $last_item_id);
+                                    $last_item_id = $v['id_item'];
+                                ?>
                                     <tr>
                                         <td class="text-center text-muted"><?= $index + 1 ?></td>
-                                        <td><span class="badge bg-light text-dark border"><?= htmlspecialchars($v['nama_kategori']) ?></span></td>
-                                        <td class="fw-bold"><?= htmlspecialchars($v['nama_brand'] . ' ' . $v['nama_seri']) ?></td>
+                                        <?php if ($is_first): ?>
+                                            <td rowspan="<?= $item_rowspans[$v['id_item']] ?>"><span class="badge bg-light text-dark border"><?= htmlspecialchars($v['nama_kategori']) ?></span></td>
+                                            <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="fw-bold align-top"><?= htmlspecialchars($v['nama_brand'] . ' ' . $v['nama_seri']) ?></td>
+                                            <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="p-2 align-top">
+                                                <textarea name="deskripsi[<?= $v['id_item'] ?>]" class="form-control form-control-sm focus-ring focus-ring-secondary" rows="3" placeholder="Deskripsi..."><?= htmlspecialchars($v['deskripsi_umum'] ?? '') ?></textarea>
+                                            </td>
+                                        <?php endif; ?>
                                         <td class="p-2">
                                             <input type="text" 
                                                    name="keterangan[<?= $v['id_varian'] ?>]" 
