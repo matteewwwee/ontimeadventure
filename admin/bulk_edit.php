@@ -8,6 +8,7 @@ $db = getDB();
 $flash_msg = '';
 
 // Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'bulk_update') {
     $hargas = $_POST['harga'] ?? [];
     $stoks = $_POST['stok'] ?? [];
     $keterangans = $_POST['keterangan'] ?? [];
