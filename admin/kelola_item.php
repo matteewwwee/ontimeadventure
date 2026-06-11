@@ -342,8 +342,11 @@ require_once __DIR__ . '/../includes/header.php';
             <h4 class="mb-0 fw-semibold">Kelola Item & Varian</h4>
         </div>
         <div class="col-12 col-md-auto d-flex flex-column flex-md-row gap-2">
-            <a href="export_item.php" target="_blank" class="btn btn-danger w-100 w-md-auto text-nowrap">
-                <i class="ri-file-pdf-line me-1"></i> Cetak PDF
+            <button class="btn btn-warning w-100 w-md-auto text-nowrap" data-bs-toggle="modal" data-bs-target="#importModal">
+                <i class="ri-file-upload-line me-1"></i> Import CSV
+            </button>
+            <a href="export_csv.php" target="_blank" class="btn btn-danger w-100 w-md-auto text-nowrap">
+                <i class="ri-file-download-line me-1"></i> Export CSV
             </a>
             <a href="bulk_edit.php" class="btn btn-success w-100 w-md-auto text-nowrap">
                 <i class="ri-table-2 me-1"></i> Edit Cepat
@@ -355,6 +358,37 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
 
     <?= $flash_msg ?>
+
+    <!-- Modal Import CSV -->
+    <div class="modal fade" id="importModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="ri-file-upload-line me-2"></i> Import Data via CSV</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info fs-13">
+                        <i class="ri-information-line me-1"></i> Anda dapat menambah atau mengubah banyak barang sekaligus dengan mengunggah file CSV. Unduh format kasong atau Export data yang sudah ada untuk diedit.
+                    </div>
+                    <form action="import_csv.php" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Pilih File CSV</label>
+                            <input class="form-control" type="file" name="csv_file" accept=".csv" required>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <a href="export_csv.php" class="text-decoration-none text-primary fs-14">
+                                <i class="ri-download-line me-1"></i> Unduh Template / Export
+                            </a>
+                            <button type="submit" class="btn btn-warning fw-bold">
+                                <i class="ri-upload-cloud-2-line me-1"></i> Unggah & Proses
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Tambah Item -->
     <div class="modal fade" id="addItemModal" tabindex="-1" aria-hidden="true">
