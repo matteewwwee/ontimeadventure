@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 // Fetch all variants with their parent items
 $stmt = $db->query("
     SELECT 
-        v.id_varian, v.id_item, v.keterangan_varian, v.harga_sewa_per_hari, v.stok_tersedia, v.catatan_kondisi,
-        i.nama_brand, i.nama_seri, i.deskripsi_umum,
+        v.id_varian, v.id_item, v.keterangan_varian, v.harga_sewa_per_hari, v.stok_tersedia, v.catatan_kondisi, v.gambar as v_gambar,
+        i.nama_brand, i.nama_seri, i.deskripsi_umum, i.gambar as i_gambar,
         k.nama_kategori
     FROM varian_item v
     JOIN item i ON v.id_item = i.id_item
@@ -57,14 +57,15 @@ foreach ($variants as $v) {
     $item_rowspans[$v['id_item']] = ($item_rowspans[$v['id_item']] ?? 0) + 1;
 }
 
-$pageTitle = "Bulk Edit Harga & Stok";
+$pageTitle = "Edit Cepat Harga & Stok";
 require_once __DIR__ . '/../includes/header.php';
+$base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || strpos($_SERVER['HTTP_HOST'], 'ngrok') !== false) ? '/ontimeadventure/' : '/';
 ?>
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h4 class="fw-bold mb-1"><i class="ri-table-2 text-success me-2"></i>Bulk Edit Harga & Stok</h4>
+            <h4 class="fw-bold mb-1"><i class="ri-table-2 text-success me-2"></i>Edit Cepat Harga & Stok</h4>
             <p class="text-muted mb-0 fs-14">Ubah harga sewa dan jumlah stok seluruh barang dalam satu halaman, layaknya Microsoft Excel.</p>
         </div>
         <div>
@@ -105,9 +106,17 @@ require_once __DIR__ . '/../includes/header.php';
                                 ?>
                                     <tr>
                                         <td class="text-center text-muted"><?= $index + 1 ?></td>
-                                        <?php if ($is_first): ?>
+                                        <?php if ($is_first): 
+                                            $gambar = !empty($v['v_gambar']) ? $v['v_gambar'] : $v['i_gambar'];
+                                            $gambarPath = empty($gambar) ? $base_url . 'assets/images/placeholder.jpg' : $base_url . 'assets/img/' . $gambar;
+                                        ?>
                                             <td rowspan="<?= $item_rowspans[$v['id_item']] ?>"><span class="badge bg-light text-dark border"><?= htmlspecialchars($v['nama_kategori']) ?></span></td>
-                                            <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="fw-bold align-top"><?= htmlspecialchars($v['nama_brand'] . ' ' . $v['nama_seri']) ?></td>
+                                            <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="align-top">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img src="<?= $gambarPath ?>" class="rounded border" style="width: 45px; height: 45px; object-fit: cover;" alt="">
+                                                    <span class="fw-bold"><?= htmlspecialchars($v['nama_brand'] . ' ' . $v['nama_seri']) ?></span>
+                                                </div>
+                                            </td>
                                             <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="p-2 align-top">
                                                 <textarea name="deskripsi[<?= $v['id_item'] ?>]" class="form-control form-control-sm focus-ring focus-ring-secondary" rows="3" placeholder="Deskripsi..."><?= htmlspecialchars($v['deskripsi_umum'] ?? '') ?></textarea>
                                             </td>

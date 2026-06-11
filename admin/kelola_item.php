@@ -346,7 +346,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <i class="ri-file-pdf-line me-1"></i> Cetak PDF
             </a>
             <a href="bulk_edit.php" class="btn btn-success w-100 w-md-auto text-nowrap">
-                <i class="ri-table-2 me-1"></i> Edit Harga Masal
+                <i class="ri-table-2 me-1"></i> Edit Cepat
             </a>
             <button class="btn btn-primary w-100 w-md-auto text-nowrap" data-bs-toggle="modal" data-bs-target="#addItemModal">
                 <i class="ri-add-circle-line me-1"></i> Tambah Item Baru
