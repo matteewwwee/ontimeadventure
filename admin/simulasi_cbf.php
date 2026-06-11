@@ -297,12 +297,24 @@ require_once __DIR__ . '/../includes/header.php';
                                             <?php 
                                             // Tampilkan beberapa kata penting dari target
                                             $target_terms = array_keys(array_count_values($tokenized_docs[$current_item_id]));
-                                            foreach(array_slice($target_terms, 0, 15) as $term): ?>
+                                            $tot_target = count($tokenized_docs[$current_item_id]);
+                                            foreach(array_slice($target_terms, 0, 15) as $term): 
+                                                $c_target = array_count_values($tokenized_docs[$current_item_id])[$term] ?? 0;
+                                            ?>
                                             <tr>
                                                 <td class="fw-bold text-primary"><?= htmlspecialchars($term) ?></td>
-                                                <td><?= number_format($tf[$current_item_id][$term] ?? 0, 4) ?></td>
-                                                <?php foreach(array_slice($top_ids, 0, 2) as $id): ?>
-                                                    <td><?= number_format($tf[$id][$term] ?? 0, 4) ?></td>
+                                                <td>
+                                                    <span class="fw-bold"><?= number_format($tf[$current_item_id][$term] ?? 0, 4) ?></span>
+                                                    <div class="text-muted" style="font-size: 11px;">(<?= $c_target ?> / <?= $tot_target ?>)</div>
+                                                </td>
+                                                <?php foreach(array_slice($top_ids, 0, 2) as $id): 
+                                                    $c_other = array_count_values($tokenized_docs[$id])[$term] ?? 0;
+                                                    $tot_other = count($tokenized_docs[$id]);
+                                                ?>
+                                                    <td>
+                                                        <span class="fw-bold"><?= number_format($tf[$id][$term] ?? 0, 4) ?></span>
+                                                        <div class="text-muted" style="font-size: 11px;">(<?= $c_other ?> / <?= $tot_other ?>)</div>
+                                                    </td>
                                                 <?php endforeach; ?>
                                             </tr>
                                             <?php endforeach; ?>
@@ -337,7 +349,10 @@ require_once __DIR__ . '/../includes/header.php';
                                                     <tr>
                                                         <td class="fw-bold text-danger"><?= htmlspecialchars($term) ?></td>
                                                         <td>Muncul di <?= $df[$term] ?> item</td>
-                                                        <td class="fw-bold"><?= number_format($val, 4) ?></td>
+                                                        <td>
+                                                            <span class="fw-bold"><?= number_format($val, 4) ?></span>
+                                                            <div class="text-muted" style="font-size: 11px;">log(<?= $total_documents ?> / <?= $df[$term] ?>)</div>
+                                                        </td>
                                                     </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>
@@ -372,11 +387,22 @@ require_once __DIR__ . '/../includes/header.php';
                                             ?>
                                             <tr>
                                                 <td class="fw-bold"><?= htmlspecialchars($item_data[$id]['nama_brand'].' '.$item_data[$id]['nama_seri']) ?></td>
-                                                <td class="text-center font-monospace"><?= number_format($det['dot'], 5) ?></td>
-                                                <td class="text-center font-monospace"><?= number_format($det['mag_target'], 5) ?></td>
-                                                <td class="text-center font-monospace"><?= number_format($det['mag_other'], 5) ?></td>
+                                                <td class="text-center font-monospace">
+                                                    <?= number_format($det['dot'], 5) ?>
+                                                    <div class="text-muted mt-1" style="font-size: 11px;">Σ(A × B)</div>
+                                                </td>
+                                                <td class="text-center font-monospace">
+                                                    <?= number_format($det['mag_target'], 5) ?>
+                                                    <div class="text-muted mt-1" style="font-size: 11px;">√(Σ A²)</div>
+                                                </td>
+                                                <td class="text-center font-monospace">
+                                                    <?= number_format($det['mag_other'], 5) ?>
+                                                    <div class="text-muted mt-1" style="font-size: 11px;">√(Σ B²)</div>
+                                                </td>
                                                 <td class="text-center fw-bold fs-15 text-success">
                                                     <?= number_format($sim, 5) ?>
+                                                    <div class="text-muted fw-normal mt-1" style="font-size: 11px;">(A·B) / (|A|×|B|)</div>
+                                                    <div class="text-muted fw-normal mt-1" style="font-size: 11px;">= <?= number_format($det['dot'], 5) ?> / (<?= number_format($det['mag_target'], 5) ?> × <?= number_format($det['mag_other'], 5) ?>)</div>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
