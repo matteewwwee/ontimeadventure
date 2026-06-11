@@ -165,7 +165,7 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
 
                 <div class="p-3 bg-light border-top d-flex justify-content-end align-items-center rounded-bottom position-sticky bottom-0">
                     <span class="text-muted me-3 fs-13"><i class="ri-information-line"></i> Total <?= count($variants) ?> varian siap diperbarui.</span>
-                    <button type="submit" class="btn btn-success px-5 fw-bold" onclick="return confirm('Apakah Anda yakin ingin menyimpan seluruh perubahan harga dan stok ini?');">
+                    <button type="submit" class="btn btn-success px-5 fw-bold">
                         <i class="ri-save-3-line me-2"></i> Simpan Semua Perubahan
                     </button>
                 </div>
@@ -212,6 +212,26 @@ function previewImage(src) {
     var myModal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
     myModal.show();
 }
+</script>
+
+<script>
+document.getElementById('bulkForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    Swal.fire({
+        title: 'Simpan Perubahan?',
+        text: 'Apakah Anda yakin ingin menyimpan seluruh perubahan harga dan stok ini?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, Simpan!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+    });
+});
 </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
