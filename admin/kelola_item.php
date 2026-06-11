@@ -313,10 +313,10 @@ require_once __DIR__ . '/../includes/header.php';
     }
     
     .grid-view-active .varian-row tbody td { 
-        border: none !important; padding: 6px 0 6px 35% !important; text-align: right !important; min-height: 32px; display: flex; align-items: center; justify-content: flex-end; width: 100% !important; white-space: normal;
+        border: none !important; padding: 6px 0 6px 45% !important; text-align: right !important; min-height: 32px; display: flex; align-items: center; justify-content: flex-end; width: 100% !important; white-space: normal;
     }
     .grid-view-active .varian-row tbody td:before { 
-        position: absolute; left: 15px; top: auto; width: 30%; text-align: left; font-weight: 600; color: var(--text-muted, #6c757d); font-size: 0.8rem;
+        position: absolute; left: 15px; top: auto; width: auto; max-width: 40%; text-align: left; font-weight: 600; color: var(--text-muted, #6c757d); font-size: 0.8rem; white-space: nowrap;
     }
     
     .grid-view-active .varian-row tbody td:nth-of-type(1):before { display: none; }
@@ -342,13 +342,13 @@ require_once __DIR__ . '/../includes/header.php';
             <h4 class="mb-0 fw-semibold">Kelola Item & Varian</h4>
         </div>
         <div class="col-12 col-md-auto d-flex flex-column flex-md-row gap-2">
-            <a href="export_item.php" target="_blank" class="btn btn-danger w-100 w-md-auto">
+            <a href="export_item.php" target="_blank" class="btn btn-danger w-100 w-md-auto text-nowrap">
                 <i class="ri-file-pdf-line me-1"></i> Cetak PDF
             </a>
-            <a href="bulk_edit.php" class="btn btn-success w-100 w-md-auto">
+            <a href="bulk_edit.php" class="btn btn-success w-100 w-md-auto text-nowrap">
                 <i class="ri-table-2 me-1"></i> Edit Harga Masal
             </a>
-            <button class="btn btn-primary w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#addItemModal">
+            <button class="btn btn-primary w-100 w-md-auto text-nowrap" data-bs-toggle="modal" data-bs-target="#addItemModal">
                 <i class="ri-add-circle-line me-1"></i> Tambah Item Baru
             </button>
         </div>
