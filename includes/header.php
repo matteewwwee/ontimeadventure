@@ -404,6 +404,12 @@ $htmlAttrs = $isAdminArea
                             </a>
                         </li>
                         <li class="slide">
+                            <a href="<?= $base_url ?>admin/simulasi_cbf.php" class="side-menu__item <?= basename($_SERVER['PHP_SELF']) == 'simulasi_cbf.php' ? 'active' : '' ?>">
+                                <i class="ri-test-tube-line side-menu__icon"></i>
+                                <span class="side-menu__label">Simulasi CBF</span>
+                            </a>
+                        </li>
+                        <li class="slide">
                             <a href="<?= $base_url ?>admin/kelola_user.php" class="side-menu__item <?= basename($_SERVER['PHP_SELF']) == 'kelola_user.php' ? 'active' : '' ?>">
                                 <i class="ri-group-line side-menu__icon"></i>
                                 <span class="side-menu__label">Kelola User</span>
