@@ -394,7 +394,7 @@ require_once __DIR__ . '/../includes/header.php';
                                         $score = $similarities[$id];
                                         if($score == 0) continue;
                                         $item = $item_data[$id];
-                                        $gambarPath = empty($item['gambar']) ? $base_url . 'assets/images/placeholder.jpg' : $base_url . 'uploads/katalog/' . $item['gambar'];
+                                        $gambarPath = empty($item['gambar']) ? $base_url . 'assets/images/placeholder.jpg' : $base_url . 'assets/img/' . $item['gambar'];
                                     ?>
                                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
                                             <div class="card h-100 border-0 shadow-sm position-relative">
