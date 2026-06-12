@@ -77,10 +77,85 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
 
     <?= $flash_msg ?>
 
+    <style>
+        @media (min-width: 992px) {
+            .sidemenu-toggle { display: none !important; }
+        }
+    </style>
+
     <form action="" method="POST" id="bulkForm" class="mb-4">
         <input type="hidden" name="action" value="bulk_update">
         
-        <div class="row g-4 mb-3" style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; padding: 0.5rem;">
+        <!-- DESKTOP VIEW (Model Excel dengan Rowspan) -->
+        <div class="table-responsive d-none d-lg-block mb-3 bg-white border rounded shadow-sm" style="max-height: 70vh; overflow-y: auto;">
+            <table class="table table-hover table-striped table-bordered align-middle mb-0" style="min-width: 800px;">
+                <thead class="table-light position-sticky top-0 shadow-sm" style="z-index: 10;">
+                    <tr>
+                        <th class="text-center" width="5%">No</th>
+                        <th width="10%">Kategori</th>
+                        <th width="15%">Nama Barang</th>
+                        <th width="20%">Deskripsi Umum</th>
+                        <th width="15%" class="text-center bg-primary-transparent text-primary">Varian / Ukuran</th>
+                        <th width="10%" class="text-center bg-success-transparent text-success">Harga / Hari</th>
+                        <th width="10%" class="text-center bg-info-transparent text-info">Stok Tersedia</th>
+                        <th width="15%" class="text-center bg-warning-transparent text-warning">Catatan Kondisi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($variants) > 0): 
+                        $last_item_id = null;
+                    ?>
+                        <?php foreach ($variants as $index => $v): 
+                            $is_first = ($v['id_item'] !== $last_item_id);
+                            $last_item_id = $v['id_item'];
+                        ?>
+                            <tr>
+                                <td class="text-center text-muted"><?= $index + 1 ?></td>
+                                <?php if ($is_first): 
+                                    $gambar = !empty($v['v_gambar']) ? $v['v_gambar'] : $v['i_gambar'];
+                                    $gambarPath = empty($gambar) ? $base_url . 'assets/images/placeholder.jpg' : $base_url . 'assets/img/' . $gambar;
+                                ?>
+                                    <td rowspan="<?= $item_rowspans[$v['id_item']] ?>"><span class="badge bg-light text-dark border"><?= htmlspecialchars($v['nama_kategori']) ?></span></td>
+                                    <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="align-top">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <img src="<?= $gambarPath ?>" class="rounded border" style="width: 45px; height: 45px; object-fit: cover; cursor: pointer;" alt="" onclick="previewImage(this.src)">
+                                            <span class="fw-bold"><?= htmlspecialchars($v['nama_brand'] . ' ' . $v['nama_seri']) ?></span>
+                                        </div>
+                                    </td>
+                                    <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="p-2 align-top">
+                                        <textarea name="deskripsi_desktop_dummy[<?= $v['id_item'] ?>]" class="form-control form-control-sm focus-ring focus-ring-secondary border-secondary-subtle sync-textarea" data-itemid="<?= $v['id_item'] ?>" placeholder="Tulis deskripsi umum..." style="resize: none;"><?= htmlspecialchars($v['deskripsi_umum'] ?? '') ?></textarea>
+                                    </td>
+                                <?php endif; ?>
+                                <td class="p-2">
+                                    <input type="text" name="keterangan_desktop_dummy[<?= $v['id_varian'] ?>]" class="form-control form-control-sm focus-ring focus-ring-primary sync-input" data-name="keterangan[<?= $v['id_varian'] ?>]" value="<?= htmlspecialchars($v['keterangan_varian'] ?? '') ?>" placeholder="-">
+                                </td>
+                                <td class="p-2">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bg-light border-end-0 text-muted">Rp</span>
+                                        <input type="number" name="harga_desktop_dummy[<?= $v['id_varian'] ?>]" class="form-control fw-bold text-end border-start-0 focus-ring focus-ring-success sync-input" data-name="harga[<?= $v['id_varian'] ?>]" value="<?= $v['harga_sewa_per_hari'] ?>" min="0" required>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <input type="number" name="stok_desktop_dummy[<?= $v['id_varian'] ?>]" class="form-control form-control-sm text-center fw-bold focus-ring focus-ring-info sync-input" data-name="stok[<?= $v['id_varian'] ?>]" value="<?= $v['stok_tersedia'] ?>" min="0" required>
+                                </td>
+                                <td class="p-2">
+                                    <input type="text" name="catatan_desktop_dummy[<?= $v['id_varian'] ?>]" class="form-control form-control-sm focus-ring focus-ring-warning sync-input" data-name="catatan[<?= $v['id_varian'] ?>]" value="<?= htmlspecialchars($v['catatan_kondisi'] ?? '') ?>" placeholder="-">
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="8" class="text-center text-muted py-5">
+                                <i class="ri-inbox-2-line fs-24 d-block mb-2"></i> Belum ada varian item yang ditambahkan.
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MOBILE VIEW (Card Layout) -->
+        <div class="row d-lg-none g-4 mb-3" style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; padding: 0.5rem;">
                     <?php if (count($variants) > 0): 
                         // Group variants by item
                         $grouped_variants = [];
@@ -164,6 +239,29 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
         </div>
     </form>
 </div>
+
+<script>
+// Sinkronisasi antara input Desktop dan Mobile agar selalu bernilai sama saat disubmit
+document.addEventListener('DOMContentLoaded', function() {
+    const syncTextareas = document.querySelectorAll('.sync-textarea');
+    syncTextareas.forEach(ta => {
+        ta.addEventListener('input', function() {
+            const itemId = this.getAttribute('data-itemid');
+            const target = document.querySelector(`textarea[name="deskripsi[${itemId}]"]`);
+            if(target) target.value = this.value;
+        });
+    });
+
+    const syncInputs = document.querySelectorAll('.sync-input');
+    syncInputs.forEach(inp => {
+        inp.addEventListener('input', function() {
+            const name = this.getAttribute('data-name');
+            const target = document.querySelector(`input[name="${name}"]`);
+            if(target) target.value = this.value;
+        });
+    });
+});
+</script>
 
 <style>
     /* Make input fields look cleaner in table */
