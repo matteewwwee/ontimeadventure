@@ -63,14 +63,14 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
 ?>
 
 <div class="container-fluid py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-            <h4 class="fw-bold mb-1"><i class="ri-table-2 text-success me-2"></i>Edit Cepat Harga & Stok</h4>
-            <p class="text-muted mb-0 fs-14">Ubah harga sewa dan jumlah stok seluruh barang dalam satu halaman, layaknya Microsoft Excel.</p>
+            <h4 class="fw-bold mb-1 fs-5 fs-md-4"><i class="ri-table-2 text-success me-2"></i>Edit Cepat Harga & Stok</h4>
+            <p class="text-muted mb-0 fs-13">Ubah harga sewa dan jumlah stok seluruh barang layaknya Excel.</p>
         </div>
         <div>
-            <a href="kelola_item.php" class="btn btn-outline-secondary">
-                <i class="ri-arrow-left-line me-1"></i> Kembali ke Kelola Item
+            <a href="kelola_item.php" class="btn btn-outline-secondary w-100 w-md-auto text-nowrap">
+                <i class="ri-arrow-left-line me-1"></i> Kembali ke Item
             </a>
         </div>
     </div>
@@ -118,39 +118,35 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                            <table class="table table-sm table-hover align-middle mb-0" style="min-width: 500px;">
-                                                <thead class="table-light text-muted" style="font-size: 0.8rem;">
-                                                    <tr>
-                                                        <th width="30%" class="ps-3 border-bottom-0">Varian/Ukuran</th>
-                                                        <th width="30%" class="border-bottom-0">Harga / Hari</th>
-                                                        <th width="15%" class="text-center border-bottom-0">Stok</th>
-                                                        <th width="25%" class="pe-3 border-bottom-0">Kondisi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($item['variants'] as $v): ?>
-                                                    <tr>
-                                                        <td class="ps-3 p-2">
-                                                            <input type="text" name="keterangan[<?= $v['id_varian'] ?>]" class="form-control form-control-sm focus-ring focus-ring-primary" value="<?= htmlspecialchars($v['keterangan_varian'] ?? '') ?>" placeholder="-">
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text bg-light border-end-0 text-muted">Rp</span>
-                                                                <input type="number" name="harga[<?= $v['id_varian'] ?>]" class="form-control fw-bold text-end border-start-0 focus-ring focus-ring-success" value="<?= $v['harga_sewa_per_hari'] ?>" min="0" required>
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2 text-center">
-                                                            <input type="number" name="stok[<?= $v['id_varian'] ?>]" class="form-control form-control-sm text-center fw-bold focus-ring focus-ring-info" value="<?= $v['stok_tersedia'] ?>" min="0" required>
-                                                        </td>
-                                                        <td class="pe-3 p-2">
-                                                            <input type="text" name="catatan[<?= $v['id_varian'] ?>]" class="form-control form-control-sm focus-ring focus-ring-warning" value="<?= htmlspecialchars($v['catatan_kondisi'] ?? '') ?>" placeholder="-">
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
+                                        <div class="d-none d-md-flex row g-0 px-3 py-2 bg-light border-bottom border-top text-muted fs-12 fw-bold">
+                                            <div class="col-md-3">Varian/Ukuran</div>
+                                            <div class="col-md-3">Harga / Hari</div>
+                                            <div class="col-md-2 text-center">Stok</div>
+                                            <div class="col-md-4">Kondisi</div>
                                         </div>
+                                        <?php foreach ($item['variants'] as $v): ?>
+                                        <div class="row g-2 px-3 py-2 border-bottom align-items-end">
+                                            <div class="col-12 col-md-3">
+                                                <label class="form-label fs-12 mb-1 text-muted d-md-none">Varian/Ukuran</label>
+                                                <input type="text" name="keterangan[<?= $v['id_varian'] ?>]" class="form-control form-control-sm focus-ring focus-ring-primary" value="<?= htmlspecialchars($v['keterangan_varian'] ?? '') ?>" placeholder="-">
+                                            </div>
+                                            <div class="col-6 col-md-3">
+                                                <label class="form-label fs-12 mb-1 text-muted d-md-none">Harga / Hari</label>
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text bg-light border-end-0 text-muted">Rp</span>
+                                                    <input type="number" name="harga[<?= $v['id_varian'] ?>]" class="form-control fw-bold text-end border-start-0 focus-ring focus-ring-success" value="<?= $v['harga_sewa_per_hari'] ?>" min="0" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-2">
+                                                <label class="form-label fs-12 mb-1 text-muted d-md-none text-center d-block">Stok</label>
+                                                <input type="number" name="stok[<?= $v['id_varian'] ?>]" class="form-control form-control-sm text-center fw-bold focus-ring focus-ring-info" value="<?= $v['stok_tersedia'] ?>" min="0" required>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <label class="form-label fs-12 mb-1 text-muted d-md-none">Kondisi</label>
+                                                <input type="text" name="catatan[<?= $v['id_varian'] ?>]" class="form-control form-control-sm focus-ring focus-ring-warning" value="<?= htmlspecialchars($v['catatan_kondisi'] ?? '') ?>" placeholder="-">
+                                            </div>
+                                        </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
