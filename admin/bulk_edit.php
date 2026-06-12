@@ -77,12 +77,10 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
 
     <?= $flash_msg ?>
 
-    <div class="card border-0 shadow-sm mb-4">
-        <div class="card-body p-0">
-            <form action="" method="POST" id="bulkForm">
-                <input type="hidden" name="action" value="bulk_update">
-                
-                <div class="row g-4 mb-3" style="max-height: 65vh; overflow-y: auto; overflow-x: hidden; padding-right: 5px;">
+    <form action="" method="POST" id="bulkForm" class="mb-4">
+        <input type="hidden" name="action" value="bulk_update">
+        
+        <div class="row g-4 mb-3" style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; padding: 0.5rem;">
                     <?php if (count($variants) > 0): 
                         // Group variants by item
                         $grouped_variants = [];
@@ -158,15 +156,13 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
                     <?php endif; ?>
                 </div>
 
-                <div class="p-3 bg-light border-top d-flex justify-content-end align-items-center rounded-bottom position-sticky bottom-0">
-                    <span class="text-muted me-3 fs-13"><i class="ri-information-line"></i> Total <?= count($variants) ?> varian siap diperbarui.</span>
-                    <button type="submit" class="btn btn-success px-5 fw-bold">
-                        <i class="ri-save-3-line me-2"></i> Simpan Semua Perubahan
-                    </button>
-                </div>
-            </form>
+        <div class="p-3 bg-white shadow-sm border rounded d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 position-sticky bottom-0" style="z-index: 10;">
+            <span class="text-muted fs-13"><i class="ri-information-line"></i> Total <?= count($variants) ?> varian siap diperbarui.</span>
+            <button type="submit" class="btn btn-success px-4 fw-bold w-100 w-sm-auto">
+                <i class="ri-save-3-line me-1"></i> Simpan Perubahan
+            </button>
         </div>
-    </div>
+    </form>
 </div>
 
 <style>
