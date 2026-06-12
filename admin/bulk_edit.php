@@ -82,85 +82,84 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
             <form action="" method="POST" id="bulkForm">
                 <input type="hidden" name="action" value="bulk_update">
                 
-                <div class="table-responsive" style="max-height: 65vh; overflow-y: auto;">
-                    <table class="table table-hover table-striped table-bordered align-middle mb-0" style="min-width: 800px;">
-                        <thead class="table-light position-sticky top-0 shadow-sm" style="z-index: 10;">
-                            <tr>
-                                <th class="text-center" width="5%">No</th>
-                                <th width="10%">Kategori</th>
-                                <th width="15%">Nama Barang</th>
-                                <th width="20%">Deskripsi Umum</th>
-                                <th width="15%" class="text-center bg-primary-transparent text-primary">Varian / Ukuran</th>
-                                <th width="10%" class="text-center bg-success-transparent text-success">Harga Sewa / Hari</th>
-                                <th width="10%" class="text-center bg-info-transparent text-info">Stok Tersedia</th>
-                                <th width="15%" class="text-center bg-warning-transparent text-warning">Catatan Kondisi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (count($variants) > 0): 
-                                $last_item_id = null;
-                            ?>
-                                <?php foreach ($variants as $index => $v): 
-                                    $is_first = ($v['id_item'] !== $last_item_id);
-                                    $last_item_id = $v['id_item'];
-                                ?>
-                                    <tr>
-                                        <td class="text-center text-muted"><?= $index + 1 ?></td>
-                                        <?php if ($is_first): 
-                                            $gambar = !empty($v['v_gambar']) ? $v['v_gambar'] : $v['i_gambar'];
-                                            $gambarPath = empty($gambar) ? $base_url . 'assets/images/placeholder.jpg' : $base_url . 'assets/img/' . $gambar;
-                                        ?>
-                                            <td rowspan="<?= $item_rowspans[$v['id_item']] ?>"><span class="badge bg-light text-dark border"><?= htmlspecialchars($v['nama_kategori']) ?></span></td>
-                                            <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="align-top">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <img src="<?= $gambarPath ?>" class="rounded border" style="width: 45px; height: 45px; object-fit: cover; cursor: pointer;" alt="" onclick="previewImage(this.src)">
-                                                    <span class="fw-bold"><?= htmlspecialchars($v['nama_brand'] . ' ' . $v['nama_seri']) ?></span>
-                                                </div>
-                                            </td>
-                                            <td rowspan="<?= $item_rowspans[$v['id_item']] ?>" class="p-2 align-top">
-                                                <textarea name="deskripsi[<?= $v['id_item'] ?>]" class="form-control form-control-sm focus-ring focus-ring-secondary" rows="3" placeholder="Deskripsi..."><?= htmlspecialchars($v['deskripsi_umum'] ?? '') ?></textarea>
-                                            </td>
-                                        <?php endif; ?>
-                                        <td class="p-2">
-                                            <input type="text" 
-                                                   name="keterangan[<?= $v['id_varian'] ?>]" 
-                                                   class="form-control form-control-sm focus-ring focus-ring-primary" 
-                                                   value="<?= htmlspecialchars($v['keterangan_varian'] ?? '') ?>">
-                                        </td>
-                                        <td class="p-2">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-text bg-light border-end-0 text-muted">Rp</span>
-                                                <input type="number" 
-                                                       name="harga[<?= $v['id_varian'] ?>]" 
-                                                       class="form-control fw-bold text-end border-start-0 focus-ring focus-ring-success" 
-                                                       value="<?= $v['harga_sewa_per_hari'] ?>" 
-                                                       min="0" required>
+                <div class="row g-4 mb-3" style="max-height: 65vh; overflow-y: auto; overflow-x: hidden; padding-right: 5px;">
+                    <?php if (count($variants) > 0): 
+                        // Group variants by item
+                        $grouped_variants = [];
+                        foreach ($variants as $v) {
+                            if (!isset($grouped_variants[$v['id_item']])) {
+                                $grouped_variants[$v['id_item']] = [
+                                    'kategori' => $v['nama_kategori'],
+                                    'brand' => $v['nama_brand'],
+                                    'seri' => $v['nama_seri'],
+                                    'deskripsi' => $v['deskripsi_umum'],
+                                    'gambar' => !empty($v['v_gambar']) ? $v['v_gambar'] : $v['i_gambar'],
+                                    'variants' => []
+                                ];
+                            }
+                            $grouped_variants[$v['id_item']]['variants'][] = $v;
+                        }
+                    ?>
+                        <?php foreach ($grouped_variants as $id_item => $item): 
+                            $gambarPath = empty($item['gambar']) ? $base_url . 'assets/images/placeholder.jpg' : $base_url . 'assets/img/' . $item['gambar'];
+                        ?>
+                            <div class="col-12 col-xl-6">
+                                <div class="card shadow-sm border-0 h-100">
+                                    <div class="card-header bg-light d-flex flex-column flex-sm-row gap-3 align-items-sm-center border-bottom-0">
+                                        <div class="d-flex align-items-center gap-3" style="min-width: 200px;">
+                                            <img src="<?= $gambarPath ?>" class="rounded shadow-sm" style="width: 55px; height: 55px; object-fit: cover; cursor: pointer;" alt="" onclick="previewImage(this.src)">
+                                            <div>
+                                                <span class="badge bg-primary-transparent text-primary mb-1"><?= htmlspecialchars($item['kategori']) ?></span>
+                                                <h6 class="fw-bold mb-0 text-dark"><?= htmlspecialchars($item['brand'] . ' ' . $item['seri']) ?></h6>
                                             </div>
-                                        </td>
-                                        <td class="p-2">
-                                            <input type="number" 
-                                                   name="stok[<?= $v['id_varian'] ?>]" 
-                                                   class="form-control form-control-sm text-center fw-bold focus-ring focus-ring-info" 
-                                                   value="<?= $v['stok_tersedia'] ?>" 
-                                                   min="0" required>
-                                        </td>
-                                        <td class="p-2">
-                                            <input type="text" 
-                                                   name="catatan[<?= $v['id_varian'] ?>]" 
-                                                   class="form-control form-control-sm focus-ring focus-ring-warning" 
-                                                   value="<?= htmlspecialchars($v['catatan_kondisi'] ?? '') ?>">
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="6" class="text-center text-muted py-5">
-                                        <i class="ri-inbox-2-line fs-24 d-block mb-2"></i> Belum ada varian item yang ditambahkan.
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                                        </div>
+                                        <div class="flex-grow-1 w-100">
+                                            <textarea name="deskripsi[<?= $id_item ?>]" class="form-control form-control-sm focus-ring focus-ring-secondary border-secondary-subtle" rows="2" placeholder="Tulis deskripsi umum..."><?= htmlspecialchars($item['deskripsi'] ?? '') ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm table-hover align-middle mb-0" style="min-width: 500px;">
+                                                <thead class="table-light text-muted" style="font-size: 0.8rem;">
+                                                    <tr>
+                                                        <th width="30%" class="ps-3 border-bottom-0">Varian/Ukuran</th>
+                                                        <th width="30%" class="border-bottom-0">Harga / Hari</th>
+                                                        <th width="15%" class="text-center border-bottom-0">Stok</th>
+                                                        <th width="25%" class="pe-3 border-bottom-0">Kondisi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($item['variants'] as $v): ?>
+                                                    <tr>
+                                                        <td class="ps-3 p-2">
+                                                            <input type="text" name="keterangan[<?= $v['id_varian'] ?>]" class="form-control form-control-sm focus-ring focus-ring-primary" value="<?= htmlspecialchars($v['keterangan_varian'] ?? '') ?>" placeholder="-">
+                                                        </td>
+                                                        <td class="p-2">
+                                                            <div class="input-group input-group-sm">
+                                                                <span class="input-group-text bg-light border-end-0 text-muted">Rp</span>
+                                                                <input type="number" name="harga[<?= $v['id_varian'] ?>]" class="form-control fw-bold text-end border-start-0 focus-ring focus-ring-success" value="<?= $v['harga_sewa_per_hari'] ?>" min="0" required>
+                                                            </div>
+                                                        </td>
+                                                        <td class="p-2 text-center">
+                                                            <input type="number" name="stok[<?= $v['id_varian'] ?>]" class="form-control form-control-sm text-center fw-bold focus-ring focus-ring-info" value="<?= $v['stok_tersedia'] ?>" min="0" required>
+                                                        </td>
+                                                        <td class="pe-3 p-2">
+                                                            <input type="text" name="catatan[<?= $v['id_varian'] ?>]" class="form-control form-control-sm focus-ring focus-ring-warning" value="<?= htmlspecialchars($v['catatan_kondisi'] ?? '') ?>" placeholder="-">
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="col-12 text-center text-muted py-5">
+                            <i class="ri-inbox-2-line fs-24 d-block mb-2"></i> Belum ada varian item yang ditambahkan.
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="p-3 bg-light border-top d-flex justify-content-end align-items-center rounded-bottom position-sticky bottom-0">
