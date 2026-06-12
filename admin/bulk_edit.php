@@ -112,7 +112,7 @@ $base_url = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SE
                                             </div>
                                         </div>
                                         <div class="flex-grow-1 w-100">
-                                            <textarea name="deskripsi[<?= $id_item ?>]" class="form-control form-control-sm focus-ring focus-ring-secondary border-secondary-subtle" rows="2" placeholder="Tulis deskripsi umum..."><?= htmlspecialchars($item['deskripsi'] ?? '') ?></textarea>
+                                            <textarea name="deskripsi[<?= $id_item ?>]" class="form-control form-control-sm focus-ring focus-ring-secondary border-secondary-subtle" placeholder="Tulis deskripsi umum..." style="resize: none;"><?= htmlspecialchars($item['deskripsi'] ?? '') ?></textarea>
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
@@ -221,6 +221,21 @@ document.getElementById('bulkForm').addEventListener('submit', function(e) {
         if (result.isConfirmed) {
             this.submit();
         }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const textareas = document.querySelectorAll('textarea');
+    function adjustHeight(el) {
+        el.style.height = 'auto';
+        el.style.height = (el.scrollHeight) + 'px';
+    }
+    textareas.forEach(ta => {
+        ta.style.overflowY = 'hidden';
+        adjustHeight(ta);
+        ta.addEventListener('input', function() {
+            adjustHeight(this);
+        });
     });
 });
 </script>
