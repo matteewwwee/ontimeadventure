@@ -369,9 +369,21 @@ function addPin(digit) {
     
     if (currentPin.length === 4) {
         document.getElementById('realPin').value = currentPin;
+        
+        Swal.fire({
+            title: 'Memproses...',
+            html: 'Mohon tunggu sebentar...',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         setTimeout(() => {
             document.getElementById('loginForm').submit();
-        }, 200);
+        }, 600);
     }
 }
 

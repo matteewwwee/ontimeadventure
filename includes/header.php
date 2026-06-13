@@ -274,7 +274,7 @@ $htmlAttrs = $isAdminArea
 
             <div class="header-content-right">
                 <!-- Light/Dark Mode Toggle -->
-                <div class="header-element header-theme-mode">
+                <div class="header-element header-theme-mode me-2 me-sm-3">
                     <a href="javascript:void(0);" class="header-link layout-setting themeToggleBtn">
                         <span class="light-layout">
                             <i class="ri-moon-clear-line fs-20"></i>
@@ -294,7 +294,7 @@ $htmlAttrs = $isAdminArea
                 <?php else: ?>
                 
                 <!-- Notifications Dropdown -->
-                <div class="header-element notifications-dropdown me-2 me-sm-3">
+                <div class="header-element notifications-dropdown me-3 me-sm-4">
                     <a href="javascript:void(0);" class="header-link btn-notif-toggle position-relative" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="border: none; background: transparent; outline: none; box-shadow: none;">
                         <i class="ri-notification-3-line fs-20"></i>
                         <span class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle notif-badge" style="display: none; font-size: 0.6rem; transform: translate(-30%, 20%) !important;">0</span>
