@@ -162,7 +162,6 @@ require_once __DIR__ . '/../includes/header.php';
                                                     </div>
                                                 <?php else: ?>
                                                     <div class="d-flex justify-content-center gap-1">
-                                                        <button type="button" class="btn btn-sm btn-info btn-wave" title="Edit User & PIN" onclick="editUser(<?= $u['id_user'] ?>, '<?= $u['role'] ?>')"><i class="ri-edit-line"></i></button>
                                                         <span class="badge bg-light text-muted align-self-center">Admin Tetap</span>
                                                     </div>
                                                 <?php endif; ?>
