@@ -137,7 +137,7 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table text-nowrap table-bordered mb-0">
+                        <table class="table text-nowrap table-bordered mb-0 table-mobile-cards">
                             <thead class="table-light">
                                 <tr>
                                     <th>PO ID</th>
@@ -172,8 +172,8 @@ require_once __DIR__ . '/../includes/header.php';
                                         }
                                     ?>
                                         <tr>
-                                            <td class="fw-semibold"><a href="kelola_po.php?search=PO-<?= str_pad($bk['id_po'], 4, '0', STR_PAD_LEFT) ?>">PO-<?= str_pad($bk['id_po'], 4, '0', STR_PAD_LEFT) ?></a></td>
-                                            <td>
+                                            <td data-label="PO ID" class="fw-semibold"><a href="kelola_po.php?search=PO-<?= str_pad($bk['id_po'], 4, '0', STR_PAD_LEFT) ?>">PO-<?= str_pad($bk['id_po'], 4, '0', STR_PAD_LEFT) ?></a></td>
+                                            <td data-label="Nama Alat">
                                                 <div class="d-flex align-items-center">
                                                     <span class="avatar avatar-md me-3 bg-light text-muted border rounded">
                                                         <?php if(!empty($bk['gambar']) && file_exists(__DIR__.'/../assets/img/'.$bk['gambar'])): ?>
@@ -190,11 +190,11 @@ require_once __DIR__ . '/../includes/header.php';
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><?= htmlspecialchars($bk['nama']) ?></td>
-                                            <td class="text-center fw-semibold"><?= $bk['jumlah_pesan'] ?></td>
-                                            <td><?= date('d M Y', strtotime($bk['tgl_mulai_sewa'])) ?></td>
-                                            <td><span class="fw-semibold"><?= date('d M Y', strtotime($bk['tgl_selesai_sewa'])) ?></span></td>
-                                            <td class="text-center"><span class="badge <?= $sisa_badge ?>"><?= $sisa_text ?></span></td>
+                                            <td data-label="Penyewa"><?= htmlspecialchars($bk['nama']) ?></td>
+                                            <td data-label="Jumlah" class="text-center fw-semibold"><?= $bk['jumlah_pesan'] ?></td>
+                                            <td data-label="Tgl Mulai"><?= date('d M Y', strtotime($bk['tgl_mulai_sewa'])) ?></td>
+                                            <td data-label="Tgl Selesai (Kembali)"><span class="fw-semibold"><?= date('d M Y', strtotime($bk['tgl_selesai_sewa'])) ?></span></td>
+                                            <td data-label="Sisa Waktu" class="text-center"><span class="badge <?= $sisa_badge ?>"><?= $sisa_text ?></span></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
@@ -213,7 +213,7 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table text-nowrap table-bordered mb-0">
+                        <table class="table text-nowrap table-bordered mb-0 table-mobile-cards">
                             <thead class="table-light">
                                 <tr>
                                     <th>PO ID</th>
@@ -229,16 +229,16 @@ require_once __DIR__ . '/../includes/header.php';
                                 <?php else: ?>
                                     <?php foreach ($recent_po as $po): ?>
                                         <tr>
-                                            <td class="fw-semibold">PO-<?= str_pad($po['id_po'], 4, '0', STR_PAD_LEFT) ?></td>
-                                            <td>
+                                            <td data-label="PO ID" class="fw-semibold">PO-<?= str_pad($po['id_po'], 4, '0', STR_PAD_LEFT) ?></td>
+                                            <td data-label="Pelanggan">
                                                 <div class="d-flex align-items-center fw-semibold">
                                                     <?= htmlspecialchars($po['nama']) ?>
                                                 </div>
                                                 <span class="d-block fs-11 text-muted"><?= htmlspecialchars($po['no_hp']) ?></span>
                                             </td>
-                                            <td><?= date('d M Y H:i', strtotime($po['tgl_pengajuan'])) ?></td>
-                                            <td class="text-primary fw-semibold">Rp <?= number_format($po['estimasi_total_harga'], 0, ',', '.') ?></td>
-                                            <td><span class="badge <?= getStatusBadgeClass($po['status_po']) ?>"><?= htmlspecialchars($po['status_po']) ?></span></td>
+                                            <td data-label="Tanggal Pengajuan"><?= date('d M Y H:i', strtotime($po['tgl_pengajuan'])) ?></td>
+                                            <td data-label="Total" class="text-primary fw-semibold">Rp <?= number_format($po['estimasi_total_harga'], 0, ',', '.') ?></td>
+                                            <td data-label="Status"><span class="badge <?= getStatusBadgeClass($po['status_po']) ?>"><?= htmlspecialchars($po['status_po']) ?></span></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
