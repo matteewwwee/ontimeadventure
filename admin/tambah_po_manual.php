@@ -386,16 +386,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const grandTotalLabel = document.getElementById('grandTotalLabel');
         const days = getDiffDays();
         
-        cartBody.innerHTML = '';
+        // Hapus semua baris item dari DOM (kecuali baris empty)
+        document.querySelectorAll('#cartBody tr:not(#emptyCartRow)').forEach(tr => tr.remove());
+        
         let grandTotal = 0;
 
         if (cart.length === 0) {
-            cartBody.appendChild(emptyCartRow);
-            emptyCartRow.style.display = '';
+            if (emptyCartRow) emptyCartRow.style.display = '';
             cartFooter.style.display = 'none';
             btnSubmit.disabled = true;
         } else {
-            emptyCartRow.style.display = 'none';
+            if (emptyCartRow) emptyCartRow.style.display = 'none';
             cartFooter.style.display = '';
             btnSubmit.disabled = false;
 
