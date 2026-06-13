@@ -190,6 +190,18 @@ require_once __DIR__ . '/../includes/header.php';
     #barangTable td:nth-child(7)::before { content: "Tgl Kembali"; }
     #barangTable td:nth-child(8)::before { content: "Sisa Waktu"; }
     
+    /* Fix empty table state */
+    #barangTable td.dataTables_empty {
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 2rem !important;
+        color: #64748b;
+    }
+    #barangTable td.dataTables_empty::before {
+        display: none !important;
+        content: none !important;
+    }
+    
     .table-responsive { border: none !important; margin: 0 !important; padding: 0 !important; }
     .card-body.p-0 > .table-responsive { padding: 0.5rem !important; }
 }

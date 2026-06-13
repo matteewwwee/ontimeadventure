@@ -179,22 +179,47 @@ $htmlAttrs = $isAdminArea
         
         /* Responsive DataTables Controls */
         @media (max-width: 767.98px) {
-            div.dataTables_wrapper div.dataTables_length,
-            div.dataTables_wrapper div.dataTables_filter,
-            div.dataTables_wrapper div.dataTables_info,
-            div.dataTables_wrapper div.dataTables_paginate {
-                text-align: center !important;
+            .dataTables_wrapper .row:first-child {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 15px;
                 margin-bottom: 15px;
             }
+            .dataTables_wrapper .row:first-child > div {
+                width: auto !important;
+                flex: 0 0 auto;
+                padding: 0;
+            }
+            div.dataTables_wrapper div.dataTables_length,
+            div.dataTables_wrapper div.dataTables_filter {
+                text-align: right !important;
+                margin-bottom: 0;
+            }
+            div.dataTables_wrapper div.dataTables_length label,
+            div.dataTables_wrapper div.dataTables_filter label {
+                display: flex;
+                align-items: center;
+                margin-bottom: 0;
+                font-size: 13px;
+            }
             div.dataTables_wrapper div.dataTables_filter input {
-                width: 100%;
-                margin-left: 0;
-                margin-top: 5px;
-                display: block;
+                width: 120px;
+                margin-left: 5px;
+                display: inline-block;
             }
             div.dataTables_wrapper div.dataTables_length select {
                 width: auto;
+                margin: 0 5px;
                 display: inline-block;
+                padding-left: 5px;
+                padding-right: 20px;
+            }
+            div.dataTables_wrapper div.dataTables_info,
+            div.dataTables_wrapper div.dataTables_paginate {
+                text-align: center !important;
+                margin-bottom: 10px;
             }
             .dataTables_wrapper .row {
                 margin-left: 0;
