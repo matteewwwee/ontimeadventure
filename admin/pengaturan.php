@@ -216,6 +216,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         header('Location: pengaturan.php?tab=pesan');
         exit;
     }
+
+    if ($_POST['action'] === 'aktifkan_super_admin') {
+        $token_input = trim($_POST['super_admin_token'] ?? '');
+        $token_db = $app_settings['super_admin_token'] ?? '';
+        
+        if ($token_db !== '' && $token_input === $token_db) {
+            $_SESSION['is_super_admin'] = true;
+            $_SESSION['flash_success'] = 'Akses Super Admin berhasil diaktifkan untuk sesi ini!';
+        } else {
+            $_SESSION['flash_error'] = 'Token Super Admin tidak valid!';
+        }
+        header('Location: pengaturan.php?tab=keamanan');
+        exit;
+    }
 }
 
 $pageTitle = 'Pengaturan Tampilan';
@@ -270,6 +284,11 @@ require_once __DIR__ . '/../includes/header.php';
                     <li class="nav-item" role="presentation">
                         <a class="nav-link <?= $active_tab === 'banner' ? 'active' : '' ?>" data-bs-toggle="tab" href="#tab-banner" aria-selected="<?= $active_tab === 'banner' ? 'true' : 'false' ?>" tabindex="-1" role="tab">
                             <i class="ri-image-line me-1"></i> Banner
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link <?= $active_tab === 'keamanan' ? 'active' : '' ?>" data-bs-toggle="tab" href="#tab-keamanan" aria-selected="<?= $active_tab === 'keamanan' ? 'true' : 'false' ?>" tabindex="-1" role="tab">
+                            <i class="ri-shield-keyhole-line me-1"></i> Keamanan
                         </a>
                     </li>
                 </ul>
@@ -529,6 +548,29 @@ require_once __DIR__ . '/../includes/header.php';
                             </form>
                             <div class="text-muted fs-13 mt-2">Rekomendasi rasio gambar lanskap (16:9). Gambar akan ter-crop otomatis menyesuaikan tinggi area slider.</div>
                         </div>
+                    </div>
+
+                    <!-- TAB KEAMANAN -->
+                    <div class="tab-pane <?= $active_tab === 'keamanan' ? 'active show' : '' ?>" id="tab-keamanan" role="tabpanel">
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading fw-bold"><i class="ri-error-warning-line me-1"></i> Mode Super Admin</h6>
+                            <p class="fs-13 mb-0">Aktifkan mode ini menggunakan token khusus untuk mendapatkan akses menghapus atau mengubah peran Admin lain.</p>
+                        </div>
+                        
+                        <?php if(!empty($_SESSION['is_super_admin'])): ?>
+                            <div class="alert alert-success border-success bg-success-transparent mt-3">
+                                <i class="ri-checkbox-circle-line me-1"></i> Anda saat ini berada dalam Mode Super Admin. Anda dapat menuju halaman <a href="users.php" class="fw-bold text-success">Manajemen Pengguna</a> untuk mengatur admin lain.
+                            </div>
+                        <?php else: ?>
+                            <form method="POST" action="pengaturan.php" class="mt-4">
+                                <input type="hidden" name="action" value="aktifkan_super_admin">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Token Super Admin</label>
+                                    <input type="password" class="form-control" name="super_admin_token" placeholder="Masukkan token rahasia..." required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-wave"><i class="ri-lock-unlock-line me-1"></i> Aktifkan Akses</button>
+                            </form>
+                        <?php endif; ?>
                     </div>
 
                 </div>

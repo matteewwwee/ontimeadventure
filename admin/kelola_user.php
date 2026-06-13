@@ -37,30 +37,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($id == $_SESSION['id_user']) {
             $flash_msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><i class="ri-alert-line me-1 align-middle fs-16"></i> Gagal: Anda tidak dapat menghapus akun Anda sendiri.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
         } else {
-            $stmt = $db->prepare("DELETE FROM users WHERE id_user = ? AND role != 'admin'");
-            $stmt->execute([$id]);
-            $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> User berhasil dihapus!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+            $target = $db->prepare("SELECT role FROM users WHERE id_user = ?");
+            $target->execute([$id]);
+            $target_role = $target->fetchColumn();
+
+            if ($target_role === 'admin' && empty($_SESSION['is_super_admin'])) {
+                $flash_msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><i class="ri-error-warning-line me-1 align-middle fs-16"></i> Gagal: Anda memerlukan akses Super Admin untuk menghapus Admin lain.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+            } else {
+                $stmt = $db->prepare("DELETE FROM users WHERE id_user = ?");
+                $stmt->execute([$id]);
+                $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> User berhasil dihapus!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+            }
         }
     } elseif ($action === 'edit_user') {
         $id = $_POST['id_user'];
         $new_role = $_POST['role'];
         $new_pin = trim($_POST['pin']);
         
-        $update_sql = "UPDATE users SET role = ?";
-        $params = [$new_role];
-        
-        if (!empty($new_pin)) {
-            $hashed_pin = password_hash($new_pin, PASSWORD_DEFAULT);
-            $update_sql .= ", pin = ?";
-            $params[] = $hashed_pin;
+        $target = $db->prepare("SELECT role FROM users WHERE id_user = ?");
+        $target->execute([$id]);
+        $target_role = $target->fetchColumn();
+
+        if ($target_role === 'admin' && empty($_SESSION['is_super_admin'])) {
+            $flash_msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert"><i class="ri-error-warning-line me-1 align-middle fs-16"></i> Gagal: Anda memerlukan akses Super Admin untuk mengedit Admin lain.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+        } else {
+            $update_sql = "UPDATE users SET role = ?";
+            $params = [$new_role];
+            
+            if (!empty($new_pin)) {
+                $hashed_pin = password_hash($new_pin, PASSWORD_DEFAULT);
+                $update_sql .= ", pin = ?";
+                $params[] = $hashed_pin;
+            }
+            
+            $update_sql .= " WHERE id_user = ?";
+            $params[] = $id;
+            
+            $stmt = $db->prepare($update_sql);
+            $stmt->execute($params);
+            $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> Data user berhasil diperbarui!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
         }
-        
-        $update_sql .= " WHERE id_user = ?";
-        $params[] = $id;
-        
-        $stmt = $db->prepare($update_sql);
-        $stmt->execute($params);
-        $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> Data user berhasil diperbarui!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
     }
 }
 
@@ -151,9 +167,9 @@ require_once __DIR__ . '/../includes/header.php';
                                         <td data-label="Tgl Daftar"><?= date('d M Y', strtotime($u['created_at'])) ?></td>
                                         <td data-label="Aksi" class="text-center">
                                             <?php if ($u['id_user'] != $_SESSION['id_user']): ?>
-                                                <?php if ($u['role'] === 'pelanggan'): ?>
+                                                <?php if ($u['role'] === 'pelanggan' || !empty($_SESSION['is_super_admin'])): ?>
                                                     <div class="d-flex justify-content-center gap-1">
-                                                        <button type="button" class="btn btn-sm btn-info btn-wave" title="Edit User & PIN" onclick="editUser(<?= $u['id_user'] ?>, '<?= $u['role'] ?>')"><i class="ri-edit-line"></i></button>
+                                                        <button type="button" class="btn btn-sm <?= $u['role'] === 'admin' ? 'btn-warning' : 'btn-info' ?> btn-wave" title="Edit User & PIN" onclick="editUser(<?= $u['id_user'] ?>, '<?= $u['role'] ?>')"><i class="ri-edit-line"></i></button>
                                                         <form method="POST" action="" class="d-inline" onsubmit="confirmDelete(event, 'Yakin hapus user ini?');">
                                                             <input type="hidden" name="action" value="delete">
                                                             <input type="hidden" name="id_user" value="<?= $u['id_user'] ?>">
