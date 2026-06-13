@@ -170,6 +170,15 @@ require_once __DIR__ . '/includes/header.php';
         .image-card-mobile, .info-card-mobile { border: none !important; box-shadow: none !important; background-color: transparent !important; }
         .info-card-mobile .card-body, .image-card-mobile .card-body { padding: 0 !important; }
     }
+    
+    /* Sembunyikan scrollbar tapi tetap bisa di-scroll */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 </style>
 <div class="container mt-0 mt-md-4 pt-0 pt-md-2 detail-container">
     <!-- Detail Layout -->
@@ -340,7 +349,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="col-12 text-center text-muted py-3">Belum ada rekomendasi yang tersedia.</div>
         <?php else: ?>
             <div class="col-12">
-                <div class="d-flex gap-3 overflow-auto pb-3" style="scrollbar-width: thin;">
+                <div class="d-flex gap-3 overflow-auto pb-3 hide-scrollbar">
                     <?php foreach ($rekomendasi as $rec): ?>
                         <?php
                             $rec_has_image = false;
