@@ -106,12 +106,19 @@ $htmlAttrs = $isAdminArea
         }
         
         /* === RESPONSIVE MOBILE CARDS FOR TABLES === */
-        .main-header-container {
-            flex-wrap: nowrap !important;
+        .app-header .main-header-container {
+            position: relative !important;
         }
-        @media (max-width: 991.98px) {
-            .header-content-right {
-                flex-shrink: 0;
+        @media (min-width: 576px) {
+            .app-header .header-content-right {
+                position: absolute !important;
+                right: 15px !important;
+                top: 0 !important;
+                height: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                background: transparent !important;
+                z-index: 100;
             }
         }
         @media (max-width: 767.98px) {
