@@ -222,8 +222,31 @@ require_once __DIR__ . '/../includes/header.php';
 <div class="row mt-4 mb-4">
     <div class="col-xl-10 col-lg-12 mx-auto">
         <div class="card custom-card">
+            <style>
+                @media (max-width: 767.98px) {
+                    .mobile-scroll-tabs {
+                        flex-wrap: nowrap !important;
+                        overflow-x: auto;
+                        overflow-y: hidden;
+                        -webkit-overflow-scrolling: touch;
+                        white-space: nowrap;
+                        justify-content: flex-start !important;
+                        padding-bottom: 5px;
+                    }
+                    .mobile-scroll-tabs::-webkit-scrollbar {
+                        display: none; /* Sembunyikan scrollbar untuk tampilan bersih */
+                    }
+                    .mobile-scroll-tabs .nav-item {
+                        flex: 0 0 auto; /* Cegah item menciut */
+                    }
+                    .mobile-scroll-tabs .nav-link {
+                        white-space: nowrap;
+                        padding: 0.6rem 1rem !important;
+                    }
+                }
+            </style>
             <div class="card-header border-bottom p-0">
-                <ul class="nav nav-tabs card-header-tabs nav-style-1 nav-justified w-100 m-0" role="tablist">
+                <ul class="nav nav-tabs card-header-tabs nav-style-1 nav-justified w-100 m-0 mobile-scroll-tabs" role="tablist">
                     <?php $active_tab = $_GET['tab'] ?? 'tema'; ?>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link <?= $active_tab === 'tema' ? 'active' : '' ?>" data-bs-toggle="tab" href="#tab-tema" aria-selected="<?= $active_tab === 'tema' ? 'true' : 'false' ?>" role="tab">
