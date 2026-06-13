@@ -543,8 +543,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         renderCart();
                         
                         Swal.fire({
-                            toast: true,
-                            position: 'top-end',
                             icon: 'success',
                             title: 'Berhasil ditambahkan',
                             showConfirmButton: false,
