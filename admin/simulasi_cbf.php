@@ -228,7 +228,7 @@ require_once __DIR__ . '/../includes/header.php';
                                         </thead>
                                         <tbody>
                                             <?php foreach([$current_item_id] as $id): ?>
-                                                <tr class="table-primary border-primary">
+                                                <tr class="table-primary">
                                                     <td class="fw-bold"><?= htmlspecialchars($item_data[$id]['nama_brand'].' '.$item_data[$id]['nama_seri']) ?> (Target)</td>
                                                     <td class="fs-13">
                                                         <span class="badge bg-secondary mb-1">Kat: <?= htmlspecialchars($documents_raw[$id]['kategori']) ?></span><br>
