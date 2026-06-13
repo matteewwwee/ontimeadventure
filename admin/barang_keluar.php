@@ -127,6 +127,71 @@ require_once __DIR__ . '/../includes/header.php';
         margin-left: 0;
         margin-right: 0;
     }
+    
+    /* Mobile Card View for Table */
+    #barangTable, #barangTable tbody, #barangTable tr, #barangTable td {
+        display: block;
+        width: 100%;
+    }
+    #barangTable thead {
+        display: none;
+    }
+    #barangTable tr {
+        margin-bottom: 1rem;
+        border: 1px solid #e0e0e0 !important;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+        padding: 0.5rem;
+        background-color: #fff;
+    }
+    #barangTable td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0.5rem !important;
+        border: none !important;
+        border-bottom: 1px solid #f1f1f1 !important;
+        text-align: right;
+    }
+    #barangTable td:last-child {
+        border-bottom: none !important;
+    }
+    
+    /* Labels for mobile view */
+    #barangTable td::before {
+        font-weight: 600;
+        margin-right: 1rem;
+        text-align: left;
+        color: #475569;
+    }
+    #barangTable td:nth-child(1)::before { content: "No"; }
+    #barangTable td:nth-child(2)::before { content: "PO ID"; }
+    
+    /* Special handling for Nama Alat */
+    #barangTable td:nth-child(3) { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        text-align: left;
+        background-color: #f8fafc;
+        border-radius: 0.375rem;
+        margin: 0.5rem 0;
+    }
+    #barangTable td:nth-child(3)::before { 
+        content: "Nama Alat"; 
+        margin-bottom: 0.75rem;
+        width: 100%;
+        border-bottom: 1px dashed #cbd5e1;
+        padding-bottom: 0.25rem;
+    }
+    
+    #barangTable td:nth-child(4)::before { content: "Penyewa"; }
+    #barangTable td:nth-child(5)::before { content: "Jumlah"; }
+    #barangTable td:nth-child(6)::before { content: "Tgl Mulai"; }
+    #barangTable td:nth-child(7)::before { content: "Tgl Kembali"; }
+    #barangTable td:nth-child(8)::before { content: "Sisa Waktu"; }
+    
+    .table-responsive { border: none !important; margin: 0 !important; padding: 0 !important; }
+    .card-body.p-0 > .table-responsive { padding: 0.5rem !important; }
 }
 </style>
 
