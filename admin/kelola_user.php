@@ -37,10 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($id == $_SESSION['id_user']) {
             $flash_msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert"><i class="ri-alert-line me-1 align-middle fs-16"></i> Gagal: Anda tidak dapat menghapus akun Anda sendiri.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
         } else {
-            $stmt = $db->prepare("DELETE FROM users WHERE id_user = ?");
+            $stmt = $db->prepare("DELETE FROM users WHERE id_user = ? AND role != 'admin'");
             $stmt->execute([$id]);
             $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> User berhasil dihapus!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
         }
+    } elseif ($action === 'promote') {
+        $id = $_POST['id_user'];
+        $stmt = $db->prepare("UPDATE users SET role = 'admin' WHERE id_user = ? AND role = 'pelanggan'");
+        $stmt->execute([$id]);
+        $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> User berhasil dipromosikan menjadi Admin!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
     }
 }
 
@@ -131,11 +136,22 @@ require_once __DIR__ . '/../includes/header.php';
                                         <td><?= date('d M Y', strtotime($u['created_at'])) ?></td>
                                         <td class="text-center">
                                             <?php if ($u['id_user'] != $_SESSION['id_user']): ?>
-                                                <form method="POST" action="" class="d-inline" onsubmit="confirmDelete(event, 'Yakin hapus user ini?');">
-                                                    <input type="hidden" name="action" value="delete">
-                                                    <input type="hidden" name="id_user" value="<?= $u['id_user'] ?>">
-                                                    <button type="submit" class="btn btn-sm btn-danger btn-wave"><i class="ri-delete-bin-line"></i></button>
-                                                </form>
+                                                <?php if ($u['role'] === 'pelanggan'): ?>
+                                                    <div class="d-flex justify-content-center gap-1">
+                                                        <form method="POST" action="" class="d-inline" onsubmit="confirmDelete(event, 'Promosikan user ini menjadi Admin?');">
+                                                            <input type="hidden" name="action" value="promote">
+                                                            <input type="hidden" name="id_user" value="<?= $u['id_user'] ?>">
+                                                            <button type="submit" class="btn btn-sm btn-success btn-wave" title="Promote to Admin"><i class="ri-user-star-line"></i></button>
+                                                        </form>
+                                                        <form method="POST" action="" class="d-inline" onsubmit="confirmDelete(event, 'Yakin hapus user ini?');">
+                                                            <input type="hidden" name="action" value="delete">
+                                                            <input type="hidden" name="id_user" value="<?= $u['id_user'] ?>">
+                                                            <button type="submit" class="btn btn-sm btn-danger btn-wave" title="Hapus User"><i class="ri-delete-bin-line"></i></button>
+                                                        </form>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <span class="badge bg-light text-muted">Admin Tetap</span>
+                                                <?php endif; ?>
                                             <?php else: ?>
                                                 <span class="badge bg-light text-dark">Anda</span>
                                             <?php endif; ?>
