@@ -164,6 +164,16 @@ $htmlAttrs = $isAdminArea
                 position: static !important;
                 transform: none !important;
             }
+            .header-profile-dropdown {
+                position: absolute !important;
+                width: auto !important;
+                min-width: 200px !important;
+                right: 0 !important;
+                left: auto !important;
+                top: 100% !important;
+                margin-top: 5px !important;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+            }
         }
         
         /* Sidebar Text Visibility Logic */
