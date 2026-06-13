@@ -286,9 +286,9 @@ $htmlAttrs = $isAdminArea
                 </div>
 
                 <?php if (!$isLoggedIn): ?>
-                <div class="header-element align-items-center">
+                <div class="header-element align-items-center ms-2 ms-md-3">
                     <div class="btn-list">
-                        <a href="<?= $base_url ?>login.php" class="btn btn-primary-light">Masuk</a>
+                        <a href="<?= $base_url ?>login.php" class="btn btn-primary text-white fw-medium px-4">Masuk</a>
                     </div>
                 </div>
                 <?php else: ?>
