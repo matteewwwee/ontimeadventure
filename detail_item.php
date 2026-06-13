@@ -349,10 +349,10 @@ require_once __DIR__ . '/includes/header.php';
             <div class="col-12 text-center text-muted py-3">Belum ada rekomendasi yang tersedia.</div>
         <?php else: ?>
             <div class="col-12 position-relative">
-                <button type="button" class="btn btn-white rounded-circle shadow d-none d-md-flex align-items-center justify-content-center position-absolute top-50 start-0 translate-middle-y z-3" onclick="document.getElementById('rekomendasiScroll').scrollBy({left: -240, behavior: 'smooth'})" style="margin-left: -20px; width: 40px; height: 40px; border: 1px solid #eee;">
+                <button type="button" class="btn bg-white rounded-circle shadow d-none d-md-flex align-items-center justify-content-center position-absolute start-0 translate-middle-y z-3" onclick="document.getElementById('rekomendasiScroll').scrollBy({left: -240, behavior: 'smooth'})" style="top: 40%; margin-left: -20px; width: 40px; height: 40px; border: 1px solid #eee;">
                     <i class="ri-arrow-left-s-line fs-20 text-dark"></i>
                 </button>
-                <button type="button" class="btn btn-white rounded-circle shadow d-none d-md-flex align-items-center justify-content-center position-absolute top-50 end-0 translate-middle-y z-3" onclick="document.getElementById('rekomendasiScroll').scrollBy({left: 240, behavior: 'smooth'})" style="margin-right: -20px; width: 40px; height: 40px; border: 1px solid #eee;">
+                <button type="button" class="btn bg-white rounded-circle shadow d-none d-md-flex align-items-center justify-content-center position-absolute end-0 translate-middle-y z-3" onclick="document.getElementById('rekomendasiScroll').scrollBy({left: 240, behavior: 'smooth'})" style="top: 40%; margin-right: -20px; width: 40px; height: 40px; border: 1px solid #eee;">
                     <i class="ri-arrow-right-s-line fs-20 text-dark"></i>
                 </button>
                 <div class="d-flex gap-3 overflow-auto pb-3 hide-scrollbar px-1" id="rekomendasiScroll">
