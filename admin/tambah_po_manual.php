@@ -88,6 +88,11 @@ require_once __DIR__ . '/../includes/header.php';
 
 <div class="container-fluid mt-4">
     <style>
+        /* Fix Swal z-index over Bootstrap Modal */
+        .swal2-container {
+            z-index: 10000 !important;
+        }
+        
         /* Mobile responsive tables */
         @media (max-width: 767.98px) {
             /* Cart Table */
