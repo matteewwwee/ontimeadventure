@@ -32,6 +32,13 @@ require_once __DIR__ . '/../includes/header.php';
             <h4 class="fw-bold mb-1"><i class="ri-test-tube-line text-primary me-2"></i>Simulasi Rekomendasi (CBF)</h4>
             <p class="text-muted mb-0 fs-14">Bedah cara kerja algoritma Content-Based Filtering menggunakan metode TF-IDF dan Cosine Similarity.</p>
         </div>
+        <?php if($current_item_id > 0): ?>
+        <div>
+            <a href="export_cbf_excel.php?id_item=<?= $current_item_id ?>" target="_blank" class="btn btn-success shadow-sm">
+                <i class="ri-file-excel-line me-1"></i> Export Excel
+            </a>
+        </div>
+        <?php endif; ?>
     </div>
 
     <!-- Pilihan Item -->
