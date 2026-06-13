@@ -109,6 +109,14 @@ $htmlAttrs = $isAdminArea
         .app-header .main-header-container {
             position: relative !important;
         }
+        .main-menu-container {
+            flex-wrap: nowrap !important;
+        }
+        @media (min-width: 992px) {
+            .landing-body .main-menu-container .d-lg-flex {
+                gap: 1rem !important;
+            }
+        }
         @media (min-width: 576px) {
             .app-header .header-content-right {
                 position: absolute !important;
@@ -606,7 +614,7 @@ $htmlAttrs = $isAdminArea
                 <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path> </svg></div>
                 
                 <?php if (!$isAdminArea): ?>
-                <div class="d-lg-flex d-none align-items-center gap-4 pe-4">
+                <div class="d-lg-flex d-none align-items-center gap-3 pe-2 ms-auto">
                     <!-- Theme Toggle Desktop -->
                     <div class="header-theme-mode">
                         <a href="javascript:void(0);" class="header-link layout-setting themeToggleBtn" style="padding: 0;">
@@ -645,7 +653,7 @@ $htmlAttrs = $isAdminArea
                       <div class="dropdown">
                         <a href="javascript:void(0);" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="desktopHeaderProfile" data-bs-toggle="dropdown" aria-expanded="false" style="color: var(--default-text-color);">
                             <img src="https://ui-avatars.com/api/?name=<?= urlencode($_SESSION['nama'] ?? 'User') ?>&background=random" alt="img" width="32" height="32" class="rounded-circle me-2">
-                            <div class="me-1">
+                            <div class="me-1 d-none d-xl-block">
                                 <p class="fw-semibold mb-0 lh-1"><?= htmlspecialchars($_SESSION['nama'] ?? 'Pengguna') ?></p>
                                 <span class="op-7 fw-normal d-block fs-11"><?= $isAdmin ? 'Admin' : 'Pelanggan' ?></span>
                             </div>
