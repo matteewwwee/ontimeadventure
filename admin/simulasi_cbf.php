@@ -15,6 +15,16 @@ $current_item_id = isset($_GET['id_item']) ? (int)$_GET['id_item'] : 0;
 $pageTitle = "Simulasi CBF";
 require_once __DIR__ . '/../includes/header.php';
 ?>
+<style>
+/* Sembunyikan scrollbar tapi tetap bisa di-scroll */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+</style>
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -207,7 +217,7 @@ require_once __DIR__ . '/../includes/header.php';
                                 <h5 class="fw-bold mb-3">Langkah 1 & 2: Pembuatan Dokumen dan Pembobotan Fitur</h5>
                                 <p class="text-muted">Setiap item diubah menjadi sebuah dokumen teks. Agar algoritma tahu atribut mana yang paling penting, kita menggunakan trik <strong>pengulangan kata (pembobotan)</strong>: Kategori diulang 3x, Brand diulang 2x, Seri dan Deskripsi 1x.</p>
                                 
-                                <div class="table-responsive">
+                                <div class="table-responsive hide-scrollbar">
                                     <table class="table table-bordered table-striped">
                                         <thead class="table-light">
                                             <tr>
@@ -252,7 +262,7 @@ require_once __DIR__ . '/../includes/header.php';
                                     <div class="col-md-6 mb-3">
                                         <div class="card border">
                                             <div class="card-header bg-light fw-bold">Token Item Target</div>
-                                            <div class="card-body p-2 fs-13" style="max-height: 200px; overflow-y: auto;">
+                                            <div class="card-body p-2 fs-13 hide-scrollbar" style="max-height: 200px; overflow-y: auto;">
                                                 <?php 
                                                 $counts = array_count_values($tokenized_docs[$current_item_id]);
                                                 foreach($counts as $tok => $c) {
@@ -265,7 +275,7 @@ require_once __DIR__ . '/../includes/header.php';
                                     <div class="col-md-6 mb-3">
                                         <div class="card border">
                                             <div class="card-header bg-light fw-bold">Vocabulary Global (Total: <?= count($vocab_list) ?> kata)</div>
-                                            <div class="card-body p-2 fs-13" style="max-height: 200px; overflow-y: auto;">
+                                            <div class="card-body p-2 fs-13 hide-scrollbar" style="max-height: 200px; overflow-y: auto;">
                                                 <?php 
                                                 foreach($vocab_list as $tok) {
                                                     echo "<span class='badge bg-light text-dark m-1 border'>$tok</span> ";
@@ -282,7 +292,7 @@ require_once __DIR__ . '/../includes/header.php';
                                 <h5 class="fw-bold mb-3">Langkah 5: Term Frequency (TF)</h5>
                                 <p class="text-muted">TF adalah rasio kemunculan sebuah kata dalam satu dokumen. Semakin sering kata muncul di dokumen itu, semakin besar nilai TF-nya. <br><code>TF = Jumlah kemunculan kata / Total kata dalam dokumen</code></p>
                                 
-                                <div class="table-responsive">
+                                <div class="table-responsive hide-scrollbar">
                                     <table class="table table-bordered table-sm fs-13">
                                         <thead class="table-light">
                                             <tr>
@@ -330,7 +340,7 @@ require_once __DIR__ . '/../includes/header.php';
                                 
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <div class="table-responsive">
+                                        <div class="table-responsive hide-scrollbar">
                                             <table class="table table-bordered table-sm fs-13">
                                                 <thead class="table-light">
                                                     <tr>
@@ -368,7 +378,7 @@ require_once __DIR__ . '/../includes/header.php';
                                     <strong>Cosine Similarity</strong> menghitung sudut antara dua vektor. Jika sudutnya kecil (mirip), nilainya mendekati 1. Jika sudutnya besar (berbeda), nilainya mendekati 0.
                                 </p>
 
-                                <div class="table-responsive">
+                                <div class="table-responsive hide-scrollbar">
                                     <table class="table table-bordered table-striped align-middle">
                                         <thead class="table-light text-center">
                                             <tr>
