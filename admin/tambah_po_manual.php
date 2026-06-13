@@ -479,7 +479,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (cart[existingIndex].jumlah < stok) {
                     cart[existingIndex].jumlah++;
                 } else {
-                    alert('Stok maksimum tercapai untuk barang ini!');
+                    if (window.Swal) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Stok Terbatas',
+                            text: 'Stok maksimum tercapai untuk barang ini!',
+                            confirmButtonColor: '#3085d6'
+                        });
+                    } else {
+                        alert('Stok maksimum tercapai untuk barang ini!');
+                    }
                     return;
                 }
             } else {
@@ -513,7 +522,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('formManualPO').addEventListener('submit', function(e) {
         if (cart.length === 0) {
             e.preventDefault();
-            alert('Keranjang barang tidak boleh kosong!');
+            if (window.Swal) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Keranjang barang tidak boleh kosong!',
+                    confirmButtonColor: '#d33'
+                });
+            } else {
+                alert('Keranjang barang tidak boleh kosong!');
+            }
         }
     });
 
