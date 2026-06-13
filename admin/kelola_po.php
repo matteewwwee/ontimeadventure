@@ -444,7 +444,7 @@ $export_params = http_build_query([
                                             </div>
                                             <h6 class="mb-3 fw-semibold">Item Dipesan:</h6>
                                             <div class="table-responsive">
-                                                <table class="table table-sm table-bordered bg-white mb-0 text-nowrap">
+                                                <table class="table table-sm table-bordered bg-white mb-0 text-nowrap table-mobile-cards">
                                                     <thead class="table-light">
                                                         <tr>
                                                             <th style="width:50px">Gambar</th>
@@ -470,7 +470,7 @@ $export_params = http_build_query([
                                                             $bg_class = $is_batal ? 'bg-danger-transparent text-muted text-decoration-line-through' : '';
                                                         ?>
                                                         <tr class="<?= $bg_class ?>">
-                                                            <td>
+                                                            <td data-label="Gambar">
                                                                 <?php if (!empty($d['gambar'])): ?>
                                                                     <a href="javascript:void(0);" onclick="showImagePreview('../assets/img/<?= htmlspecialchars($d['gambar']) ?>')" title="Klik untuk perbesar">
                                                                         <img src="../assets/img/<?= htmlspecialchars($d['gambar']) ?>" alt="Item" width="40" height="40" class="rounded border <?= $is_batal ? 'opacity-50' : '' ?>" style="object-fit:cover; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
@@ -479,16 +479,16 @@ $export_params = http_build_query([
                                                                     <div class="bg-light rounded border d-flex align-items-center justify-content-center text-muted" style="width:40px;height:40px;font-size:10px;">NoImg</div>
                                                                 <?php endif; ?>
                                                             </td>
-                                                            <td>
+                                                            <td data-label="Item" class="fw-semibold">
                                                                 <span class="badge <?= $d['jenis_transaksi'] === 'Beli' ? 'bg-danger' : 'bg-success' ?> fs-10 p-1 me-1"><?= htmlspecialchars($d['jenis_transaksi']) ?></span>
                                                                 <span class="fw-semibold text-decoration-none"><?= htmlspecialchars($d['nama_brand'] . ' ' . $d['nama_seri']) ?></span>
                                                                 <?php if($is_batal): ?>
                                                                     <br><span class="badge bg-danger mt-1 text-decoration-none" style="font-size:10px;">Batal: <?= htmlspecialchars($d['alasan_batal']) ?></span>
                                                                 <?php endif; ?>
                                                             </td>
-                                                            <td><?= htmlspecialchars($d['keterangan_varian']) ?></td>
-                                                            <td>Rp <?= number_format($d['harga_satuan_saat_pesan'], 0, ',', '.') ?></td>
-                                                            <td class="text-center"><?= $d['jumlah_pesan'] ?></td>
+                                                            <td data-label="Varian"><?= htmlspecialchars($d['keterangan_varian']) ?></td>
+                                                            <td data-label="Harga/Hari">Rp <?= number_format($d['harga_satuan_saat_pesan'], 0, ',', '.') ?></td>
+                                                            <td data-label="Jml" class="text-center"><?= $d['jumlah_pesan'] ?></td>
                                                         </tr>
                                                         <?php endforeach; ?>
                                                         <tr>

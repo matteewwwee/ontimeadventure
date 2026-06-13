@@ -89,7 +89,7 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table text-nowrap table-bordered table-hover mb-0">
+                        <table class="table text-nowrap table-bordered table-hover mb-0 table-mobile-cards">
                             <thead class="table-light">
                                 <tr>
                                     <th width="50" class="text-center">No</th>
@@ -100,9 +100,9 @@ require_once __DIR__ . '/../includes/header.php';
                             <tbody>
                                 <?php $no = 1; foreach ($kategori as $k): ?>
                                     <tr>
-                                        <td class="text-center fw-semibold"><?= $no++ ?></td>
-                                        <td class="fw-semibold"><?= htmlspecialchars($k['nama_kategori']) ?></td>
-                                        <td class="text-center">
+                                        <td data-label="No" class="text-center fw-semibold"><?= $no++ ?></td>
+                                        <td data-label="Nama Kategori" class="fw-semibold"><?= htmlspecialchars($k['nama_kategori']) ?></td>
+                                        <td data-label="Aksi" class="text-center">
                                             <button class="btn btn-sm btn-warning btn-wave me-1" data-bs-toggle="modal" data-bs-target="#editKatModal" onclick="editKategori(<?= $k['id_kategori'] ?>, '<?= htmlspecialchars(addslashes($k['nama_kategori'])) ?>')"><i class="ri-edit-line"></i></button>
                                             <form method="POST" action="" class="d-inline" onsubmit="confirmDelete(event, 'Yakin hapus kategori ini?');">
                                                 <input type="hidden" name="action" value="delete">

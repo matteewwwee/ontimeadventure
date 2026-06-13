@@ -98,6 +98,54 @@ $htmlAttrs = $isAdminArea
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="<?= $base_url ?>assets/vyzor/libs/sweetalert2/sweetalert2.min.css">
 
+    <!-- Dynamic Primary Color -->
+    <style>
+        :root {
+            --primary-color: <?= $app_settings['primary_color'] ?>;
+            --primary-rgb: <?= $primary_rgb ?>;
+        }
+        
+        /* === RESPONSIVE MOBILE CARDS FOR TABLES === */
+        @media (max-width: 767.98px) {
+            .table-mobile-cards thead {
+                display: none !important;
+            }
+            .table-mobile-cards tbody tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 0.5rem;
+                padding: 0.75rem;
+                background-color: #fff;
+                box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.02);
+            }
+            .table-mobile-cards tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 0 !important;
+                border: none !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+                text-align: right !important;
+            }
+            .table-mobile-cards tbody td:last-child {
+                border-bottom: none !important;
+            }
+            .table-mobile-cards tbody td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #64748b;
+                text-align: left;
+                margin-right: 1rem;
+            }
+            
+            /* Jika sel tidak memiliki data-label (misal aksi), biarkan rata tengah / kanan tanpa prefix */
+            .table-mobile-cards tbody td:not([data-label])::before {
+                display: none;
+            }
+        }
+    </style>
+
     <!-- Our Custom CSS Overrides -->
     <style>
         :root {

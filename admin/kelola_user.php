@@ -126,7 +126,7 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="userTable" class="table text-nowrap table-bordered table-hover mb-0 w-100">
+                        <table id="userTable" class="table text-nowrap table-bordered table-hover mb-0 w-100 table-mobile-cards">
                             <thead class="table-light">
                                 <tr>
                                     <th class="text-center">No</th>
@@ -140,16 +140,16 @@ require_once __DIR__ . '/../includes/header.php';
                             <tbody>
                                 <?php foreach ($users as $u): ?>
                                     <tr>
-                                        <td class="text-center fw-semibold"><?= $u['id_user'] ?></td>
-                                        <td class="fw-semibold"><?= htmlspecialchars($u['nama']) ?></td>
-                                        <td><?= htmlspecialchars($u['no_hp']) ?></td>
-                                        <td class="text-center">
+                                        <td data-label="No" class="text-center fw-semibold"><?= $u['id_user'] ?></td>
+                                        <td data-label="Nama" class="fw-semibold"><?= htmlspecialchars($u['nama']) ?></td>
+                                        <td data-label="No HP"><?= htmlspecialchars($u['no_hp']) ?></td>
+                                        <td data-label="Role" class="text-center">
                                             <span class="badge <?= $u['role'] == 'admin' ? 'bg-danger-transparent text-danger' : 'bg-primary-transparent text-primary' ?>">
                                                 <?= ucfirst($u['role']) ?>
                                             </span>
                                         </td>
-                                        <td><?= date('d M Y', strtotime($u['created_at'])) ?></td>
-                                        <td class="text-center">
+                                        <td data-label="Tgl Daftar"><?= date('d M Y', strtotime($u['created_at'])) ?></td>
+                                        <td data-label="Aksi" class="text-center">
                                             <?php if ($u['id_user'] != $_SESSION['id_user']): ?>
                                                 <?php if ($u['role'] === 'pelanggan'): ?>
                                                     <div class="d-flex justify-content-center gap-1">

@@ -89,7 +89,7 @@ $filter_kata = $stmt_kata->fetchAll();
             <div class="card custom-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover align-middle mb-0" id="ulasanTable" style="width: 100%;">
+                        <table class="table table-bordered table-hover align-middle mb-0 table-mobile-cards" id="ulasanTable" style="width: 100%;">
                             <thead class="table-light">
                                 <tr>
                                     <th style="width: 40px;" class="text-center">No</th>
@@ -110,41 +110,41 @@ $filter_kata = $stmt_kata->fetchAll();
                                     $row_class = !$is_aktif ? 'table-secondary text-muted' : '';
                                 ?>
                                     <tr class="<?= $row_class ?>">
-                                        <td class="text-center"></td>
-                                <td>
+                                        <td data-label="No" class="text-center"></td>
+                                <td data-label="Tanggal">
                                     <div class="fs-13"><?= date('d M Y', strtotime($rev['tanggal'])) ?></div>
                                     <div class="fs-11 text-muted"><?= date('H:i', strtotime($rev['tanggal'])) ?></div>
                                 </td>
-                                <td><?= htmlspecialchars($masked_hp) ?></td>
-                                <td>
+                                <td data-label="Pengulas"><?= htmlspecialchars($masked_hp) ?></td>
+                                <td data-label="Barang">
                                     <div class="fw-semibold"><?= htmlspecialchars($rev['nama_brand'] . ' ' . $rev['nama_seri']) ?></div>
                                     <div class="fs-12 text-muted"><?= htmlspecialchars($rev['keterangan_varian']) ?></div>
                                 </td>
-                                <td class="text-center text-warning fs-14">
+                                <td data-label="Rating" class="text-center text-warning fs-14">
                                     <?php for($i=1; $i<=5; $i++): ?>
                                         <i class="ri-star-<?= $i <= $rev['rating'] ? 'fill' : 'line' ?>"></i>
                                     <?php endfor; ?>
                                 </td>
-                                <td>
+                                <td data-label="Komentar">
                                     <?php if(!empty($rev['komentar'])): ?>
                                         <span class="fs-13 <?= !$is_aktif ? 'text-decoration-line-through' : '' ?>"><?= htmlspecialchars($rev['komentar']) ?></span>
                                     <?php else: ?>
                                         <i class="text-muted fs-12">Tidak ada komentar</i>
                                     <?php endif; ?>
                                 </td>
-                                <td class="text-center">
+                                <td data-label="Foto" class="text-center">
                                     <?php if(!empty($rev['foto'])): ?>
                                         <img src="<?= $base_url ?>assets/img/reviews/<?= htmlspecialchars($rev['foto']) ?>" class="rounded border" style="width:40px; height:40px; object-fit:cover; cursor:pointer;" onclick="if(window.previewModalImage){window.previewModalImage.src=this.src; var m = new bootstrap.Modal(document.getElementById('imagePreviewModal')); m.show();}">
                                     <?php else: ?>
                                         <span class="text-muted fs-12">-</span>
                                     <?php endif; ?>
                                 </td>
-                                <td class="text-center">
+                                <td data-label="Status" class="text-center">
                                     <span class="badge <?= $is_aktif ? 'bg-success-transparent text-success' : 'bg-danger-transparent text-danger' ?> fs-12">
                                         <?= htmlspecialchars($rev['status_review']) ?>
                                     </span>
                                 </td>
-                                <td class="text-center">
+                                <td data-label="Aksi" class="text-center">
                                     <form method="POST" class="d-inline">
                                         <input type="hidden" name="action" value="toggle_status">
                                         <input type="hidden" name="id_review" value="<?= $rev['id_review'] ?>">
