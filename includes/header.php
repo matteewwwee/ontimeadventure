@@ -106,6 +106,14 @@ $htmlAttrs = $isAdminArea
         }
         
         /* === RESPONSIVE MOBILE CARDS FOR TABLES === */
+        .main-header-container {
+            flex-wrap: nowrap !important;
+        }
+        @media (max-width: 991.98px) {
+            .header-content-right {
+                flex-shrink: 0;
+            }
+        }
         @media (max-width: 767.98px) {
             .table-mobile-cards thead {
                 display: none !important;
@@ -442,7 +450,7 @@ $htmlAttrs = $isAdminArea
                             <div class="me-sm-2 me-0">
                                 <img src="https://ui-avatars.com/api/?name=<?= urlencode($_SESSION['nama'] ?? 'User') ?>&background=random" alt="img" width="32" height="32" class="rounded-circle">
                             </div>
-                            <div class="d-sm-block d-none">
+                            <div class="d-none d-xl-block">
                                 <p class="fw-semibold mb-0 lh-1"><?= htmlspecialchars($_SESSION['nama'] ?? 'Pengguna') ?></p>
                                 <span class="op-7 fw-normal d-block fs-11"><?= $isAdmin ? 'Admin' : 'Pelanggan' ?></span>
                             </div>
