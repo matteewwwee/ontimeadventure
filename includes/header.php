@@ -311,8 +311,8 @@ $htmlAttrs = $isAdminArea
                 </div>
 
                 <!-- User Profile Dropdown -->
-                <div class="header-element">
-                    <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                <div class="header-element dropdown">
+                    <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="border: none; background: transparent; outline: none; box-shadow: none;">
                         <div class="d-flex align-items-center">
                             <div class="me-sm-2 me-0">
                                 <img src="https://ui-avatars.com/api/?name=<?= urlencode($_SESSION['nama'] ?? 'User') ?>&background=random" alt="img" width="32" height="32" class="rounded-circle">
@@ -323,8 +323,8 @@ $htmlAttrs = $isAdminArea
                             </div>
                         </div>
                     </a>
-                    <ul class="dropdown-menu pt-0 header-profile-dropdown dropdown-menu-end" aria-labelledby="mainHeaderProfile">
-                        <li><a class="dropdown-item d-flex" href="<?= $base_url ?>logout.php"><i class="ti ti-logout fs-18 me-2 op-7"></i>Logout</a></li>
+                    <ul class="dropdown-menu pt-0 header-profile-dropdown dropdown-menu-end shadow-sm border-0 position-absolute" aria-labelledby="mainHeaderProfile">
+                        <li><a class="dropdown-item d-flex align-items-center py-2" href="<?= $base_url ?>logout.php"><i class="ri-logout-box-r-line fs-18 me-2 text-danger"></i>Logout</a></li>
                     </ul>
                 </div>
                 <?php endif; ?>
