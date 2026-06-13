@@ -373,12 +373,20 @@ require_once __DIR__ . '/../includes/header.php';
                             <!-- TAB 5: TF-IDF & Cosine -->
                             <div class="tab-pane fade" id="tab-tfidf">
                                 <h5 class="fw-bold mb-3">Langkah 7 & 8: Vektor TF-IDF dan Cosine Similarity</h5>
-                                <p class="text-muted">
+                                <p class="text-muted mb-3">
                                     <strong>TF-IDF = TF × IDF</strong> (Membentuk vektor untuk setiap item).<br>
                                     <strong>Cosine Similarity</strong> menghitung sudut antara dua vektor. Jika sudutnya kecil (mirip), nilainya mendekati 1. Jika sudutnya besar (berbeda), nilainya mendekati 0.
                                 </p>
 
-                                <div class="table-responsive hide-scrollbar">
+                                <div class="alert alert-info bg-info-transparent border-info mb-4">
+                                    <h6 class="fw-bold mb-2"><i class="ri-information-line me-1"></i> Penjelasan Rumus (A dan B):</h6>
+                                    <ul class="mb-0 fs-13" style="line-height: 1.6;">
+                                        <li><strong>Vektor A (Target) & Vektor B (Bandingan):</strong> Adalah kumpulan nilai skor kata (TF-IDF) dari masing-masing item.</li>
+                                        <li><strong>Dot Product (A·B):</strong> Mengalikan skor kata yang <u>sama-sama muncul</u> di kedua item, lalu menjumlahkannya. Semakin banyak kata penting yang sama, nilainya semakin besar.</li>
+                                        <li><strong>Magnitude (|A| atau |B|):</strong> Menghitung "panjang" atau total bobot keseluruhan teks dalam satu item. (Didapat dari akar kuadrat jumlah pangkat dua semua skor katanya).</li>
+                                        <li><strong>Kenapa harus dibagi ( / |A|×|B| )?</strong> Agar perhitungannya adil! Membagi Dot Product dengan Magnitude akan menetralkan perbedaan panjang teks, sehingga kemiripan murni dinilai dari proporsi kecocokan konten (skala 0 sampai 1).</li>
+                                    </ul>
+                                </div>                                <div class="table-responsive hide-scrollbar">
                                     <table class="table table-bordered table-striped align-middle">
                                         <thead class="table-light text-center">
                                             <tr>
