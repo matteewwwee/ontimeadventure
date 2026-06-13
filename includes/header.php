@@ -177,6 +177,31 @@ $htmlAttrs = $isAdminArea
             }
         }
         
+        /* Responsive DataTables Controls */
+        @media (max-width: 767.98px) {
+            div.dataTables_wrapper div.dataTables_length,
+            div.dataTables_wrapper div.dataTables_filter,
+            div.dataTables_wrapper div.dataTables_info,
+            div.dataTables_wrapper div.dataTables_paginate {
+                text-align: center !important;
+                margin-bottom: 15px;
+            }
+            div.dataTables_wrapper div.dataTables_filter input {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 5px;
+                display: block;
+            }
+            div.dataTables_wrapper div.dataTables_length select {
+                width: auto;
+                display: inline-block;
+            }
+            .dataTables_wrapper .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        
         /* Sidebar Text Visibility Logic */
         html[data-toggled="icon-text-close"] .sidebar-title-text,
         html[data-toggled="icon-overlay-close"] .sidebar-title-text,

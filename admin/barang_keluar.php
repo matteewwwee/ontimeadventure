@@ -103,6 +103,32 @@ require_once __DIR__ . '/../includes/header.php';
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+<style>
+/* Responsive DataTables Controls */
+@media (max-width: 767.98px) {
+    div.dataTables_wrapper div.dataTables_length,
+    div.dataTables_wrapper div.dataTables_filter,
+    div.dataTables_wrapper div.dataTables_info,
+    div.dataTables_wrapper div.dataTables_paginate {
+        text-align: center !important;
+        margin-bottom: 15px;
+    }
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 5px;
+        display: block;
+    }
+    div.dataTables_wrapper div.dataTables_length select {
+        width: auto;
+        display: inline-block;
+    }
+    .dataTables_wrapper .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+</style>
 
 <script>
 $(document).ready(function() {
