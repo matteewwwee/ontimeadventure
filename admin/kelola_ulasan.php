@@ -111,12 +111,12 @@ $filter_kata = $stmt_kata->fetchAll();
                                 ?>
                                     <tr class="<?= $row_class ?>">
                                         <td data-label="No" class="text-center"></td>
-                                <td data-label="Tanggal">
+                                <td data-label="Tanggal" class="td-block-mobile">
                                     <div class="fs-13"><?= date('d M Y', strtotime($rev['tanggal'])) ?></div>
                                     <div class="fs-11 text-muted"><?= date('H:i', strtotime($rev['tanggal'])) ?></div>
                                 </td>
                                 <td data-label="Pengulas"><?= htmlspecialchars($masked_hp) ?></td>
-                                <td data-label="Barang">
+                                <td data-label="Barang" class="td-block-mobile">
                                     <div class="fw-semibold"><?= htmlspecialchars($rev['nama_brand'] . ' ' . $rev['nama_seri']) ?></div>
                                     <div class="fs-12 text-muted"><?= htmlspecialchars($rev['keterangan_varian']) ?></div>
                                 </td>
@@ -125,9 +125,9 @@ $filter_kata = $stmt_kata->fetchAll();
                                         <i class="ri-star-<?= $i <= $rev['rating'] ? 'fill' : 'line' ?>"></i>
                                     <?php endfor; ?>
                                 </td>
-                                <td data-label="Komentar">
+                                <td data-label="Komentar" class="td-block-mobile">
                                     <?php if(!empty($rev['komentar'])): ?>
-                                        <span class="fs-13 <?= !$is_aktif ? 'text-decoration-line-through' : '' ?>"><?= htmlspecialchars($rev['komentar']) ?></span>
+                                        <span class="fs-13 <?= !$is_aktif ? 'text-decoration-line-through' : '' ?>"><?= nl2br(htmlspecialchars($rev['komentar'])) ?></span>
                                     <?php else: ?>
                                         <i class="text-muted fs-12">Tidak ada komentar</i>
                                     <?php endif; ?>

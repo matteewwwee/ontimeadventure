@@ -143,6 +143,16 @@ $htmlAttrs = $isAdminArea
             .table-mobile-cards tbody td:not([data-label])::before {
                 display: none;
             }
+            
+            /* Untuk sel dengan teks panjang / banyak baris */
+            .table-mobile-cards tbody td.td-block-mobile {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                text-align: left !important;
+            }
+            .table-mobile-cards tbody td.td-block-mobile::before {
+                margin-bottom: 0.5rem;
+            }
         }
     </style>
 
