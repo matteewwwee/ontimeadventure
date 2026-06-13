@@ -185,7 +185,6 @@ require_once __DIR__ . '/../includes/header.php';
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
 <!-- Modal Edit User -->
 <div class="modal fade" id="modalEditUser" tabindex="-1" aria-hidden="true">
@@ -248,6 +247,12 @@ $(document).ready(function() {
         });
     }).draw();
 });
+
+function editUser(id, currentRole) {
+    document.getElementById('edit_id_user').value = id;
+    document.getElementById('edit_role').value = currentRole;
+    $('#modalEditUser').modal('show');
+}
 </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
