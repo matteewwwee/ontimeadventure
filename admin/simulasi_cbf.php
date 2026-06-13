@@ -154,11 +154,24 @@ require_once __DIR__ . '/../includes/header.php';
         }
 
         // LANGKAH 8: Cosine Similarity
-        function dotProduct(array $vec_a, array $vec_b) {
+        function dotProduct(array $vec_a, array $vec_b, &$breakdown = []) {
             $dot = 0.0;
+            $breakdown = [];
             foreach ($vec_a as $term => $val_a) {
-                if (isset($vec_b[$term])) $dot += $val_a * $vec_b[$term];
+                if (isset($vec_b[$term]) && $vec_b[$term] > 0 && $val_a > 0) {
+                    $prod = $val_a * $vec_b[$term];
+                    $dot += $prod;
+                    $breakdown[$term] = [
+                        'val_a' => $val_a,
+                        'val_b' => $vec_b[$term],
+                        'prod' => $prod
+                    ];
+                }
             }
+            // Sort breakdown descending by prod to show most impactful terms first
+            uasort($breakdown, function($a, $b) {
+                return $b['prod'] <=> $a['prod'];
+            });
             return $dot;
         }
         function vectorMagnitude(array $vec) {
@@ -175,7 +188,8 @@ require_once __DIR__ . '/../includes/header.php';
         foreach ($tfidf_vectors as $id => $vector) {
             if ($id == $current_item_id) continue;
             
-            $dot = dotProduct($current_vector, $vector);
+            $breakdown = [];
+            $dot = dotProduct($current_vector, $vector, $breakdown);
             $mag_other = vectorMagnitude($vector);
             $sim = ($mag_current == 0 || $mag_other == 0) ? 0.0 : ($dot / ($mag_current * $mag_other));
             
@@ -183,7 +197,8 @@ require_once __DIR__ . '/../includes/header.php';
             $similarity_details[$id] = [
                 'dot' => $dot,
                 'mag_target' => $mag_current,
-                'mag_other' => $mag_other
+                'mag_other' => $mag_other,
+                'breakdown' => $breakdown
             ];
         }
 
@@ -405,7 +420,8 @@ require_once __DIR__ . '/../includes/header.php';
                                                 <td class="fw-bold"><?= htmlspecialchars($item_data[$id]['nama_brand'].' '.$item_data[$id]['nama_seri']) ?></td>
                                                 <td class="text-center font-monospace">
                                                     <?= number_format($det['dot'], 5) ?>
-                                                    <div class="text-muted mt-1" style="font-size: 11px;">Σ(A × B)</div>
+                                                    <div class="text-muted mt-1 mb-2" style="font-size: 11px;">Σ(A × B)</div>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary py-0 px-2 fs-11" data-bs-toggle="modal" data-bs-target="#modalDot<?= $id ?>">Lihat Rincian</button>
                                                 </td>
                                                 <td class="text-center font-monospace">
                                                     <?= number_format($det['mag_target'], 5) ?>
@@ -468,6 +484,63 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
             </div>
         </div>
+
+        <?php foreach(array_slice($similarities, 0, $limit_cbf, true) as $id => $sim): 
+            $det = $similarity_details[$id];
+        ?>
+        <div class="modal fade" id="modalDot<?= $id ?>" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-15 fw-bold">Rincian Perhitungan Dot Product</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="p-3 bg-light border-bottom">
+                            <p class="mb-1 fs-13 text-muted">Item yang dibandingkan:</p>
+                            <p class="mb-0 fw-bold text-primary"><?= htmlspecialchars($item_data[$id]['nama_brand'].' '.$item_data[$id]['nama_seri']) ?></p>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-sm align-middle mb-0 text-center">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="text-start ps-3">Kata Kunci (Term)</th>
+                                        <th>TF-IDF A</th>
+                                        <th>TF-IDF B</th>
+                                        <th>A × B</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(empty($det['breakdown'])): ?>
+                                    <tr><td colspan="4" class="text-muted py-4"><i class="ri-information-line me-1"></i>Tidak ada satu pun kata kunci yang cocok</td></tr>
+                                    <?php else: ?>
+                                        <?php foreach($det['breakdown'] as $term => $b): ?>
+                                        <tr>
+                                            <td class="text-start ps-3 fw-bold fs-12"><?= htmlspecialchars($term) ?></td>
+                                            <td class="font-monospace fs-12 text-muted"><?= number_format($b['val_a'], 4) ?></td>
+                                            <td class="font-monospace fs-12 text-muted"><?= number_format($b['val_b'], 4) ?></td>
+                                            <td class="font-monospace fs-12 fw-bold text-success"><?= number_format($b['prod'], 5) ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </tbody>
+                                <tfoot class="table-light">
+                                    <tr>
+                                        <th colspan="3" class="text-end pe-3 text-dark">Total Penjumlahan Σ (A × B) =</th>
+                                        <th class="font-monospace fw-bold text-primary fs-14 bg-primary-transparent"><?= number_format($det['dot'], 5) ?></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer p-2">
+                        <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
 
     <?php } else { ?>
         <div class="alert alert-info border-0 shadow-sm d-flex align-items-center p-4">
