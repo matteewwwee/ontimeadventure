@@ -455,6 +455,12 @@ $htmlAttrs = $isAdminArea
                             </a>
                         </li>
                         <li class="slide">
+                            <a href="<?= $base_url ?>admin/tambah_po_manual.php" class="side-menu__item <?= basename($_SERVER['PHP_SELF']) == 'tambah_po_manual.php' ? 'active' : '' ?>">
+                                <i class="ri-store-2-line side-menu__icon"></i>
+                                <span class="side-menu__label">Kasir / PO Manual</span>
+                            </a>
+                        </li>
+                        <li class="slide">
                             <a href="<?= $base_url ?>admin/barang_keluar.php" class="side-menu__item <?= basename($_SERVER['PHP_SELF']) == 'barang_keluar.php' ? 'active' : '' ?>">
                                 <i class="ri-truck-line side-menu__icon"></i>
                                 <span class="side-menu__label">Barang Keluar</span>
