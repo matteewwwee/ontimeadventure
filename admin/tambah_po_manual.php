@@ -133,6 +133,16 @@ require_once __DIR__ . '/../includes/header.php';
             #cartTable tbody td:nth-child(3)::before { content: "Jumlah:"; }
             #cartTable tbody td:nth-child(4)::before { content: "Subtotal:"; }
             
+            /* Fix Empty Cart Row */
+            #cartTable tbody tr#emptyCartRow {
+                border: none;
+            }
+            #cartTable tbody tr#emptyCartRow td {
+                align-items: center !important;
+                justify-content: center !important;
+                background-color: transparent !important;
+            }
+            
             /* Footer Keranjang */
             #cartFooter tr { display: flex; flex-direction: column; text-align: right; }
             #cartFooter td { display: block; width: 100%; border: none !important; text-align: right !important; padding: 0.5rem 0 !important; }
