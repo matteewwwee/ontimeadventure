@@ -87,6 +87,74 @@ require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="container-fluid mt-4">
+    <style>
+        /* Mobile responsive tables */
+        @media (max-width: 767.98px) {
+            /* Cart Table */
+            #cartTable thead { display: none; }
+            #cartTable tbody tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 0.5rem;
+                padding: 0.75rem;
+                position: relative;
+            }
+            #cartTable tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 0 !important;
+                border: none !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+            }
+            #cartTable tbody td:last-child {
+                border-bottom: none !important;
+                justify-content: flex-end;
+            }
+            #cartTable tbody td:first-child {
+                flex-direction: column;
+                align-items: flex-start;
+                background-color: #f8fafc;
+                padding: 0.75rem !important;
+                border-radius: 0.375rem;
+                margin-bottom: 0.5rem;
+            }
+            #cartTable tbody td::before {
+                font-weight: 600;
+                color: #64748b;
+            }
+            #cartTable tbody td:nth-child(2)::before { content: "Harga/Hari:"; }
+            #cartTable tbody td:nth-child(3)::before { content: "Jumlah:"; }
+            #cartTable tbody td:nth-child(4)::before { content: "Subtotal:"; }
+            
+            /* Footer Keranjang */
+            #cartFooter tr { display: flex; flex-direction: column; text-align: right; }
+            #cartFooter td { display: block; width: 100%; border: none !important; text-align: right !important; padding: 0.5rem 0 !important; }
+
+            /* Modal Katalog Table */
+            #katalogTable thead { display: none; }
+            #katalogTable tbody tr {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 1rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 0.5rem;
+                padding: 0.75rem;
+                position: relative;
+            }
+            #katalogTable tbody td {
+                border: none !important;
+                padding: 0.25rem 0 !important;
+            }
+            #katalogTable tbody td:first-child { width: 100%; margin-bottom: 0.5rem; }
+            #katalogTable tbody td:nth-child(2) { width: 50%; }
+            #katalogTable tbody td:nth-child(3) { width: 50%; text-align: right !important; }
+            #katalogTable tbody td:nth-child(4) { width: 50%; font-size: 1rem; }
+            #katalogTable tbody td:nth-child(5) { width: 50%; text-align: right !important; }
+        }
+    </style>
+
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h4 class="mb-0 fw-semibold">Kasir / PO Manual</h4>
         <a href="kelola_po.php" class="btn btn-secondary btn-sm"><i class="ri-arrow-left-line align-middle me-1"></i> Kembali</a>
