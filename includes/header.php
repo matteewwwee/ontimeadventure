@@ -167,11 +167,12 @@ $htmlAttrs = $isAdminArea
             .header-profile-dropdown {
                 position: absolute !important;
                 width: auto !important;
-                min-width: 200px !important;
+                min-width: 180px !important;
                 right: 0 !important;
                 left: auto !important;
                 top: 100% !important;
-                margin-top: 5px !important;
+                margin-top: 10px !important;
+                transform: none !important;
                 box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
             }
         }
@@ -321,7 +322,7 @@ $htmlAttrs = $isAdminArea
                 </div>
 
                 <!-- User Profile Dropdown -->
-                <div class="header-element dropdown">
+                <div class="header-element dropdown position-relative">
                     <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" style="border: none; background: transparent; outline: none; box-shadow: none;">
                         <div class="d-flex align-items-center">
                             <div class="me-sm-2 me-0">
