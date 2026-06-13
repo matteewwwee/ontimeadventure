@@ -176,6 +176,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $tampilkan = isset($_POST['tampilkan_kemiripan']) ? '1' : '0';
             $stmt->execute(['tampilkan_kemiripan', $tampilkan]);
             
+            $limit_cbf = (int)($_POST['limit_cbf'] ?? 5);
+            if ($limit_cbf < 1) $limit_cbf = 5;
+            $stmt->execute(['limit_cbf', (string)$limit_cbf]);
+            
             $_SESSION['flash_success'] = 'Tema berhasil disimpan ke Database!';
         } else {
             $_SESSION['flash_error'] = 'Format warna tidak valid.';
@@ -308,6 +312,12 @@ require_once __DIR__ . '/../includes/header.php';
                                     <label class="form-check-label" for="tampilkan_kemiripan">Tampilkan Persentase Kemiripan pada "Item Serupa"</label>
                                 </div>
                                 <div class="text-muted fs-13 mt-1">Jika dinonaktifkan, angka rekomendasi algoritma CBF (seperti "Kemiripan: 50.1%") tidak akan muncul bagi pelanggan.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Jumlah Item Serupa (Rekomendasi CBF)</label>
+                                <input type="number" class="form-control" name="limit_cbf" value="<?= htmlspecialchars($app_settings['limit_cbf'] ?? '5') ?>" min="1" max="20" style="max-width: 150px;">
+                                <div class="text-muted fs-13 mt-1">Berapa banyak produk serupa yang akan direkomendasikan pada halaman detail item maupun di simulasi CBF. Default: 5.</div>
                             </div>
                             
                             <div class="d-flex justify-content-end mt-4">

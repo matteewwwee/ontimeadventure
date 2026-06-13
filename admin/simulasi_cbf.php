@@ -178,7 +178,8 @@ require_once __DIR__ . '/../includes/header.php';
         }
 
         arsort($similarities);
-        $top_ids = array_keys($similarities);
+        $limit_cbf = isset($app_settings['limit_cbf']) ? (int)$app_settings['limit_cbf'] : 5;
+        $top_ids = array_slice(array_keys($similarities), 0, $limit_cbf, true);
 
         // ==========================================
         // UI RENDERING
@@ -379,7 +380,7 @@ require_once __DIR__ . '/../includes/header.php';
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($similarities as $id => $sim): 
+                                            <?php foreach(array_slice($similarities, 0, $limit_cbf, true) as $id => $sim): 
                                                 $det = $similarity_details[$id];
                                             ?>
                                             <tr>

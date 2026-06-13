@@ -302,7 +302,8 @@ arsort($similarities);
 // Slice 5 item teratas dan gabungkan dengan data item lengkap
 // untuk ditampilkan di halaman detail.
 
-$top_ids = array_slice(array_keys($similarities), 0, 5, true);
+$limit_cbf = isset($app_settings['limit_cbf']) ? (int)$app_settings['limit_cbf'] : 5;
+$top_ids = array_slice(array_keys($similarities), 0, $limit_cbf, true);
 
 $rekomendasi = []; // Array hasil rekomendasi dengan data lengkap
 
