@@ -41,11 +41,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$id]);
             $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> User berhasil dihapus!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
         }
-    } elseif ($action === 'promote') {
+    } elseif ($action === 'edit_user') {
         $id = $_POST['id_user'];
-        $stmt = $db->prepare("UPDATE users SET role = 'admin' WHERE id_user = ? AND role = 'pelanggan'");
-        $stmt->execute([$id]);
-        $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> User berhasil dipromosikan menjadi Admin!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+        $new_role = $_POST['role'];
+        $new_pin = trim($_POST['pin']);
+        
+        $update_sql = "UPDATE users SET role = ?";
+        $params = [$new_role];
+        
+        if (!empty($new_pin)) {
+            $hashed_pin = password_hash($new_pin, PASSWORD_DEFAULT);
+            $update_sql .= ", pin = ?";
+            $params[] = $hashed_pin;
+        }
+        
+        $update_sql .= " WHERE id_user = ?";
+        $params[] = $id;
+        
+        $stmt = $db->prepare($update_sql);
+        $stmt->execute($params);
+        $flash_msg = '<div class="alert alert-success alert-dismissible fade show" role="alert"><i class="ri-check-line me-1 align-middle fs-16"></i> Data user berhasil diperbarui!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
     }
 }
 
@@ -138,11 +153,7 @@ require_once __DIR__ . '/../includes/header.php';
                                             <?php if ($u['id_user'] != $_SESSION['id_user']): ?>
                                                 <?php if ($u['role'] === 'pelanggan'): ?>
                                                     <div class="d-flex justify-content-center gap-1">
-                                                        <form method="POST" action="" class="d-inline" onsubmit="confirmDelete(event, 'Promosikan user ini menjadi Admin?');">
-                                                            <input type="hidden" name="action" value="promote">
-                                                            <input type="hidden" name="id_user" value="<?= $u['id_user'] ?>">
-                                                            <button type="submit" class="btn btn-sm btn-success btn-wave" title="Promote to Admin"><i class="ri-user-star-line"></i></button>
-                                                        </form>
+                                                        <button type="button" class="btn btn-sm btn-info btn-wave" title="Edit User & PIN" onclick="editUser(<?= $u['id_user'] ?>, '<?= $u['role'] ?>')"><i class="ri-edit-line"></i></button>
                                                         <form method="POST" action="" class="d-inline" onsubmit="confirmDelete(event, 'Yakin hapus user ini?');">
                                                             <input type="hidden" name="action" value="delete">
                                                             <input type="hidden" name="id_user" value="<?= $u['id_user'] ?>">
@@ -150,7 +161,10 @@ require_once __DIR__ . '/../includes/header.php';
                                                         </form>
                                                     </div>
                                                 <?php else: ?>
-                                                    <span class="badge bg-light text-muted">Admin Tetap</span>
+                                                    <div class="d-flex justify-content-center gap-1">
+                                                        <button type="button" class="btn btn-sm btn-info btn-wave" title="Edit User & PIN" onclick="editUser(<?= $u['id_user'] ?>, '<?= $u['role'] ?>')"><i class="ri-edit-line"></i></button>
+                                                        <span class="badge bg-light text-muted align-self-center">Admin Tetap</span>
+                                                    </div>
                                                 <?php endif; ?>
                                             <?php else: ?>
                                                 <span class="badge bg-light text-dark">Anda</span>
@@ -172,6 +186,42 @@ require_once __DIR__ . '/../includes/header.php';
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+<!-- Modal Edit User -->
+<div class="modal fade" id="modalEditUser" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit User & Reset PIN</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="action" value="edit_user">
+                    <input type="hidden" name="id_user" id="edit_id_user">
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Role User</label>
+                        <select name="role" id="edit_role" class="form-select" required>
+                            <option value="pelanggan">Pelanggan</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Reset PIN Baru</label>
+                        <input type="password" name="pin" class="form-control" maxlength="4" pattern="[0-9]{4}" placeholder="Kosongkan jika tidak ingin mengubah PIN">
+                        <div class="form-text text-muted">Masukkan 4 digit angka jika ingin mengganti PIN tanpa perlu mengetahui PIN lama. Kosongkan jika tidak ingin diganti.</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
 $(document).ready(function() {
