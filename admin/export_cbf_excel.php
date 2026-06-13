@@ -58,6 +58,15 @@ foreach ($documents as $id => $doc) {
     $tokenized_docs[$id] = $tokens;
 }
 
+// LANGKAH 4: Vocabulary
+$vocabulary = [];
+foreach ($tokenized_docs as $tokens) {
+    foreach ($tokens as $token) {
+        $vocabulary[$token] = true;
+    }
+}
+$vocab_list = array_keys($vocabulary);
+
 // LANGKAH 5 & 6: Hitung TF dan IDF
 $tf = [];
 foreach ($tokenized_docs as $id => $tokens) {
