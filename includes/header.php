@@ -181,46 +181,51 @@ $htmlAttrs = $isAdminArea
         @media (max-width: 767.98px) {
             .dataTables_wrapper .row:first-child {
                 display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-                justify-content: flex-end !important;
+                flex-direction: column !important;
+                justify-content: center !important;
                 align-items: center !important;
-                gap: 10px;
+                gap: 15px;
                 margin-bottom: 15px;
             }
             .dataTables_wrapper .row:first-child > div {
-                width: auto !important;
-                flex: 0 0 auto !important;
+                width: 100% !important;
+                flex: 0 0 100% !important;
                 padding: 0;
             }
             div.dataTables_wrapper div.dataTables_length,
             div.dataTables_wrapper div.dataTables_filter {
-                text-align: right !important;
+                text-align: center !important;
                 margin-bottom: 0 !important;
             }
             div.dataTables_wrapper div.dataTables_length label,
             div.dataTables_wrapper div.dataTables_filter label {
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 margin-bottom: 0;
                 font-size: 13px;
+                width: 100%;
             }
             div.dataTables_wrapper div.dataTables_filter input {
-                width: 120px;
-                margin-left: 5px;
+                flex-grow: 1;
+                max-width: 250px;
+                margin-left: 10px;
                 display: inline-block;
             }
             div.dataTables_wrapper div.dataTables_length select {
                 width: auto;
-                margin: 0 5px;
+                margin: 0 10px;
                 display: inline-block;
-                padding-left: 5px;
-                padding-right: 20px;
+                padding-left: 10px;
+                padding-right: 30px;
             }
             div.dataTables_wrapper div.dataTables_info,
             div.dataTables_wrapper div.dataTables_paginate {
                 text-align: center !important;
                 margin-bottom: 10px;
+            }
+            div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+                justify-content: center !important;
             }
             .dataTables_wrapper .row {
                 margin-left: 0;
