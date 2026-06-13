@@ -244,9 +244,9 @@ require_once __DIR__ . '/../includes/header.php';
                                 </thead>
                                 <tbody id="cartBody">
                                     <tr id="emptyCartRow">
-                                        <td colspan="5" class="text-center text-muted py-4">
-                                            <i class="ri-shopping-cart-2-line fs-24 d-block mb-2"></i>
-                                            Belum ada barang di keranjang
+                                        <td colspan="5" class="text-center text-muted py-3 fs-14">
+                                            <i class="ri-shopping-cart-2-line fs-20 d-block mb-1"></i>
+                                            Belum ada barang
                                         </td>
                                     </tr>
                                 </tbody>
