@@ -174,14 +174,29 @@ require_once __DIR__ . '/../includes/header.php';
             });
             return $dot;
         }
-        function vectorMagnitude(array $vec) {
+        function vectorMagnitude(array $vec, &$breakdown = []) {
             $sum_sq = 0.0;
-            foreach ($vec as $val) $sum_sq += $val * $val;
+            $breakdown = [];
+            foreach ($vec as $term => $val) {
+                if ($val > 0) {
+                    $sq = $val * $val;
+                    $sum_sq += $sq;
+                    $breakdown[$term] = [
+                        'val' => $val,
+                        'sq' => $sq
+                    ];
+                }
+            }
+            // Sort breakdown descending by sq
+            uasort($breakdown, function($a, $b) {
+                return $b['sq'] <=> $a['sq'];
+            });
             return sqrt($sum_sq);
         }
 
         $current_vector = $tfidf_vectors[$current_item_id] ?? [];
-        $mag_current = vectorMagnitude($current_vector);
+        $mag_target_breakdown = [];
+        $mag_current = vectorMagnitude($current_vector, $mag_target_breakdown);
         $similarities = [];
         $similarity_details = [];
 
@@ -190,7 +205,9 @@ require_once __DIR__ . '/../includes/header.php';
             
             $breakdown = [];
             $dot = dotProduct($current_vector, $vector, $breakdown);
-            $mag_other = vectorMagnitude($vector);
+            
+            $mag_other_breakdown = [];
+            $mag_other = vectorMagnitude($vector, $mag_other_breakdown);
             $sim = ($mag_current == 0 || $mag_other == 0) ? 0.0 : ($dot / ($mag_current * $mag_other));
             
             $similarities[$id] = $sim;
@@ -198,7 +215,9 @@ require_once __DIR__ . '/../includes/header.php';
                 'dot' => $dot,
                 'mag_target' => $mag_current,
                 'mag_other' => $mag_other,
-                'breakdown' => $breakdown
+                'breakdown' => $breakdown,
+                'mag_target_breakdown' => $mag_target_breakdown,
+                'mag_other_breakdown' => $mag_other_breakdown
             ];
         }
 
