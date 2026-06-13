@@ -476,44 +476,85 @@ document.addEventListener('DOMContentLoaded', function() {
             // Cek apakah sudah ada di cart
             const existingIndex = cart.findIndex(item => item.id === id);
             if (existingIndex !== -1) {
-                if (cart[existingIndex].jumlah < stok) {
-                    cart[existingIndex].jumlah++;
+                if (window.Swal) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Sudah di Keranjang',
+                        text: 'Barang ini sudah ada di keranjang. Anda bisa menambah/mengurangi jumlahnya langsung di tabel keranjang.',
+                        confirmButtonColor: '#3085d6'
+                    });
                 } else {
-                    if (window.Swal) {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Stok Terbatas',
-                            text: 'Stok maksimum tercapai untuk barang ini!',
-                            confirmButtonColor: '#3085d6'
-                        });
-                    } else {
-                        alert('Stok maksimum tercapai untuk barang ini!');
-                    }
-                    return;
+                    alert('Barang ini sudah ada di keranjang.');
                 }
-            } else {
-                cart.push({
-                    id: id,
-                    nama: nama,
-                    varian: varian,
-                    harga: harga,
-                    stok: stok,
-                    jumlah: 1
-                });
+                return;
             }
 
-            renderCart();
-            
-            // Tampilkan Toast/Alert kecil (opsional)
+            // Tanyakan jumlah yang ingin disewa
             if (window.Swal) {
                 Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Ditambahkan: ' + nama,
-                    showConfirmButton: false,
-                    timer: 1500
+                    title: 'Masukkan Jumlah',
+                    html: `Berapa banyak <b>${nama} (${varian})</b> yang ingin disewa?<br><small class="text-muted">Tersedia: ${stok} unit</small>`,
+                    input: 'number',
+                    inputAttributes: {
+                        min: 1,
+                        max: stok,
+                        step: 1
+                    },
+                    inputValue: 1,
+                    showCancelButton: true,
+                    confirmButtonText: 'Tambahkan ke Keranjang',
+                    cancelButtonText: 'Batal',
+                    confirmButtonColor: '#28a745',
+                    inputValidator: (value) => {
+                        if (!value || parseInt(value) < 1) {
+                            return 'Jumlah minimal 1!';
+                        }
+                        if (parseInt(value) > stok) {
+                            return `Maksimal hanya bisa menyewa ${stok} unit!`;
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const jumlahPesan = parseInt(result.value);
+                        cart.push({
+                            id: id,
+                            nama: nama,
+                            varian: varian,
+                            harga: harga,
+                            stok: stok,
+                            jumlah: jumlahPesan
+                        });
+                        renderCart();
+                        
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Berhasil ditambahkan',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
                 });
+            } else {
+                // Fallback jika Swal tidak load
+                let qty = prompt(`Masukkan jumlah untuk ${nama} (Maks: ${stok}):`, "1");
+                if (qty !== null) {
+                    qty = parseInt(qty);
+                    if (qty >= 1 && qty <= stok) {
+                        cart.push({
+                            id: id,
+                            nama: nama,
+                            varian: varian,
+                            harga: harga,
+                            stok: stok,
+                            jumlah: qty
+                        });
+                        renderCart();
+                    } else {
+                        alert("Jumlah tidak valid atau melebihi batas tersisa.");
+                    }
+                }
             }
         });
     });
