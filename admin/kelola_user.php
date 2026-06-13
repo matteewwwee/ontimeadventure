@@ -124,9 +124,9 @@ require_once __DIR__ . '/../includes/header.php';
                 <div class="card-header">
                     <div class="card-title">Daftar User</div>
                 </div>
-                <div class="card-body p-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table id="userTable" class="table text-nowrap table-bordered table-hover mb-0">
+                        <table id="userTable" class="table text-nowrap table-bordered table-hover mb-0 w-100">
                             <thead class="table-light">
                                 <tr>
                                     <th class="text-center">No</th>
@@ -182,6 +182,7 @@ require_once __DIR__ . '/../includes/header.php';
 </div>
 
 <!-- DataTables CSS & JS -->
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
