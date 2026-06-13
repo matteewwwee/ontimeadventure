@@ -180,22 +180,23 @@ $htmlAttrs = $isAdminArea
         /* Responsive DataTables Controls */
         @media (max-width: 767.98px) {
             .dataTables_wrapper .row:first-child {
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-end;
-                align-items: center;
-                gap: 15px;
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+                gap: 10px;
                 margin-bottom: 15px;
             }
             .dataTables_wrapper .row:first-child > div {
                 width: auto !important;
-                flex: 0 0 auto;
+                flex: 0 0 auto !important;
                 padding: 0;
             }
             div.dataTables_wrapper div.dataTables_length,
             div.dataTables_wrapper div.dataTables_filter {
                 text-align: right !important;
-                margin-bottom: 0;
+                margin-bottom: 0 !important;
             }
             div.dataTables_wrapper div.dataTables_length label,
             div.dataTables_wrapper div.dataTables_filter label {
