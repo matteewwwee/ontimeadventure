@@ -342,18 +342,20 @@ require_once __DIR__ . '/includes/header.php';
     <div class="row mt-5 mb-4">
         <div class="col-12 d-flex justify-content-between align-items-center mb-3">
             <h4 class="fw-semibold mb-0">Item Serupa</h4>
-            <div>
-                <button type="button" class="btn btn-sm btn-light rounded-circle shadow-sm me-1" onclick="document.getElementById('rekomendasiScroll').scrollBy({left: -240, behavior: 'smooth'})" title="Geser Kiri"><i class="ri-arrow-left-s-line fs-16"></i></button>
-                <button type="button" class="btn btn-sm btn-light rounded-circle shadow-sm me-2" onclick="document.getElementById('rekomendasiScroll').scrollBy({left: 240, behavior: 'smooth'})" title="Geser Kanan"><i class="ri-arrow-right-s-line fs-16"></i></button>
-                <a href="<?= $base_url ?>katalog.php" class="btn btn-sm btn-outline-primary btn-wave">Lihat Semua</a>
-            </div>
+            <a href="<?= $base_url ?>katalog.php" class="btn btn-sm btn-outline-primary btn-wave">Lihat Semua</a>
         </div>
 
         <?php if (empty($rekomendasi)): ?>
             <div class="col-12 text-center text-muted py-3">Belum ada rekomendasi yang tersedia.</div>
         <?php else: ?>
-            <div class="col-12">
-                <div class="d-flex gap-3 overflow-auto pb-3 hide-scrollbar" id="rekomendasiScroll">
+            <div class="col-12 position-relative">
+                <button type="button" class="btn btn-white rounded-circle shadow d-none d-md-flex align-items-center justify-content-center position-absolute top-50 start-0 translate-middle-y z-3" onclick="document.getElementById('rekomendasiScroll').scrollBy({left: -240, behavior: 'smooth'})" style="margin-left: -20px; width: 40px; height: 40px; border: 1px solid #eee;">
+                    <i class="ri-arrow-left-s-line fs-20 text-dark"></i>
+                </button>
+                <button type="button" class="btn btn-white rounded-circle shadow d-none d-md-flex align-items-center justify-content-center position-absolute top-50 end-0 translate-middle-y z-3" onclick="document.getElementById('rekomendasiScroll').scrollBy({left: 240, behavior: 'smooth'})" style="margin-right: -20px; width: 40px; height: 40px; border: 1px solid #eee;">
+                    <i class="ri-arrow-right-s-line fs-20 text-dark"></i>
+                </button>
+                <div class="d-flex gap-3 overflow-auto pb-3 hide-scrollbar px-1" id="rekomendasiScroll">
                     <?php foreach ($rekomendasi as $rec): ?>
                         <?php
                             $rec_has_image = false;
