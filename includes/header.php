@@ -287,12 +287,8 @@ $htmlAttrs = $isAdminArea
 
                 <?php if (!$isLoggedIn): ?>
                 <div class="header-element align-items-center">
-                    <div class="btn-list d-lg-none d-block">
-                        <?php if (basename($_SERVER['PHP_SELF']) == 'register.php'): ?>
-                            <a href="<?= $base_url ?>login.php" class="btn btn-primary-light">Login</a>
-                        <?php else: ?>
-                            <a href="<?= $base_url ?>register.php" class="btn btn-primary-light">Daftar</a>
-                        <?php endif; ?>
+                    <div class="btn-list">
+                        <a href="<?= $base_url ?>login.php" class="btn btn-primary-light">Masuk</a>
                     </div>
                 </div>
                 <?php else: ?>
