@@ -178,7 +178,7 @@ require_once __DIR__ . '/../includes/header.php';
         }
 
         arsort($similarities);
-        $top_ids = array_slice(array_keys($similarities), 0, 5, true);
+        $top_ids = array_keys($similarities);
 
         // ==========================================
         // UI RENDERING
@@ -227,7 +227,7 @@ require_once __DIR__ . '/../includes/header.php';
                                                     <td class="fs-13 text-wrap" style="max-width: 400px;"><?= htmlspecialchars($documents[$id]) ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
-                                            <?php foreach(array_slice($top_ids, 0, 3) as $id): ?>
+                                            <?php foreach($top_ids as $id): ?>
                                                 <tr>
                                                     <td><?= htmlspecialchars($item_data[$id]['nama_brand'].' '.$item_data[$id]['nama_seri']) ?></td>
                                                     <td class="fs-13">
@@ -266,10 +266,9 @@ require_once __DIR__ . '/../includes/header.php';
                                             <div class="card-header bg-light fw-bold">Vocabulary Global (Total: <?= count($vocab_list) ?> kata)</div>
                                             <div class="card-body p-2 fs-13" style="max-height: 200px; overflow-y: auto;">
                                                 <?php 
-                                                foreach(array_slice($vocab_list, 0, 100) as $tok) {
+                                                foreach($vocab_list as $tok) {
                                                     echo "<span class='badge bg-light text-dark m-1 border'>$tok</span> ";
                                                 }
-                                                if(count($vocab_list)>100) echo "<span class='badge bg-light text-dark m-1 border'>... dll</span>";
                                                 ?>
                                             </div>
                                         </div>
@@ -288,8 +287,8 @@ require_once __DIR__ . '/../includes/header.php';
                                             <tr>
                                                 <th>Term (Kata)</th>
                                                 <th>TF Target (<?= htmlspecialchars($item_data[$current_item_id]['nama_brand']) ?>)</th>
-                                                <?php foreach(array_slice($top_ids, 0, 2) as $id): ?>
-                                                    <th>TF #<?= htmlspecialchars($item_data[$id]['nama_brand']) ?></th>
+                                                <?php foreach($top_ids as $id): ?>
+                                                    <th style="min-width:120px;">TF #<?= htmlspecialchars($item_data[$id]['nama_brand']) ?></th>
                                                 <?php endforeach; ?>
                                             </tr>
                                         </thead>
@@ -298,7 +297,7 @@ require_once __DIR__ . '/../includes/header.php';
                                             // Tampilkan beberapa kata penting dari target
                                             $target_terms = array_keys(array_count_values($tokenized_docs[$current_item_id]));
                                             $tot_target = count($tokenized_docs[$current_item_id]);
-                                            foreach(array_slice($target_terms, 0, 15) as $term): 
+                                            foreach($target_terms as $term): 
                                                 $c_target = array_count_values($tokenized_docs[$current_item_id])[$term] ?? 0;
                                             ?>
                                             <tr>
@@ -307,7 +306,7 @@ require_once __DIR__ . '/../includes/header.php';
                                                     <span class="fw-bold"><?= number_format($tf[$current_item_id][$term] ?? 0, 4) ?></span>
                                                     <div class="text-muted" style="font-size: 11px;">(<?= $c_target ?> / <?= $tot_target ?>)</div>
                                                 </td>
-                                                <?php foreach(array_slice($top_ids, 0, 2) as $id): 
+                                                <?php foreach($top_ids as $id): 
                                                     $c_other = array_count_values($tokenized_docs[$id])[$term] ?? 0;
                                                     $tot_other = count($tokenized_docs[$id]);
                                                 ?>
@@ -342,9 +341,7 @@ require_once __DIR__ . '/../includes/header.php';
                                                 <tbody>
                                                     <?php 
                                                     arsort($idf); // Urutkan dari IDF tertinggi (paling langka)
-                                                    $count = 0;
                                                     foreach($idf as $term => $val): 
-                                                        if($count++ >= 15) break;
                                                     ?>
                                                     <tr>
                                                         <td class="fw-bold text-danger"><?= htmlspecialchars($term) ?></td>
@@ -382,7 +379,7 @@ require_once __DIR__ . '/../includes/header.php';
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach(array_slice($similarities, 0, 10, true) as $id => $sim): 
+                                            <?php foreach($similarities as $id => $sim): 
                                                 $det = $similarity_details[$id];
                                             ?>
                                             <tr>
