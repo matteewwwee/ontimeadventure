@@ -131,7 +131,6 @@ require_once __DIR__ . '/../includes/header.php';
     /* Mobile Card View for Table */
     #barangTable, #barangTable tbody, #barangTable tr, #barangTable td {
         display: block;
-        width: 100%;
     }
     #barangTable thead {
         display: none;
