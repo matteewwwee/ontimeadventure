@@ -425,11 +425,13 @@ require_once __DIR__ . '/../includes/header.php';
                                                 </td>
                                                 <td class="text-center font-monospace">
                                                     <?= number_format($det['mag_target'], 5) ?>
-                                                    <div class="text-muted mt-1" style="font-size: 11px;">√(Σ A²)</div>
+                                                    <div class="text-muted mt-1 mb-2" style="font-size: 11px;">√(Σ A²)</div>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary py-0 px-2 fs-11" data-bs-toggle="modal" data-bs-target="#modalDot<?= $id ?>">Lihat Rincian</button>
                                                 </td>
                                                 <td class="text-center font-monospace">
                                                     <?= number_format($det['mag_other'], 5) ?>
-                                                    <div class="text-muted mt-1" style="font-size: 11px;">√(Σ B²)</div>
+                                                    <div class="text-muted mt-1 mb-2" style="font-size: 11px;">√(Σ B²)</div>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary py-0 px-2 fs-11" data-bs-toggle="modal" data-bs-target="#modalDot<?= $id ?>">Lihat Rincian</button>
                                                 </td>
                                                 <td class="text-center fw-bold fs-15 text-success">
                                                     <?= number_format($sim, 5) ?>
@@ -489,10 +491,10 @@ require_once __DIR__ . '/../includes/header.php';
             $det = $similarity_details[$id];
         ?>
         <div class="modal fade" id="modalDot<?= $id ?>" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title fs-15 fw-bold">Rincian Perhitungan Dot Product</h5>
+                        <h5 class="modal-title fs-15 fw-bold">Rincian Perhitungan Matematika</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-0">
@@ -500,37 +502,126 @@ require_once __DIR__ . '/../includes/header.php';
                             <p class="mb-1 fs-13 text-muted">Item yang dibandingkan:</p>
                             <p class="mb-0 fw-bold text-primary"><?= htmlspecialchars($item_data[$id]['nama_brand'].' '.$item_data[$id]['nama_seri']) ?></p>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover table-sm align-middle mb-0 text-center">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th class="text-start ps-3">Kata Kunci (Term)</th>
-                                        <th>TF-IDF A</th>
-                                        <th>TF-IDF B</th>
-                                        <th>A × B</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if(empty($det['breakdown'])): ?>
-                                    <tr><td colspan="4" class="text-muted py-4"><i class="ri-information-line me-1"></i>Tidak ada satu pun kata kunci yang cocok</td></tr>
-                                    <?php else: ?>
-                                        <?php foreach($det['breakdown'] as $term => $b): ?>
-                                        <tr>
-                                            <td class="text-start ps-3 fw-bold fs-12"><?= htmlspecialchars($term) ?></td>
-                                            <td class="font-monospace fs-12 text-muted"><?= number_format($b['val_a'], 4) ?></td>
-                                            <td class="font-monospace fs-12 text-muted"><?= number_format($b['val_b'], 4) ?></td>
-                                            <td class="font-monospace fs-12 fw-bold text-success"><?= number_format($b['prod'], 5) ?></td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                </tbody>
-                                <tfoot class="table-light">
-                                    <tr>
-                                        <th colspan="3" class="text-end pe-3 text-dark">Total Penjumlahan Σ (A × B) =</th>
-                                        <th class="font-monospace fw-bold text-primary fs-14 bg-primary-transparent"><?= number_format($det['dot'], 5) ?></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                        
+                        <div class="px-3 pt-3">
+                            <ul class="nav nav-pills mb-3" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active py-1 px-3 fs-13" data-bs-toggle="pill" data-bs-target="#pills-dot-<?= $id ?>" type="button" role="tab">Dot Product (A·B)</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-1 px-3 fs-13" data-bs-toggle="pill" data-bs-target="#pills-maga-<?= $id ?>" type="button" role="tab">Magnitude Target (|A|)</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-1 px-3 fs-13" data-bs-toggle="pill" data-bs-target="#pills-magb-<?= $id ?>" type="button" role="tab">Magnitude Bandingan (|B|)</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content pb-3">
+                            <!-- Tab Dot Product -->
+                            <div class="tab-pane fade show active" id="pills-dot-<?= $id ?>" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-sm align-middle mb-0 text-center">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="text-start ps-4">Kata Kunci (Sama-sama ada)</th>
+                                                <th>TF-IDF A</th>
+                                                <th>TF-IDF B</th>
+                                                <th class="pe-4">A × B</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if(empty($det['breakdown'])): ?>
+                                            <tr><td colspan="4" class="text-muted py-4"><i class="ri-information-line me-1"></i>Tidak ada satu pun kata kunci yang cocok</td></tr>
+                                            <?php else: ?>
+                                                <?php foreach($det['breakdown'] as $term => $b): ?>
+                                                <tr>
+                                                    <td class="text-start ps-4 fw-bold fs-12"><?= htmlspecialchars($term) ?></td>
+                                                    <td class="font-monospace fs-12 text-muted"><?= number_format($b['val_a'], 4) ?></td>
+                                                    <td class="font-monospace fs-12 text-muted"><?= number_format($b['val_b'], 4) ?></td>
+                                                    <td class="font-monospace fs-12 fw-bold text-success pe-4"><?= number_format($b['prod'], 5) ?></td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </tbody>
+                                        <tfoot class="table-light">
+                                            <tr>
+                                                <th colspan="3" class="text-end pe-3 text-dark">Total Penjumlahan Σ (A × B) =</th>
+                                                <th class="font-monospace fw-bold text-primary fs-14 bg-primary-transparent pe-4"><?= number_format($det['dot'], 5) ?></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Tab Magnitude Target -->
+                            <div class="tab-pane fade" id="pills-maga-<?= $id ?>" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-sm align-middle mb-0 text-center">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="text-start ps-4">Kata Kunci (Target)</th>
+                                                <th>Bobot TF-IDF (A)</th>
+                                                <th class="pe-4">Pangkat Dua (A²)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($det['mag_target_breakdown'] as $term => $b): ?>
+                                            <tr>
+                                                <td class="text-start ps-4 fw-bold fs-12"><?= htmlspecialchars($term) ?></td>
+                                                <td class="font-monospace fs-12 text-muted"><?= number_format($b['val'], 4) ?></td>
+                                                <td class="font-monospace fs-12 text-muted pe-4"><?= number_format($b['sq'], 5) ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                        <tfoot class="table-light">
+                                            <tr>
+                                                <th colspan="2" class="text-end pe-3 text-dark">1. Total Penjumlahan Σ (A²) =</th>
+                                                <th class="font-monospace fw-bold text-dark fs-13 pe-4"><?= number_format(pow($det['mag_target'], 2), 5) ?></th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" class="text-end pe-3 text-dark border-bottom-0">2. Akar Kuadrat √(Σ A²) =</th>
+                                                <th class="font-monospace fw-bold text-primary fs-14 bg-primary-transparent pe-4 border-bottom-0"><?= number_format($det['mag_target'], 5) ?></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Tab Magnitude Bandingan -->
+                            <div class="tab-pane fade" id="pills-magb-<?= $id ?>" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-sm align-middle mb-0 text-center">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="text-start ps-4">Kata Kunci (Bandingan)</th>
+                                                <th>Bobot TF-IDF (B)</th>
+                                                <th class="pe-4">Pangkat Dua (B²)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($det['mag_other_breakdown'] as $term => $b): ?>
+                                            <tr>
+                                                <td class="text-start ps-4 fw-bold fs-12"><?= htmlspecialchars($term) ?></td>
+                                                <td class="font-monospace fs-12 text-muted"><?= number_format($b['val'], 4) ?></td>
+                                                <td class="font-monospace fs-12 text-muted pe-4"><?= number_format($b['sq'], 5) ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                        <tfoot class="table-light">
+                                            <tr>
+                                                <th colspan="2" class="text-end pe-3 text-dark">1. Total Penjumlahan Σ (B²) =</th>
+                                                <th class="font-monospace fw-bold text-dark fs-13 pe-4"><?= number_format(pow($det['mag_other'], 2), 5) ?></th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" class="text-end pe-3 text-dark border-bottom-0">2. Akar Kuadrat √(Σ B²) =</th>
+                                                <th class="font-monospace fw-bold text-primary fs-14 bg-primary-transparent pe-4 border-bottom-0"><?= number_format($det['mag_other'], 5) ?></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer p-2">
