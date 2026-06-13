@@ -188,7 +188,119 @@ header("Expires: 0");
     <p><strong>Kategori Target:</strong> <?= htmlspecialchars($documents_raw[$current_item_id]['kategori']) ?></p>
     
     <br>
-    <h3>Tabel Peringkat Rekomendasi (Top 5)</h3>
+    <h3>Langkah 1 &amp; 2: Dokumen dan Bobot</h3>
+    <table>
+        <thead>
+            <tr>
+                <th class="bg-header">Item (ID)</th>
+                <th class="bg-header">Data Mentah</th>
+                <th class="bg-header">Hasil Dokumen Teks (Berbobot)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?= htmlspecialchars($item_data[$current_item_id]['nama_brand'].' '.$item_data[$current_item_id]['nama_seri']) ?> (Target)</td>
+                <td>Kat: <?= htmlspecialchars($documents_raw[$current_item_id]['kategori']) ?><br>Brnd: <?= htmlspecialchars($documents_raw[$current_item_id]['brand']) ?><br>Seri: <?= htmlspecialchars($documents_raw[$current_item_id]['seri']) ?></td>
+                <td><?= htmlspecialchars($documents[$current_item_id]) ?></td>
+            </tr>
+            <?php foreach($top_ids as $id): ?>
+            <tr>
+                <td><?= htmlspecialchars($item_data[$id]['nama_brand'].' '.$item_data[$id]['nama_seri']) ?></td>
+                <td>Kat: <?= htmlspecialchars($documents_raw[$id]['kategori']) ?><br>Brnd: <?= htmlspecialchars($documents_raw[$id]['brand']) ?></td>
+                <td><?= htmlspecialchars($documents[$id]) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <br>
+    <h3>Langkah 3 &amp; 4: Tokenisasi dan Vocabulary</h3>
+    <table>
+        <thead>
+            <tr>
+                <th class="bg-header">Token Item Target</th>
+                <th class="bg-header">Vocabulary Global (Total: <?= count($vocab_list) ?> kata)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <?php 
+                    $counts = array_count_values($tokenized_docs[$current_item_id]);
+                    $target_tok_str = [];
+                    foreach($counts as $tok => $c) {
+                        $target_tok_str[] = "$tok ($c)";
+                    }
+                    echo htmlspecialchars(implode(', ', $target_tok_str));
+                    ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars(implode(', ', $vocab_list)) ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <h3>Langkah 5: Term Frequency (TF)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th class="bg-header">Term (Kata)</th>
+                <th class="bg-header">TF Target (<?= htmlspecialchars($item_data[$current_item_id]['nama_brand']) ?>)</th>
+                <?php foreach($top_ids as $id): ?>
+                    <th class="bg-header">TF #<?= htmlspecialchars($item_data[$id]['nama_brand']) ?></th>
+                <?php endforeach; ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+            $target_terms = array_keys(array_count_values($tokenized_docs[$current_item_id]));
+            $tot_target = count($tokenized_docs[$current_item_id]);
+            foreach($target_terms as $term): 
+                $c_target = array_count_values($tokenized_docs[$current_item_id])[$term] ?? 0;
+            ?>
+            <tr>
+                <td><?= htmlspecialchars($term) ?></td>
+                <td class="text-right"><?= number_format($tf[$current_item_id][$term] ?? 0, 4) ?> (<?= $c_target ?>/<?= $tot_target ?>)</td>
+                <?php foreach($top_ids as $id): 
+                    $c_other = array_count_values($tokenized_docs[$id])[$term] ?? 0;
+                    $tot_other = count($tokenized_docs[$id]);
+                ?>
+                    <td class="text-right"><?= number_format($tf[$id][$term] ?? 0, 4) ?> (<?= $c_other ?>/<?= $tot_other ?>)</td>
+                <?php endforeach; ?>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <br>
+    <h3>Langkah 6: Inverse Document Frequency (IDF)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th class="bg-header">Term (Kata)</th>
+                <th class="bg-header">Doc Freq (DF)</th>
+                <th class="bg-header">IDF Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+            $idf_sorted = $idf;
+            arsort($idf_sorted);
+            foreach($idf_sorted as $term => $val): 
+            ?>
+            <tr>
+                <td><?= htmlspecialchars($term) ?></td>
+                <td>Muncul di <?= $df[$term] ?> item</td>
+                <td class="text-right"><?= number_format($val, 4) ?> (log(<?= $total_documents ?>/<?= $df[$term] ?>))</td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <br>
+    <h3>Langkah 7 &amp; 8: Tabel Peringkat Rekomendasi (Top 5)</h3>
     <table>
         <thead>
             <tr>
