@@ -755,7 +755,7 @@ if (isset($update['message']['text'])) {
                   $msg .= "⏳ <b>Batas Waktu:</b> {$tgl_selesai}\n\n";
                   $msg .= "🛒 <b>Item Pesanan:</b>\n{$detail_pesanan_wa}\n";
                   
-                  $msg .= "💰 <b>Sewa Awal:</b> Rp " . number_format($row['estimasi_total_harga'], 0, ',', '.') . " (Sudah Lunas/Dibayar)\n";
+                  $msg .= "💰 <b>Harga Sewa:</b> Rp " . number_format($row['estimasi_total_harga'], 0, ',', '.') . "\n";
                   if ($hari_telat > 0) {
                       $msg .= "⚠️ <b>Lewat Toleransi (>3 Jam):</b> Telat {$hari_telat} Hari\n";
                       $msg .= "🔥 <b>Tagihan Denda:</b> Rp " . number_format($total_denda, 0, ',', '.') . "\n";
