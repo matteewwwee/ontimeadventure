@@ -29,6 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     } elseif ($status_baru === 'Selesai (Barang Kembali)' || $status_baru === 'Selesai') {
         // Catat waktu kembali saat itu juga
         $waktu_query = ", waktu_diambil = COALESCE(waktu_diambil, CURRENT_TIMESTAMP), waktu_kembali = COALESCE(waktu_kembali, CURRENT_TIMESTAMP), admin_penerima = '{$admin_name}'";
+        
+        // Simpan denda jika ada dari AJAX form submission
+        if (isset($_POST['total_denda']) && (int)$_POST['total_denda'] > 0) {
+            $denda = (int)$_POST['total_denda'];
+            $alasan = $db->quote($_POST['alasan_denda'] ?? 'Terlambat');
+            $waktu_query .= ", total_denda = {$denda}, alasan_denda = {$alasan}";
+        } else {
+            $waktu_query .= ", total_denda = 0, alasan_denda = NULL";
+        }
     }
     
     // Dapatkan status lama
@@ -391,7 +400,14 @@ $export_params = http_build_query([
                                         <?php endif; ?>
                                     </span>
                                 </td>
-                                <td data-label="Total Harga" class="fw-semibold">Rp <?= number_format($po['estimasi_total_harga'], 0, ',', '.') ?></td>
+                                <td data-label="Total Harga" class="fw-semibold">
+                                    Rp <?= number_format($po['estimasi_total_harga'], 0, ',', '.') ?>
+                                    <?php if (isset($po['total_denda']) && $po['total_denda'] > 0): ?>
+                                        <div class="text-danger mt-1 fs-12 fw-bold" title="<?= htmlspecialchars($po['alasan_denda']) ?>">
+                                            + Denda: Rp <?= number_format($po['total_denda'], 0, ',', '.') ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </td>
                                 <td data-label="Status" class="text-center"><span class="badge <?= getStatusBadgeClass($po['status_po']) ?>"><?= htmlspecialchars($po['status_po']) ?></span></td>
                                 <td data-label="Update Status">
                                     <form method="POST" action="" class="form-update-status d-flex gap-1 align-items-center justify-content-end">
@@ -606,6 +622,73 @@ let currentFormToSubmit = null;
 document.querySelectorAll('.form-update-status').forEach(form => {
     form.addEventListener('submit', function(e) {
         const statusSelect = this.querySelector('select[name="status_po"]');
+        const idPoInput = this.querySelector('input[name="id_po"]');
+        
+        if (statusSelect.value === 'Selesai (Barang Kembali)') {
+            // Cek denda via AJAX jika belum dicek
+            if (!this.querySelector('input[name="total_denda"]')) {
+                e.preventDefault();
+                currentFormToSubmit = this;
+                
+                fetch('ajax_hitung_denda.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'id_po=' + idPoInput.value
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.denda > 0) {
+                        Swal.fire({
+                            title: 'Terdapat Denda Keterlambatan!',
+                            html: `Batas Waktu Normal: <b>${data.deadline}</b><br>
+                                   Batas Toleransi (3 Jam): <b>${data.toleransi}</b><br>
+                                   Waktu Kembali: <b>${data.sekarang}</b><br><br>
+                                   <div class='bg-danger-transparent text-danger p-2 border border-danger rounded'>
+                                       Terlambat: <b>${data.hari_telat} Hari</b><br>
+                                       Sewa Harian: <b>Rp ${data.sewa_harian.toLocaleString('id-ID')}</b><br>
+                                       Total Denda: <b>Rp ${data.denda.toLocaleString('id-ID')}</b>
+                                   </div>`,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Terima Denda & Selesaikan',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                let hiddenInputDenda = document.createElement('input');
+                                hiddenInputDenda.type = 'hidden';
+                                hiddenInputDenda.name = 'total_denda';
+                                hiddenInputDenda.value = data.denda;
+                                
+                                let hiddenInputHari = document.createElement('input');
+                                hiddenInputHari.type = 'hidden';
+                                hiddenInputHari.name = 'alasan_denda';
+                                hiddenInputHari.value = 'Terlambat ' + data.hari_telat + ' Hari';
+                                
+                                currentFormToSubmit.appendChild(hiddenInputDenda);
+                                currentFormToSubmit.appendChild(hiddenInputHari);
+                                HTMLFormElement.prototype.submit.call(currentFormToSubmit);
+                            }
+                        });
+                    } else {
+                        // Tidak ada denda, lanjutkan submit
+                        let hiddenInputDenda = document.createElement('input');
+                        hiddenInputDenda.type = 'hidden';
+                        hiddenInputDenda.name = 'total_denda';
+                        hiddenInputDenda.value = 0;
+                        currentFormToSubmit.appendChild(hiddenInputDenda);
+                        HTMLFormElement.prototype.submit.call(currentFormToSubmit);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Gagal menghitung denda");
+                });
+                return;
+            }
+        }
+
         if (statusSelect.value === 'Barang Diambil' && !this.querySelector('input[name="jaminan"]')) {
             e.preventDefault();
             currentFormToSubmit = this;
