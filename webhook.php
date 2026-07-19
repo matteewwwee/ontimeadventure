@@ -665,7 +665,7 @@ if (isset($update['message']['text'])) {
         
         // Query users
           $stmt = $db->query("
-              SELECT p.id_po, u.nama, u.no_hp, p.tgl_selesai_sewa, p.status_po, p.waktu_diambil, p.waktu_kembali, p.jaminan
+              SELECT p.id_po, u.nama, u.no_hp, p.tgl_selesai_sewa, p.status_po, p.waktu_diambil, p.waktu_kembali, p.jaminan, p.estimasi_total_harga
               FROM pengajuan_po p
               JOIN users u ON p.id_user = u.id_user
               WHERE p.status_po IN ($status_filter)
@@ -701,6 +701,27 @@ if (isset($update['message']['text'])) {
                     $detail_pesanan_wa .= "- {$d['nama_brand']} {$d['nama_seri']} ({$d['keterangan_varian']}) x{$d['jumlah_pesan']}\n";
                 }
                 
+                // Hitung Denda Keterlambatan
+                $hari_telat = 0;
+                $total_denda = 0;
+                if (!empty($row['waktu_diambil'])) {
+                    $stmt_harga = $db->prepare("SELECT SUM(harga_satuan_saat_pesan * jumlah_pesan) as sewa_harian FROM detail_po WHERE id_po = ? AND (status_detail IS NULL OR status_detail != 'Dibatalkan')");
+                    $stmt_harga->execute([$row['id_po']]);
+                    $sewa_harian = (int)$stmt_harga->fetchColumn();
+                    
+                    $jam_diambil = date('H:i:s', strtotime($row['waktu_diambil']));
+                    $deadline_time = strtotime($row['tgl_selesai_sewa'] . ' ' . $jam_diambil);
+                    $toleransi_time = strtotime('+3 hours', $deadline_time);
+                    $waktu_sekarang = time();
+                    
+                    if ($waktu_sekarang > $toleransi_time) {
+                        $selisih_detik = $waktu_sekarang - $deadline_time;
+                        $hari_telat = ceil($selisih_detik / (24 * 60 * 60));
+                        $total_denda = $hari_telat * $sewa_harian;
+                    }
+                }
+                $total_biaya = $row['estimasi_total_harga'] + $total_denda;
+                
                 // WA Template
                 $template = $app_settings['wa_template_pengembalian'] ?? "Halo Kak [NAMA_PELANGGAN]! 👋\nKami dari pihak On Time Adventure ingin menginformasikan bahwa masa sewa alat camping Kakak untuk PO [NOMOR_PO] telah habis per tanggal [TGL_SELESAI].\n\n🛒 Detail Alat:\n[DETAIL_ITEM]\n\nMohon untuk segera mengembalikan alat tersebut ke tempat kami ya Kak. Jika ada kendala, silakan hubungi kami.\nTerima kasih! 🏕️✨";
                 $pesanWa = str_replace(
@@ -708,6 +729,11 @@ if (isset($update['message']['text'])) {
                     [$nama, $poFormat, $tgl_selesai, $detail_pesanan_wa], 
                     $template
                 );
+                
+                // Append denda info to WA
+                if ($hari_telat > 0) {
+                    $pesanWa .= "\n\n⚠️ *INFO KETERLAMBATAN*\nKakak tercatat terlambat {$hari_telat} Hari.\nEstimasi Denda: Rp " . number_format($total_denda, 0, ',', '.') . "\nTotal Tagihan (Sewa + Denda): Rp " . number_format($total_biaya, 0, ',', '.');
+                }
                 
                 // Remove leading '0' or '+' from no_hp
                 $no_hp_wa = preg_replace('/^0/', '62', preg_replace('/[^0-9]/', '', $no_hp));
@@ -727,8 +753,14 @@ if (isset($update['message']['text'])) {
                       $msg .= "🏠 <b>Waktu Kembali:</b> " . date('d/m/Y H:i', strtotime($row['waktu_kembali'])) . "\n";
                   }
                   $msg .= "⏳ <b>Batas Waktu:</b> {$tgl_selesai}\n\n";
+                  $msg .= "🛒 <b>Item Pesanan:</b>\n{$detail_pesanan_wa}\n";
                   
-                  $msg .= "🛒 <b>Item Pesanan:</b>\n{$detail_pesanan_wa}";
+                  $msg .= "💰 <b>Estimasi Harga:</b> Rp " . number_format($row['estimasi_total_harga'], 0, ',', '.') . "\n";
+                  if ($hari_telat > 0) {
+                      $msg .= "⚠️ <b>Keterlambatan:</b> {$hari_telat} Hari\n";
+                      $msg .= "🔥 <b>Denda Keterlambatan:</b> Rp " . number_format($total_denda, 0, ',', '.') . "\n";
+                      $msg .= "🧾 <b>Total Tagihan Berjalan:</b> Rp " . number_format($total_biaya, 0, ',', '.') . "\n";
+                  }
                 
                 $keyboard = [];
                 if ($is_booking) {
