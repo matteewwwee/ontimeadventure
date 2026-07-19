@@ -732,7 +732,7 @@ if (isset($update['message']['text'])) {
                 
                 // Append denda info to WA
                 if ($hari_telat > 0) {
-                    $pesanWa .= "\n\n⚠️ *INFO KETERLAMBATAN*\nKakak tercatat terlambat {$hari_telat} Hari.\nEstimasi Denda: Rp " . number_format($total_denda, 0, ',', '.') . "\nTotal Tagihan (Sewa + Denda): Rp " . number_format($total_biaya, 0, ',', '.');
+                    $pesanWa .= "\n\n⚠️ *INFO KETERLAMBATAN*\nKarena pengembalian alat telah melewati batas toleransi 3 jam dari waktu sewa, maka Kakak dikenakan denda keterlambatan seharga 1 hari sewa penuh untuk setiap harinya.\n\nKeterlambatan: {$hari_telat} Hari\nTotal Denda: *Rp " . number_format($total_denda, 0, ',', '.') . "*\n\nMohon siapkan pembayaran denda saat mengembalikan alat.";
                 }
                 
                 // Remove leading '0' or '+' from no_hp
@@ -755,11 +755,10 @@ if (isset($update['message']['text'])) {
                   $msg .= "⏳ <b>Batas Waktu:</b> {$tgl_selesai}\n\n";
                   $msg .= "🛒 <b>Item Pesanan:</b>\n{$detail_pesanan_wa}\n";
                   
-                  $msg .= "💰 <b>Estimasi Harga:</b> Rp " . number_format($row['estimasi_total_harga'], 0, ',', '.') . "\n";
+                  $msg .= "💰 <b>Sewa Awal:</b> Rp " . number_format($row['estimasi_total_harga'], 0, ',', '.') . " (Sudah Lunas/Dibayar)\n";
                   if ($hari_telat > 0) {
-                      $msg .= "⚠️ <b>Keterlambatan:</b> {$hari_telat} Hari\n";
-                      $msg .= "🔥 <b>Denda Keterlambatan:</b> Rp " . number_format($total_denda, 0, ',', '.') . "\n";
-                      $msg .= "🧾 <b>Total Tagihan Berjalan:</b> Rp " . number_format($total_biaya, 0, ',', '.') . "\n";
+                      $msg .= "⚠️ <b>Lewat Toleransi (>3 Jam):</b> Telat {$hari_telat} Hari\n";
+                      $msg .= "🔥 <b>Tagihan Denda:</b> Rp " . number_format($total_denda, 0, ',', '.') . "\n";
                   }
                 
                 $keyboard = [];
