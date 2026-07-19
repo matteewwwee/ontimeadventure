@@ -198,7 +198,11 @@ $total_pages = ceil($total_data / $limit);
 
 // Ambil data PO dengan Limit
 $query = "
-    SELECT p.*, u.nama, u.no_hp 
+    SELECT p.*, u.nama, u.no_hp,
+           (SELECT SUM(d.harga_satuan_saat_pesan * d.jumlah_pesan) 
+            FROM detail_po d 
+            WHERE d.id_po = p.id_po AND (d.status_detail IS NULL OR d.status_detail != 'Dibatalkan')
+           ) as sewa_harian
     FROM pengajuan_po p 
     JOIN users u ON p.id_user = u.id_user 
     $where
@@ -370,6 +374,26 @@ $export_params = http_build_query([
                                 <td data-label="Pelanggan">
                                     <span class="fw-semibold"><?= htmlspecialchars($po['nama']) ?></span><br>
                                     <span class="fs-12 text-muted"><?= htmlspecialchars($po['no_hp']) ?></span>
+                                    
+                                    <?php
+                                    // Hitung Live Denda untuk UI
+                                    $live_denda = 0;
+                                    $live_telat = 0;
+                                    $toleransi_str = '';
+                                    if (($po['status_po'] === 'Barang Diambil' || $po['status_po'] === 'Selesai (Barang Belum Kembali)') && !empty($po['waktu_diambil'])) {
+                                        $jam_diambil = date('H:i:s', strtotime($po['waktu_diambil']));
+                                        $deadline_time = strtotime($po['tgl_selesai_sewa'] . ' ' . $jam_diambil);
+                                        $toleransi_time = strtotime('+3 hours', $deadline_time);
+                                        $toleransi_str = date('d/m/y H:i', $toleransi_time);
+                                        $waktu_sekarang = time();
+                                        
+                                        if ($waktu_sekarang > $toleransi_time) {
+                                            $selisih_detik = $waktu_sekarang - $deadline_time;
+                                            $live_telat = ceil($selisih_detik / (24 * 60 * 60));
+                                            $live_denda = $live_telat * (int)$po['sewa_harian'];
+                                        }
+                                    }
+                                    ?>
                                 </td>
                                 <td data-label="Tanggal Sewa">
                                     <span class="fs-13">
@@ -381,6 +405,11 @@ $export_params = http_build_query([
                                     <span class="fs-12">
                                         <?php if (!empty($po['waktu_diambil'])): ?>
                                             <span class="text-primary" title="Waktu Diambil"><i class="ri-arrow-right-up-line"></i> <?= date('d/m/y H:i', strtotime($po['waktu_diambil'])) ?></span>
+                                            
+                                            <?php if ($toleransi_str !== ''): ?>
+                                                <br><span class="text-warning fw-bold" title="Batas Toleransi (+3 Jam)"><i class="ri-time-line"></i> Tenggat: <?= $toleransi_str ?></span>
+                                            <?php endif; ?>
+                                            
                                             <?php if (!empty($po['admin_penyerah'])): ?>
                                                 <span class="text-muted d-block ms-3" style="font-size: 10px;">(Oleh: <?= htmlspecialchars($po['admin_penyerah']) ?>)</span>
                                             <?php else: ?>
@@ -405,6 +434,10 @@ $export_params = http_build_query([
                                     <?php if (isset($po['total_denda']) && $po['total_denda'] > 0): ?>
                                         <div class="text-danger mt-1 fs-12 fw-bold" title="<?= htmlspecialchars($po['alasan_denda']) ?>">
                                             + Denda: Rp <?= number_format($po['total_denda'], 0, ',', '.') ?>
+                                        </div>
+                                    <?php elseif ($live_denda > 0): ?>
+                                        <div class="text-danger mt-1 fs-12 fw-bold" title="Telat <?= $live_telat ?> Hari (Belum Diselesaikan)">
+                                            + Denda Berjalan: Rp <?= number_format($live_denda, 0, ',', '.') ?>
                                         </div>
                                     <?php endif; ?>
                                 </td>
