@@ -30,13 +30,13 @@ $recent_po = $stmt->fetchAll();
 
 // Barang Keluar (Sedang Disewa)
 $stmt = $db->query("
-    SELECT dp.id_po, i.nama_brand, i.nama_seri, i.gambar, v.keterangan_varian, dp.jumlah_pesan, p.tgl_mulai_sewa, p.tgl_selesai_sewa, u.nama 
+    SELECT dp.id_po, i.nama_brand, i.nama_seri, i.gambar, v.keterangan_varian, dp.jumlah_pesan, p.tgl_mulai_sewa, p.tgl_selesai_sewa, u.nama, p.status_po, p.waktu_diambil 
     FROM detail_po dp
     JOIN varian_item v ON dp.id_varian = v.id_varian
     JOIN item i ON v.id_item = i.id_item
     JOIN pengajuan_po p ON dp.id_po = p.id_po
     JOIN users u ON p.id_user = u.id_user
-    WHERE p.status_po = 'Barang Diambil'
+    WHERE p.status_po IN ('Barang Diambil', 'Selesai (Barang Belum Kembali)')
     ORDER BY p.tgl_selesai_sewa ASC
     LIMIT 5
 ");
@@ -163,7 +163,25 @@ require_once __DIR__ . '/../includes/header.php';
                                         $sisa_badge = 'bg-success-transparent text-success';
                                         $sisa_text = $sisa_hari . ' hari lagi';
                                         
-                                        if ($sisa_hari == 0) {
+                                        $live_telat = 0;
+                                        $toleransi_str = '';
+                                        if (!empty($bk['waktu_diambil'])) {
+                                            $jam_diambil = date('H:i:s', strtotime($bk['waktu_diambil']));
+                                            $deadline_time = strtotime($bk['tgl_selesai_sewa'] . ' ' . $jam_diambil);
+                                            $toleransi_time = strtotime('+3 hours', $deadline_time);
+                                            $toleransi_str = date('d M Y, H:i', $toleransi_time);
+                                            $waktu_sekarang = time();
+                                            
+                                            if ($waktu_sekarang > $toleransi_time) {
+                                                $selisih_detik = $waktu_sekarang - $deadline_time;
+                                                $live_telat = ceil($selisih_detik / (24 * 60 * 60));
+                                            }
+                                        }
+                                        
+                                        if ($live_telat > 0) {
+                                            $sisa_badge = 'bg-danger-transparent text-danger fw-bold';
+                                            $sisa_text = 'Telat ' . $live_telat . ' Hari';
+                                        } elseif ($sisa_hari == 0) {
                                             $sisa_badge = 'bg-warning-transparent text-warning';
                                             $sisa_text = 'Hari ini';
                                         } elseif ($sisa_hari < 0) {
@@ -193,7 +211,12 @@ require_once __DIR__ . '/../includes/header.php';
                                             <td data-label="Penyewa"><?= htmlspecialchars($bk['nama']) ?></td>
                                             <td data-label="Jumlah" class="text-center fw-semibold"><?= $bk['jumlah_pesan'] ?></td>
                                             <td data-label="Tgl Mulai"><?= date('d M Y', strtotime($bk['tgl_mulai_sewa'])) ?></td>
-                                            <td data-label="Tgl Selesai (Kembali)"><span class="fw-semibold"><?= date('d M Y', strtotime($bk['tgl_selesai_sewa'])) ?></span></td>
+                                            <td data-label="Tgl Selesai (Kembali)">
+                                                <span class="fw-semibold"><?= date('d M Y', strtotime($bk['tgl_selesai_sewa'])) ?></span>
+                                                <?php if ($toleransi_str !== ''): ?>
+                                                    <div class="text-danger mt-1" style="font-size: 10px;" title="Batas Toleransi (+3 Jam)"><i class="ri-time-line"></i> Tenggat: <?= $toleransi_str ?></div>
+                                                <?php endif; ?>
+                                            </td>
                                             <td data-label="Sisa Waktu" class="text-center"><span class="badge <?= $sisa_badge ?>"><?= $sisa_text ?></span></td>
                                         </tr>
                                     <?php endforeach; ?>
