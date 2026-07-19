@@ -765,8 +765,19 @@ document.getElementById('btnSubmitJaminan').addEventListener('click', function()
         hiddenInput.value = finalJaminan;
         currentFormToSubmit.appendChild(hiddenInput);
         
+        // Hide modal to give visual feedback
+        bootstrap.Modal.getInstance(document.getElementById('jaminanModal')).hide();
+        
+        // Show loading state on button
+        this.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Menyimpan...';
+        this.disabled = true;
+
         // Allow form to submit by bypassing the submit event listener
-        HTMLFormElement.prototype.submit.call(currentFormToSubmit);
+        try {
+            HTMLFormElement.prototype.submit.call(currentFormToSubmit);
+        } catch(e) {
+            currentFormToSubmit.submit();
+        }
     }
 });
 
